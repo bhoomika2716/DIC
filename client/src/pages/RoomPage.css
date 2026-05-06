@@ -1,0 +1,159 @@
+/* =====================================================
+   ROOM PAGE
+   ===================================================== */
+.room-hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.room-hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.room-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.92) 0%,
+    rgba(0,0,0,0.6) 50%,
+    rgba(0,0,0,0.2) 100%
+  );
+}
+
+.room-hero__content {
+  position: relative;
+  z-index: 1;
+  padding-top: calc(var(--nav-h) + 2rem);
+  padding-bottom: 5rem;
+}
+
+.room-hero__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  transition: color var(--transition-fast);
+}
+.room-hero__back:hover { color: var(--accent); }
+
+.room-hero__emoji {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.room-hero__title {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.room-hero__title em {
+  font-style: italic;
+  color: var(--accent);
+  display: block;
+}
+
+.room-hero__desc {
+  max-width: 58ch;
+  margin-bottom: 2rem;
+}
+
+.room-hero__ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Ideas Grid */
+.room-ideas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.room-idea-card__inner {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.room-idea-card__inner:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card), var(--shadow-gold);
+}
+
+.room-idea-card__img-wrap {
+  position: relative;
+  height: 160px;
+  overflow: hidden;
+}
+
+.room-idea-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.room-idea-card__inner:hover .room-idea-card__img {
+  transform: scale(1.07);
+}
+
+.room-idea-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.6), transparent 60%);
+}
+
+.room-idea-card__num {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+}
+
+.room-idea-card__body {
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.room-idea-card__title {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  flex: 1;
+}
+
+.room-idea-card__link {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+  transition: gap var(--transition-fast);
+}
+
+.room-idea-card__inner:hover .room-idea-card__link { gap: 0.5rem; }
+
+@media (max-width: 1024px) { .room-ideas-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 768px)  { .room-ideas-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px)  { .room-ideas-grid { grid-template-columns: 1fr; } }

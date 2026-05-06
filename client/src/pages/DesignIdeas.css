@@ -1,0 +1,108 @@
+/* =====================================================
+   DESIGN IDEAS
+   ===================================================== */
+
+/* Grid */
+.di-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+/* Card */
+.di-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.di-card:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card), var(--shadow-gold);
+}
+
+.di-card__img-wrap {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: #1a1208;
+}
+
+.di-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.di-card:hover .di-card__img {
+  transform: scale(1.06);
+}
+
+.di-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.55), transparent 50%);
+}
+
+.di-card__emoji {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.di-card__count {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+}
+
+.di-card__body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.di-card__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.di-card__desc {
+  flex: 1;
+  line-height: 1.55;
+}
+
+.di-card__arrow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 0.25rem;
+  transition: gap var(--transition-fast);
+}
+
+.di-card:hover .di-card__arrow { gap: 0.65rem; }
+
+/* Responsive */
+@media (max-width: 1100px) { .di-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 768px)  { .di-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px)  { .di-grid { grid-template-columns: 1fr; } }
