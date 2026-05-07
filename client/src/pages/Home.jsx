@@ -1,6 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import AnimatedSection from '../components/AnimatedSection'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { 
+  Home as HomeIcon, 
+  Briefcase, 
+  Hammer, 
+  Sparkles, 
+  ArrowRight, 
+  CheckCircle2, 
+  Star,
+  Quote
+} from 'lucide-react'
+import Spotlight from '../components/Spotlight'
+import InteractiveGrid from '../components/InteractiveGrid'
 import './Home.css'
 
 /* Animated counter hook */
@@ -37,7 +49,14 @@ function StatCounter({ value, suffix, label }) {
 
   return (
     <div ref={ref} className="stat">
-      <span className="stat__number">{count}{suffix}</span>
+      <motion.span 
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="stat__number"
+      >
+        {count}{suffix}
+      </motion.span>
       <span className="stat__label">{label}</span>
     </div>
   )
@@ -45,25 +64,25 @@ function StatCounter({ value, suffix, label }) {
 
 const SERVICES = [
   {
-    icon: '🏠',
+    icon: <HomeIcon size={32} />,
     title: 'Residential Design',
     desc: 'Bespoke living spaces that reflect your personality. From concept to completion, we transform homes into sanctuaries.',
     href: '/services',
   },
   {
-    icon: '🏢',
+    icon: <Briefcase size={32} />,
     title: 'Commercial Design',
     desc: 'Functional, brand-aligned workspaces that inspire teams and impress clients. Offices, retail, hospitality.',
     href: '/services',
   },
   {
-    icon: '🔨',
+    icon: <Hammer size={32} />,
     title: 'Renovation & Remodeling',
     desc: 'Breathe new life into existing spaces. Structural, aesthetic, or both — we handle end-to-end renovation.',
     href: '/services',
   },
   {
-    icon: '✨',
+    icon: <Sparkles size={32} />,
     title: 'Interior Styling',
     desc: 'Curated furniture, art, and decor to perfect your space. The final touch that makes it uniquely yours.',
     href: '/services',
@@ -100,66 +119,120 @@ const PORTFOLIO_ITEMS = [
   { title: 'Modular Kitchen, Velachery', category: 'Residential', color: '#120e08' },
 ]
 
+const RevealText = ({ children, delay = 0 }) => {
+  return (
+    <div style={{ position: 'relative', overflow: 'hidden' }}>
+      <motion.div
+        initial={{ y: '100%' }}
+        whileInView={{ y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {children}
+      </motion.div>
+    </div>
+  )
+}
+
 export default function Home() {
+  const { scrollYProgress } = useScroll();
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+
   return (
     <main className="home">
       {/* ─── HERO ───────────────────────────────────────── */}
       <section className="hero">
-        <div className="hero__bg-grid" aria-hidden="true" />
-        <div className="hero__accent-line" aria-hidden="true" />
+        <InteractiveGrid />
+        <Spotlight />
+        
         <div className="container hero__content">
           <div className="hero__text">
-            <AnimatedSection>
+            <RevealText delay={0.1}>
               <p className="overline hero__overline">Chennai's Premier Interior Design Studio</p>
-            </AnimatedSection>
-            <AnimatedSection delay={1}>
-              <h1 className="display hero__heading">
-                Spaces That Tell<br />
+            </RevealText>
+            
+            <h1 className="display hero__heading">
+              <RevealText delay={0.2}>Spaces That Tell</RevealText>
+              <RevealText delay={0.3}>
                 <em className="hero__heading-em">Your Story</em>
-              </h1>
-            </AnimatedSection>
-            <AnimatedSection delay={2}>
-              <p className="lead hero__lead">
-                De Interio Café crafts extraordinary interiors for homes and businesses across Chennai. 
-                15+ years of transforming spaces, one dream at a time.
-              </p>
-            </AnimatedSection>
-            <AnimatedSection delay={3}>
-              <div className="hero__ctas">
-                <Link to="/portfolio" className="btn btn-primary" id="hero-view-portfolio">
-                  View Our Work
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </Link>
-                <Link to="/contact" className="btn btn-outline" id="hero-book-consultation">
-                  Book Free Consultation
-                </Link>
-              </div>
-            </AnimatedSection>
+              </RevealText>
+            </h1>
+
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="lead hero__lead"
+            >
+              De Interio Café crafts extraordinary interiors for homes and businesses across Chennai. 
+              15+ years of transforming spaces, one dream at a time.
+            </motion.p>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="hero__ctas"
+            >
+              <Link to="/portfolio" className="btn btn-primary hoverable" id="hero-view-portfolio">
+                View Our Work
+                <ArrowRight size={18} />
+              </Link>
+              <Link to="/contact" className="btn btn-outline hoverable" id="hero-book-consultation">
+                Book Free Consultation
+              </Link>
+            </motion.div>
           </div>
-          <div className="hero__visual" aria-hidden="true">
-            <div className="hero__visual-card">
+
+          <motion.div 
+            style={{ y: y1 }}
+            className="hero__visual" 
+            aria-hidden="true"
+          >
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+              className="hero__visual-card glass-card"
+            >
               <div className="hero__visual-inner">
                 <div className="hero__visual-label">Current Project</div>
                 <div className="hero__visual-project">Modern Villa, Boat Club</div>
                 <div className="hero__visual-progress">
                   <div className="hero__visual-bar">
-                    <div className="hero__visual-fill" style={{ width: '78%' }} />
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      animate={{ width: '78%' }}
+                      transition={{ duration: 1.5, delay: 1.2, ease: "circOut" }}
+                      className="hero__visual-fill" 
+                    />
                   </div>
                   <span>78% Complete</span>
                 </div>
               </div>
               <div className="hero__visual-tag">Residential</div>
-            </div>
-            <div className="hero__visual-badge">
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="hero__visual-badge glass-card"
+            >
               <span className="hero__visual-badge-num">500+</span>
               <span className="hero__visual-badge-text">Projects Delivered</span>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* Stats */}
         <div className="container">
-          <div className="hero__stats">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="hero__stats glass-card"
+          >
             <StatCounter value={500} suffix="+" label="Projects Completed" />
             <div className="hero__stat-divider" />
             <StatCounter value={15} suffix="+" label="Years of Excellence" />
@@ -167,34 +240,39 @@ export default function Home() {
             <StatCounter value={98} suffix="%" label="Client Satisfaction" />
             <div className="hero__stat-divider" />
             <StatCounter value={200} suffix="+" label="Happy Families" />
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ─── SERVICES ───────────────────────────────────── */}
       <section className="section home-services">
         <div className="container">
-          <AnimatedSection>
-            <div className="section-label">
-              <span className="overline">What We Do</span>
-            </div>
-            <div className="home-services__header">
-              <h2 className="heading-1">Our Services</h2>
-              <Link to="/services" className="btn btn-ghost">View All Services</Link>
-            </div>
-          </AnimatedSection>
+          <div className="section-label">
+            <span className="overline">What We Do</span>
+          </div>
+          <div className="home-services__header">
+            <h2 className="heading-1">Our Services</h2>
+            <Link to="/services" className="btn btn-ghost hoverable">View All Services</Link>
+          </div>
+
           <div className="home-services__grid">
             {SERVICES.map((s, i) => (
-              <AnimatedSection key={s.title} delay={i + 1}>
-                <Link to={s.href} className="service-card" id={`service-${s.title.toLowerCase().replace(/\s+/g, '-')}`}>
+              <motion.div
+                key={s.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+              >
+                <Link to={s.href} className="service-card hoverable" id={`service-${s.title.toLowerCase().replace(/\s+/g, '-')}`}>
                   <div className="service-card__icon">{s.icon}</div>
                   <h3 className="heading-3 service-card__title">{s.title}</h3>
                   <p className="body-sm service-card__desc">{s.desc}</p>
                   <span className="service-card__arrow">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <ArrowRight size={20} />
                   </span>
                 </Link>
-              </AnimatedSection>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -204,7 +282,12 @@ export default function Home() {
       <section className="section home-about">
         <div className="container">
           <div className="home-about__inner">
-            <AnimatedSection className="home-about__text">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="home-about__text"
+            >
               <div className="section-label">
                 <span className="overline">Our Story</span>
               </div>
@@ -219,35 +302,54 @@ export default function Home() {
               <ul className="home-about__pillars">
                 {['Client-First Philosophy','Timeless Design Aesthetic','On-Time, On-Budget Delivery','End-to-End Project Management'].map(p => (
                   <li key={p}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <CheckCircle2 size={18} />
                     {p}
                   </li>
                 ))}
               </ul>
-              <Link to="/about" className="btn btn-outline" id="about-learn-more">
+              <Link to="/about" className="btn btn-outline hoverable" id="about-learn-more">
                 Learn Our Story
               </Link>
-            </AnimatedSection>
-            <AnimatedSection delay={2} className="home-about__visual">
-              <div className="home-about__card home-about__card--1">
+            </motion.div>
+
+            <div className="home-about__visual">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="home-about__card home-about__card--1 glass-card"
+              >
                 <div className="home-about__card-inner">
                   <span className="overline">Founded</span>
                   <strong>2008</strong>
                 </div>
-              </div>
-              <div className="home-about__card home-about__card--2">
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="home-about__card home-about__card--2 glass-card"
+              >
                 <div className="home-about__card-inner">
                   <span className="overline">Recognition</span>
                   <strong>Top Studio<br/>Chennai</strong>
                 </div>
-              </div>
-              <div className="home-about__card home-about__card--3">
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="home-about__card home-about__card--3 glass-card"
+              >
                 <div className="home-about__card-inner">
                   <span className="overline">Affiliation</span>
                   <strong>Zenith77<br/>Group</strong>
                 </div>
-              </div>
-            </AnimatedSection>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -255,19 +357,25 @@ export default function Home() {
       {/* ─── PORTFOLIO PREVIEW ──────────────────────────── */}
       <section className="section home-portfolio">
         <div className="container">
-          <AnimatedSection>
-            <div className="section-label">
-              <span className="overline">Our Work</span>
-            </div>
-            <div className="home-portfolio__header">
-              <h2 className="heading-1">Featured Projects</h2>
-              <Link to="/portfolio" className="btn btn-ghost" id="portfolio-view-all">View All Projects</Link>
-            </div>
-          </AnimatedSection>
+          <div className="section-label">
+            <span className="overline">Our Work</span>
+          </div>
+          <div className="home-portfolio__header">
+            <h2 className="heading-1">Featured Projects</h2>
+            <Link to="/portfolio" className="btn btn-ghost hoverable" id="portfolio-view-all">View All Projects</Link>
+          </div>
+
           <div className="home-portfolio__grid">
             {PORTFOLIO_ITEMS.map((item, i) => (
-              <AnimatedSection key={item.title} delay={(i % 3) + 1} className={`portfolio-item portfolio-item--${i}`}>
-                <Link to="/portfolio" className="portfolio-card" style={{ '--card-bg': item.color }}>
+              <motion.div 
+                key={item.title}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
+                className={`portfolio-item portfolio-item--${i}`}
+              >
+                <Link to="/portfolio" className="portfolio-card hoverable" style={{ '--card-bg': item.color }}>
                   <div className="portfolio-card__bg" />
                   <div className="portfolio-card__content">
                     <span className="badge">{item.category}</span>
@@ -275,10 +383,10 @@ export default function Home() {
                   </div>
                   <div className="portfolio-card__hover">
                     <span>View Project</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <ArrowRight size={20} />
                   </div>
                 </Link>
-              </AnimatedSection>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -287,54 +395,72 @@ export default function Home() {
       {/* ─── TESTIMONIALS ───────────────────────────────── */}
       <section className="section home-testimonials">
         <div className="container">
-          <AnimatedSection>
-            <div className="section-label">
-              <span className="overline">Client Stories</span>
-            </div>
-            <h2 className="heading-1 home-testimonials__heading">What Clients Say</h2>
-          </AnimatedSection>
+          <div className="section-label">
+            <span className="overline">Client Stories</span>
+          </div>
+          <h2 className="heading-1 home-testimonials__heading">What Clients Say</h2>
+          
           <div className="home-testimonials__grid">
             {TESTIMONIALS.map((t, i) => (
-              <AnimatedSection key={t.name} delay={i + 1}>
-                <div className="testimonial-card">
-                  <div className="stars">
-                    {Array(t.rating).fill(0).map((_, j) => <span key={j}>★</span>)}
-                  </div>
+              <motion.div 
+                key={t.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="testimonial-card glass-card"
+              >
+                <div className="stars">
+                  {Array(t.rating).fill(0).map((_, j) => <Star key={j} size={14} fill="currentColor" />)}
+                </div>
+                <div className="testimonial-card__quote-wrapper">
+                  <Quote size={24} className="testimonial-card__quote-icon" />
                   <p className="testimonial-card__quote">"{t.quote}"</p>
-                  <div className="testimonial-card__author">
-                    <div className="testimonial-card__avatar">
-                      {t.name.charAt(0)}
-                    </div>
-                    <div>
-                      <strong>{t.name}</strong>
-                      <span className="body-sm">{t.role}</span>
-                    </div>
+                </div>
+                <div className="testimonial-card__author">
+                  <div className="testimonial-card__avatar">
+                    {t.name.charAt(0)}
+                  </div>
+                  <div>
+                    <strong>{t.name}</strong>
+                    <span className="body-sm">{t.role}</span>
                   </div>
                 </div>
-              </AnimatedSection>
+              </motion.div>
             ))}
           </div>
-          <AnimatedSection className="home-testimonials__cta">
-            <Link to="/testimonials" className="btn btn-outline" id="testimonials-view-all">
+          
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="home-testimonials__cta"
+          >
+            <Link to="/testimonials" className="btn btn-outline hoverable" id="testimonials-view-all">
               Read All Reviews
             </Link>
-          </AnimatedSection>
+          </motion.div>
         </div>
       </section>
 
       {/* ─── CTA BAND ───────────────────────────────────── */}
       <section className="home-cta-band">
         <div className="container">
-          <AnimatedSection className="home-cta-band__inner">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="home-cta-band__inner glass-card"
+          >
             <div>
               <h2 className="heading-1 home-cta-band__heading">Ready to Transform<br />Your Space?</h2>
               <p className="lead home-cta-band__lead">Schedule a free consultation and let's bring your vision to life.</p>
             </div>
             <div className="home-cta-band__actions">
-              <Link to="/contact" className="btn btn-primary" id="cta-band-consult">Get Free Consultation</Link>
-              <a href="tel:+919500078674" className="btn btn-outline" id="cta-band-call">Call +91 95000 78674</a>
+              <Link to="/contact" className="btn btn-primary hoverable" id="cta-band-consult">Get Free Consultation</Link>
+              <a href="tel:+919500078674" className="btn btn-outline hoverable" id="cta-band-call">Call +91 95000 78674</a>
             </div>
-          </AnimatedSection>
+          </motion.div>
         </div>
       </section>
     </main>

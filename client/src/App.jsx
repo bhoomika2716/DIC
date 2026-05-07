@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import WhatsAppButton from './components/WhatsAppButton'
 import Chatbot from './components/Chatbot'
+import CustomCursor from './components/CustomCursor'
 
 // Core Pages
 import Home from './pages/Home'
@@ -70,6 +71,7 @@ export default function App() {
       <ScrollToTop />
       <WhatsAppButton />
       <Chatbot />
+      <CustomCursor />
     </BrowserRouter>
   )
 }

@@ -1,31 +1,22 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react';
+import { motion } from 'framer-motion';
 
-export default function AnimatedSection({ children, className = '', delay = 0 }) {
-  const ref = useRef(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('visible')
-          observer.unobserve(el)
-        }
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
-  const delayClass = delay ? `delay-${delay}` : ''
-
+const AnimatedSection = ({ children, className = '', delay = 0, y = 30 }) => {
   return (
-    <div ref={ref} className={`animate-in ${delayClass} ${className}`}>
+    <motion.div
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ 
+        duration: 0.7, 
+        delay: delay * 0.1, 
+        ease: [0.21, 0.47, 0.32, 0.98] 
+      }}
+      className={className}
+    >
       {children}
-    </div>
-  )
-}
+    </motion.div>
+  );
+};
+
+export default AnimatedSection;

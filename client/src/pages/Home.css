@@ -10,22 +10,10 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background-color: #050505;
 }
 
-.hero__bg-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(
-      0deg, transparent, transparent 60px,
-      rgba(244,231,161,0.025) 60px, rgba(244,231,161,0.025) 61px
-    ),
-    repeating-linear-gradient(
-      90deg, transparent, transparent 60px,
-      rgba(244,231,161,0.025) 60px, rgba(244,231,161,0.025) 61px
-    );
-  pointer-events: none;
-}
+/* Removed old grid, using InteractiveGrid component */
 
 .hero__accent-line {
   position: absolute;
@@ -84,12 +72,9 @@
 .hero__visual-card {
   width: 100%;
   max-width: 340px;
-  background: var(--bg-card);
-  border: 1px solid var(--accent-border);
-  border-radius: var(--radius-xl);
-  padding: 1.75rem;
-  box-shadow: var(--shadow-card), var(--shadow-gold);
+  padding: 2rem;
   position: relative;
+  z-index: 2;
 }
 
 .hero__visual-label {
@@ -151,14 +136,11 @@
   position: absolute;
   bottom: -2rem;
   left: -1.5rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1rem 1.25rem;
+  padding: 1.25rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: var(--shadow-card);
+  z-index: 3;
 }
 
 .hero__visual-badge-num {
@@ -180,11 +162,10 @@
   display: flex;
   align-items: center;
   gap: 0;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
   overflow: hidden;
   margin-bottom: 5rem;
+  position: relative;
+  z-index: 5;
 }
 
 .stat {
@@ -496,14 +477,23 @@
 }
 
 .testimonial-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  transition: var(--transition);
+  gap: 1.5rem;
+  position: relative;
+}
+
+.testimonial-card__quote-wrapper {
+  position: relative;
+}
+
+.testimonial-card__quote-icon {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  opacity: 0.1;
+  color: var(--accent);
 }
 
 .testimonial-card:hover {
@@ -569,6 +559,7 @@
   justify-content: space-between;
   gap: 3rem;
   flex-wrap: wrap;
+  padding: 4rem;
 }
 
 .home-cta-band__heading { margin-bottom: 0.75rem; }

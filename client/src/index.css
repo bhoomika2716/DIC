@@ -52,6 +52,13 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: none;
+}
+
+/* Ensure interactive elements still show cursor if component fails, 
+   but ideally CustomCursor handles it */
+a, button, input, textarea, select {
+  cursor: none !important;
 }
 
 img {
@@ -111,11 +118,13 @@ body:active::-webkit-scrollbar-thumb {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(244, 231, 161, 0.1) !important;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: var(--transition);
 }
 
 .glass-card:hover {
   border-color: rgba(244, 231, 161, 0.3) !important;
-  background: rgba(22, 22, 22, 0.6) !important;
+  background: rgba(244, 231, 161, 0.03) !important;
+  transform: translateY(-5px);
 }
 
 /* ─── LAYOUT UTILITIES ───────────────────────────── */
