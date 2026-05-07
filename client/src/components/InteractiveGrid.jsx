@@ -18,15 +18,15 @@ const InteractiveGrid = () => {
           position: 'absolute',
           inset: 0,
           backgroundImage: `
-            linear-gradient(to right, rgba(244, 231, 161, 0.05) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(244, 231, 161, 0.05) 1px, transparent 1px)
+            linear-gradient(to right, rgba(184, 154, 66, 0.06) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(184, 154, 66, 0.06) 1px, transparent 1px)
           `,
           backgroundSize: '40px 40px'
         }}
       />
       <motion.div 
         animate={{
-          opacity: [0.1, 0.3, 0.1],
+          opacity: [0.05, 0.15, 0.05],
           scale: [1, 1.1, 1],
         }}
         transition={{
@@ -37,7 +37,7 @@ const InteractiveGrid = () => {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(circle at 50% 50%, rgba(244, 231, 161, 0.03) 0%, transparent 50%)'
+          background: 'radial-gradient(circle at 50% 50%, rgba(184, 154, 66, 0.04) 0%, transparent 50%)'
         }}
       />
     </div>

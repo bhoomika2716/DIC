@@ -12,7 +12,9 @@ import {
   Quote
 } from 'lucide-react'
 import Spotlight from '../components/Spotlight'
-import InteractiveGrid from '../components/InteractiveGrid'
+import ShinyText from '../components/ShinyText'
+import HeroVisual from '../components/HeroVisual'
+import StoryVisual from '../components/StoryVisual'
 import './Home.css'
 
 /* Animated counter hook */
@@ -142,7 +144,6 @@ export default function Home() {
     <main className="home">
       {/* ─── HERO ───────────────────────────────────────── */}
       <section className="hero">
-        <InteractiveGrid />
         <Spotlight />
         
         <div className="container hero__content">
@@ -154,7 +155,11 @@ export default function Home() {
             <h1 className="display hero__heading">
               <RevealText delay={0.2}>Spaces That Tell</RevealText>
               <RevealText delay={0.3}>
-                <em className="hero__heading-em">Your Story</em>
+                <ShinyText 
+                  text="Your Story" 
+                  className="hero__heading-em" 
+                  speed={3} 
+                />
               </RevealText>
             </h1>
 
@@ -179,50 +184,12 @@ export default function Home() {
                 <ArrowRight size={18} />
               </Link>
               <Link to="/contact" className="btn btn-outline hoverable" id="hero-book-consultation">
-                Book Free Consultation
+                Get In Touch
               </Link>
             </motion.div>
           </div>
 
-          <motion.div 
-            style={{ y: y1 }}
-            className="hero__visual" 
-            aria-hidden="true"
-          >
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-              className="hero__visual-card glass-card"
-            >
-              <div className="hero__visual-inner">
-                <div className="hero__visual-label">Current Project</div>
-                <div className="hero__visual-project">Modern Villa, Boat Club</div>
-                <div className="hero__visual-progress">
-                  <div className="hero__visual-bar">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      animate={{ width: '78%' }}
-                      transition={{ duration: 1.5, delay: 1.2, ease: "circOut" }}
-                      className="hero__visual-fill" 
-                    />
-                  </div>
-                  <span>78% Complete</span>
-                </div>
-              </div>
-              <div className="hero__visual-tag">Residential</div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="hero__visual-badge glass-card"
-            >
-              <span className="hero__visual-badge-num">500+</span>
-              <span className="hero__visual-badge-text">Projects Delivered</span>
-            </motion.div>
-          </motion.div>
+          <HeroVisual />
         </div>
 
         {/* Stats */}
@@ -313,42 +280,7 @@ export default function Home() {
             </motion.div>
 
             <div className="home-about__visual">
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="home-about__card home-about__card--1 glass-card"
-              >
-                <div className="home-about__card-inner">
-                  <span className="overline">Founded</span>
-                  <strong>2008</strong>
-                </div>
-              </motion.div>
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="home-about__card home-about__card--2 glass-card"
-              >
-                <div className="home-about__card-inner">
-                  <span className="overline">Recognition</span>
-                  <strong>Top Studio<br/>Chennai</strong>
-                </div>
-              </motion.div>
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="home-about__card home-about__card--3 glass-card"
-              >
-                <div className="home-about__card-inner">
-                  <span className="overline">Affiliation</span>
-                  <strong>Zenith77<br/>Group</strong>
-                </div>
-              </motion.div>
+              <StoryVisual />
             </div>
           </div>
         </div>

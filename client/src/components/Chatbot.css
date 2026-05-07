@@ -17,14 +17,14 @@
   justify-content: center;
   z-index: 997;
   cursor: pointer;
-  box-shadow: 0 4px 24px rgba(244,231,161,0.35);
+  box-shadow: 0 4px 24px rgba(184, 154, 66, 0.25);
   border: none;
   transition: var(--transition);
 }
 
 .chatbot-toggle:hover {
   transform: scale(1.08);
-  box-shadow: 0 6px 32px rgba(244,231,161,0.5);
+  box-shadow: 0 6px 32px rgba(184, 154, 66, 0.4);
 }
 
 .chatbot-toggle.open {
@@ -40,7 +40,7 @@
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  border: 2px solid rgba(244,231,161,0.3);
+  border: 2px solid rgba(184, 154, 66, 0.3);
   animation: chatring 2s ease-in-out infinite;
 }
 
@@ -56,14 +56,14 @@
   right: 2rem;
   width: 360px;
   max-height: 560px;
-  background: #0e0e0e;
+  background: var(--bg-card);
   border: 1px solid var(--accent-border);
   border-radius: var(--radius-xl);
   display: flex;
   flex-direction: column;
   z-index: 996;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6), var(--shadow-gold);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1), var(--shadow-gold);
   opacity: 0;
   pointer-events: none;
   transform: translateY(20px) scale(0.96);

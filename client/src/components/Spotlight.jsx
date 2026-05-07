@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 
-const Spotlight = ({ color = 'rgba(244, 231, 161, 0.15)' }) => {
+const Spotlight = ({ color = 'rgba(184, 154, 66, 0.08)' }) => {
   const containerRef = useRef(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);

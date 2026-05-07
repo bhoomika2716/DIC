@@ -4,10 +4,9 @@ import './CustomCursor.css';
 
 const CustomCursor = () => {
   const [isHovering, setIsHovering] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const mouseX = useMotionValue(-100); // Start off-screen
+  const mouseY = useMotionValue(-100);
 
   // Smooth but fast spring for the trail
   const trailX = useSpring(mouseX, { damping: 40, stiffness: 300 });
@@ -17,7 +16,6 @@ const CustomCursor = () => {
     const handleMouseMove = (e) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
     };
 
     const handleMouseOver = (e) => {
@@ -34,23 +32,15 @@ const CustomCursor = () => {
       }
     };
 
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
-
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseover', handleMouseOver);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    document.addEventListener('mouseenter', handleMouseEnter);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [mouseX, mouseY, isVisible]);
+  }, [mouseX, mouseY]);
 
-  if (!isVisible) return null;
 
   // Modern minimalist arrow path
   const arrowPath = "M4 0L16.5 12.5L10 13.5L15 20L12.5 21.5L7.5 15L4 18V0Z";
@@ -81,7 +71,7 @@ const CustomCursor = () => {
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d={arrowPath} fill="var(--accent)" />
-          <path d="M5 2L14 11L9.5 11.5L13.5 18L11.5 19L7.5 13L5 15V2Z" fill="rgba(255,255,255,0.2)" />
+          <path d="M5 2L14 11L9.5 11.5L13.5 18L11.5 19L7.5 13L5 15V2Z" fill="rgba(0,0,0,0.2)" />
         </svg>
         
         {/* Expansion on hover */}

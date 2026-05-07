@@ -22,9 +22,9 @@
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.92) 0%,
-    rgba(0,0,0,0.6) 50%,
-    rgba(0,0,0,0.2) 100%
+    rgba(255,255,255,0.95) 0%,
+    rgba(255,255,255,0.4) 50%,
+    rgba(255,255,255,0.1) 100%
   );
 }
 
@@ -115,7 +115,7 @@
 .room-idea-card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(0,0,0,0.6), transparent 60%);
+  background: linear-gradient(0deg, rgba(255,255,255,0.7), transparent 60%);
 }
 
 .room-idea-card__num {

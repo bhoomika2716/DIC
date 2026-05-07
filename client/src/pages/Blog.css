@@ -18,7 +18,7 @@
 .blog-featured__visual {
   position: relative;
   min-height: 400px;
-  background: linear-gradient(135deg, #1a1208, #0a0a0a);
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
   display: flex;
   align-items: flex-start;
   padding: 2rem;
@@ -30,11 +30,11 @@
   background-image:
     repeating-linear-gradient(
       0deg, transparent, transparent 30px,
-      rgba(244,231,161,0.04) 30px, rgba(244,231,161,0.04) 31px
+      rgba(184, 154, 66, 0.05) 30px, rgba(184, 154, 66, 0.05) 31px
     ),
     repeating-linear-gradient(
       90deg, transparent, transparent 30px,
-      rgba(244,231,161,0.04) 30px, rgba(244,231,161,0.04) 31px
+      rgba(184, 154, 66, 0.05) 30px, rgba(184, 154, 66, 0.05) 31px
     );
 }
 
@@ -97,7 +97,7 @@
 .blog-card__visual {
   position: relative;
   height: 160px;
-  background: linear-gradient(135deg, #1a1208, #0f0d08);
+  background: linear-gradient(135deg, #f1f3f5, #e9ecef);
   display: flex;
   align-items: flex-start;
   padding: 1rem;
@@ -107,7 +107,7 @@
   position: absolute;
   inset: 0;
   background-image: repeating-linear-gradient(
-    45deg, rgba(244,231,161,0.03) 0px, rgba(244,231,161,0.03) 1px,
+    45deg, rgba(184, 154, 66, 0.04) 0px, rgba(184, 154, 66, 0.04) 1px,
     transparent 1px, transparent 12px
   );
 }
@@ -164,7 +164,7 @@
 .blog-newsletter {
   margin-top: 4rem;
   padding: 2.5rem;
-  background: linear-gradient(135deg, var(--bg-card), rgba(244,231,161,0.03));
+  background: linear-gradient(135deg, var(--bg-card), rgba(184, 154, 66, 0.06));
   border: 1px solid var(--accent-border);
   border-radius: var(--radius-xl);
   display: grid;

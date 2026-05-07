@@ -3,21 +3,21 @@
    ===================================================== */
 
 :root {
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #111111;
-  --bg-card: #161616;
-  --bg-card-hover: #1c1c1c;
-  --accent: #f4e7a1;
-  --accent-dark: #d4b96a;
-  --accent-faint: rgba(244, 231, 161, 0.08);
-  --accent-border: rgba(244, 231, 161, 0.2);
-  --text-primary: #f5f5f5;
-  --text-secondary: #c8c8c8;
-  --text-muted: #888888;
-  --border: rgba(255, 255, 255, 0.06);
-  --glass: rgba(22, 22, 22, 0.85);
-  --shadow-gold: 0 0 40px rgba(244, 231, 161, 0.08);
-  --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.5);
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f3f5;
+  --accent: #b89a42;
+  --accent-dark: #967d35;
+  --accent-faint: rgba(184, 154, 66, 0.06);
+  --accent-border: rgba(184, 154, 66, 0.15);
+  --text-primary: #121212;
+  --text-secondary: #4a4a4a;
+  --text-muted: #717171;
+  --border: rgba(0, 0, 0, 0.08);
+  --glass: rgba(255, 255, 255, 0.85);
+  --shadow-gold: 0 0 40px rgba(184, 154, 66, 0.12);
+  --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.08);
   --radius: 4px;
   --radius-lg: 8px;
   --radius-xl: 16px;
@@ -44,6 +44,17 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Only hide default cursor on desktop with hover support */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  
+  a, button, input, textarea, select, .hoverable {
+    cursor: none !important;
+  }
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--bg-primary);
@@ -52,13 +63,19 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: none;
+  position: relative;
 }
 
-/* Ensure interactive elements still show cursor if component fails, 
-   but ideally CustomCursor handles it */
-a, button, input, textarea, select {
-  cursor: none !important;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 img {
@@ -89,7 +106,7 @@ input, textarea, select {
 /* ─── SCROLLBAR ────────────────────────────────────/* Custom scrollbar - visible only when scrolling/hovering */
 html {
   scrollbar-width: thin;
-  scrollbar-color: rgba(244, 231, 161, 0.2) transparent;
+  scrollbar-color: rgba(184, 154, 66, 0.3) transparent;
 }
 
 ::-webkit-scrollbar {
@@ -101,23 +118,23 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(244, 231, 161, 0);
+  background: rgba(184, 154, 66, 0);
   border-radius: 10px;
   transition: background 0.3s;
 }
 
 body:hover::-webkit-scrollbar-thumb,
 body:active::-webkit-scrollbar-thumb {
-  background: rgba(244, 231, 161, 0.3);
+  background: rgba(184, 154, 66, 0.4);
 }
 
 /* Glass Card Utility */
 .glass-card {
-  background: rgba(22, 22, 22, 0.4) !important;
+  background: rgba(255, 255, 255, 0.6) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(244, 231, 161, 0.1) !important;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(184, 154, 66, 0.12) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.06);
   transition: var(--transition);
 }
 
@@ -313,7 +330,7 @@ body:active::-webkit-scrollbar-thumb {
 .page-hero {
   padding: calc(var(--nav-h) + 5rem) 0 5rem;
   text-align: center;
-  background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(244,231,161,0.06), transparent);
+  background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(184, 154, 66, 0.04), transparent);
   border-bottom: 1px solid var(--border);
   position: relative;
   overflow: hidden;
@@ -325,11 +342,11 @@ body:active::-webkit-scrollbar-thumb {
   inset: 0;
   background-image: repeating-linear-gradient(
     0deg, transparent, transparent 40px,
-    rgba(244,231,161,0.015) 40px, rgba(244,231,161,0.015) 41px
+    rgba(184, 154, 66, 0.02) 40px, rgba(184, 154, 66, 0.02) 41px
   ),
   repeating-linear-gradient(
     90deg, transparent, transparent 40px,
-    rgba(244,231,161,0.015) 40px, rgba(244,231,161,0.015) 41px
+    rgba(184, 154, 66, 0.02) 40px, rgba(184, 154, 66, 0.02) 41px
   );
   pointer-events: none;
 }
@@ -410,7 +427,7 @@ textarea.form-control {
   transition: var(--transition);
   z-index: 999;
   border: none;
-  box-shadow: 0 4px 20px rgba(244, 231, 161, 0.3);
+  box-shadow: 0 4px 20px rgba(184, 154, 66, 0.2);
 }
 
 .scroll-top.show {

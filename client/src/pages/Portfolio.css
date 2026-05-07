@@ -88,7 +88,7 @@
   inset: 0;
   background-image: repeating-linear-gradient(
     -45deg,
-    rgba(244,231,161,0.03) 0px, rgba(244,231,161,0.03) 1px,
+    rgba(184, 154, 66, 0.05) 0px, rgba(184, 154, 66, 0.05) 1px,
     transparent 1px, transparent 10px
   );
   pointer-events: none;
@@ -100,7 +100,7 @@
   left: 0;
   right: 0;
   height: 60%;
-  background: linear-gradient(0deg, rgba(0,0,0,0.7), transparent);
+  background: linear-gradient(0deg, rgba(255,255,255,0.9), transparent);
   pointer-events: none;
 }
 
@@ -145,7 +145,7 @@
 .portfolio-card-full__hover {
   position: absolute;
   inset: 0;
-  background: rgba(244,231,161,0.08);
+  background: rgba(184, 154, 66, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -165,7 +165,7 @@
   padding: 0.6rem 1.5rem;
   border: 1px solid var(--accent);
   border-radius: 999px;
-  background: rgba(0,0,0,0.5);
+  background: rgba(255,255,255,0.8);
   backdrop-filter: blur(8px);
 }
 

@@ -33,7 +33,7 @@
   position: relative;
   height: 200px;
   overflow: hidden;
-  background: #1a1208;
+  background: #f1f3f5;
 }
 
 .di-card__img {
@@ -50,7 +50,7 @@
 .di-card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(0,0,0,0.55), transparent 50%);
+  background: linear-gradient(0deg, rgba(255,255,255,0.7), transparent 50%);
 }
 
 .di-card__emoji {
@@ -59,7 +59,7 @@
   left: 0.75rem;
   font-size: 1.5rem;
   line-height: 1;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
 .di-card__count {

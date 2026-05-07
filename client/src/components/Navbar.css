@@ -17,7 +17,7 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom-color: var(--border);
-  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
 
 .navbar__inner {
@@ -119,11 +119,11 @@
   left: 50%;
   transform: translateX(-50%) translateY(10px);
   width: 220px;
-  background: #0e0e0e;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 0.75rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5), var(--shadow-gold-faint);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1), var(--shadow-gold);
   opacity: 0;
   pointer-events: none;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -209,7 +209,7 @@
   width: 100%;
   max-width: 320px;
   height: calc(100vh - var(--nav-h));
-  background: #0e0e0e;
+  background: var(--bg-primary);
   border-left: 1px solid var(--border);
   transform: translateX(100%);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);

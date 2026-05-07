@@ -26,7 +26,7 @@
 .about-mv__card .overline { display: block; margin-bottom: 1rem; }
 
 .about-mv__card--mission {
-  background: linear-gradient(135deg, var(--bg-card), rgba(244,231,161,0.04));
+  background: linear-gradient(135deg, var(--bg-card), rgba(184, 154, 66, 0.06));
 }
 
 .about-mv__card--vision {
@@ -88,7 +88,7 @@
   border-radius: 50%;
   background: var(--accent);
   border: 2px solid var(--bg-primary);
-  box-shadow: 0 0 0 3px rgba(244,231,161,0.2);
+  box-shadow: 0 0 0 3px rgba(184, 154, 66, 0.15);
   flex-shrink: 0;
 }
 

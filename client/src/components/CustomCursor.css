@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  mix-blend-mode: difference;
+  mix-blend-mode: normal;
 }
 
 .custom-cursor-trail {
@@ -26,7 +26,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  mix-blend-mode: difference;
+  mix-blend-mode: normal;
 }
 
 .custom-cursor-arrow svg {
@@ -46,7 +46,7 @@
   height: 48px;
   border: 1px solid var(--accent);
   border-radius: 50%;
-  background: rgba(244, 231, 161, 0.1);
+  background: rgba(184, 154, 66, 0.1);
   z-index: -1;
 }
 
