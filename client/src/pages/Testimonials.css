@@ -31,6 +31,91 @@
 
 .testimonials-rating__details .stars { font-size: 1.1rem; }
 
+.testimonial-spotlight {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) 1fr;
+  margin-bottom: 2rem;
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card), var(--shadow-gold);
+}
+
+.testimonial-spotlight__media {
+  padding: 2rem;
+  background:
+    radial-gradient(circle at top left, rgba(184, 154, 66, 0.22), transparent 48%),
+    linear-gradient(160deg, #27190c, #4a311d);
+  color: var(--text-on-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.testimonial-spotlight__label {
+  width: fit-content;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-muted);
+}
+
+.testimonial-spotlight__score-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  line-height: 0.9;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.testimonial-spotlight__score .stars {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: 1.5rem;
+}
+
+.testimonial-spotlight__content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.testimonial-spotlight__project {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.testimonial-spotlight__quote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+.testimonial-spotlight__author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.testimonial-spotlight__author strong {
+  display: block;
+  font-size: 1rem;
+}
+
 /* Testimonials Grid */
 .testimonials-grid {
   display: grid;
@@ -147,6 +232,7 @@
 
 /* Responsive */
 @media (max-width: 900px) {
+  .testimonial-spotlight { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr 1fr; }
   .platform-ratings { grid-template-columns: repeat(2, 1fr); }
 }

@@ -38,9 +38,10 @@ export default function Navbar() {
 
   const isActive = (path) => pathname === path ? 'active' : ''
   const isPartiallyActive = (path) => pathname.startsWith(path) ? 'active' : ''
+  const solidNavbar = scrolled || pathname !== '/'
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${solidNavbar ? 'scrolled' : ''}`}>
       <div className="container navbar__inner">
         {/* Logo */}
         <Link to="/" className="navbar__logo" id="nav-logo">

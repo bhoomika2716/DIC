@@ -44,8 +44,10 @@
 }
 
 .about-value-card__icon {
-  font-size: 1.75rem;
-  line-height: 1;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
 }
 
 /* Timeline */

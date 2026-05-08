@@ -183,6 +183,11 @@ a.contact-info__value:hover { color: var(--accent); }
   margin-top: 5rem;
 }
 
+.contact-map-section.section-brown {
+  margin-top: 0;
+  padding: 4rem 0;
+}
+
 .contact-map-placeholder {
   height: 300px;
   background: linear-gradient(135deg, #f1f3f5, #e9ecef);
@@ -192,6 +197,21 @@ a.contact-info__value:hover { color: var(--accent); }
   justify-content: center;
   position: relative;
   overflow: hidden;
+}
+
+.contact-map-section.section-brown .contact-map-placeholder {
+  border-top-color: var(--border-on-dark);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(255, 248, 238, 0.08), rgba(184, 154, 66, 0.08));
+}
+
+.contact-map-section.section-brown .contact-map-label {
+  background: rgba(255, 248, 238, 0.08);
+  border-color: var(--border-on-dark);
+}
+
+.contact-map-section.section-brown .contact-map-label span {
+  color: var(--text-on-dark-muted);
 }
 
 .contact-map-placeholder::before {

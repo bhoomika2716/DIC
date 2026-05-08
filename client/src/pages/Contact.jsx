@@ -35,7 +35,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section-brown-soft">
         <div className="container contact-grid">
           {/* Contact Info */}
           <AnimatedSection className="contact-info">
@@ -233,7 +233,7 @@ export default function Contact() {
       </section>
 
       {/* Map placeholder */}
-      <section className="contact-map-section">
+      <section className="contact-map-section section-brown">
         <div className="contact-map-placeholder">
           <div className="contact-map-overlay">
             <div className="contact-map-pin">

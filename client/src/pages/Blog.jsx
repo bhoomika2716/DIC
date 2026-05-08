@@ -1,6 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import AnimatedSection from '../components/AnimatedSection'
+import trends2024Image from '../assets/blog/insight-trends-2024.png'
+import colorPaletteImage from '../assets/blog/insight-color-palette.png'
+import penthouseRenovationImage from '../assets/blog/insight-penthouse-renovation.png'
+import officeWellbeingImage from '../assets/blog/insight-office-wellbeing.png'
+import modularKitchenImage from '../assets/blog/insight-modular-kitchen.png'
+import smallSpaceImage from '../assets/blog/insight-small-space.png'
+import sustainableMaterialsImage from '../assets/blog/insight-sustainable-materials.png'
 import './Blog.css'
 
 const POSTS = [
@@ -13,6 +20,8 @@ const POSTS = [
     date: 'April 15, 2024',
     tags: ['Trends', 'Residential'],
     featured: true,
+    image: trends2024Image,
+    imageAlt: 'Luxury Chennai living room showing warm contemporary 2024 interior design trends.',
   },
   {
     id: 2,
@@ -23,6 +32,8 @@ const POSTS = [
     date: 'March 28, 2024',
     tags: ['Color', 'Tips'],
     featured: false,
+    image: colorPaletteImage,
+    imageAlt: 'Interior designer palette board with paint swatches, fabric samples, and material finishes.',
   },
   {
     id: 3,
@@ -33,6 +44,8 @@ const POSTS = [
     date: 'March 10, 2024',
     tags: ['Residential', 'Renovation'],
     featured: false,
+    image: penthouseRenovationImage,
+    imageAlt: 'Modern sea-view penthouse interior after a dramatic luxury renovation.',
   },
   {
     id: 4,
@@ -43,6 +56,8 @@ const POSTS = [
     date: 'February 20, 2024',
     tags: ['Commercial', 'Wellness'],
     featured: false,
+    image: officeWellbeingImage,
+    imageAlt: 'Biophilic office interior with natural light, plants, and ergonomic work areas.',
   },
   {
     id: 5,
@@ -53,6 +68,8 @@ const POSTS = [
     date: 'February 5, 2024',
     tags: ['Kitchen', 'Budget'],
     featured: false,
+    image: modularKitchenImage,
+    imageAlt: 'Premium modular kitchen with organized cabinetry, durable finishes, and refined hardware details.',
   },
   {
     id: 6,
@@ -63,6 +80,8 @@ const POSTS = [
     date: 'January 18, 2024',
     tags: ['Small Space', 'Tips'],
     featured: false,
+    image: smallSpaceImage,
+    imageAlt: 'Compact apartment interior using multifunctional furniture and smart storage solutions.',
   },
   {
     id: 7,
@@ -73,6 +92,8 @@ const POSTS = [
     date: 'January 5, 2024',
     tags: ['Sustainable', 'Materials'],
     featured: false,
+    image: sustainableMaterialsImage,
+    imageAlt: 'Eco-conscious interior corner featuring bamboo, reclaimed wood, natural textiles, and indoor plants.',
   },
 ]
 
@@ -104,6 +125,11 @@ export default function Blog() {
             <AnimatedSection>
               <div className="blog-featured">
                 <div className="blog-featured__visual">
+                  <img
+                    src={featured.image}
+                    alt={featured.imageAlt}
+                    className="blog-featured__image"
+                  />
                   <div className="blog-featured__pattern" />
                   <span className="badge blog-featured__badge">{featured.category}</span>
                 </div>
@@ -137,6 +163,11 @@ export default function Blog() {
               <AnimatedSection key={post.id} delay={(i % 3) + 1}>
                 <article className="blog-card" id={`blog-card-${post.id}`}>
                   <div className="blog-card__visual">
+                    <img
+                      src={post.image}
+                      alt={post.imageAlt}
+                      className="blog-card__image"
+                    />
                     <div className="blog-card__pattern" />
                     <span className="badge blog-card__badge">{post.category}</span>
                   </div>

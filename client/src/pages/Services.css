@@ -52,6 +52,13 @@
 }
 
 .services-tab__icon { font-size: 1rem; flex-shrink: 0; }
+.services-tab__icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* Detail Panel */
 .services-detail {
@@ -71,8 +78,11 @@
 }
 
 .services-detail__icon {
-  font-size: 2.5rem;
-  line-height: 1;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(184, 154, 66, 0.08);
+  color: var(--text-primary);
   flex-shrink: 0;
 }
 

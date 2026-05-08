@@ -15,6 +15,7 @@ import Spotlight from '../components/Spotlight'
 import ShinyText from '../components/ShinyText'
 import HeroVisual from '../components/HeroVisual'
 import StoryVisual from '../components/StoryVisual'
+import { PORTFOLIO_PROJECTS } from '../data/portfolio'
 import './Home.css'
 
 /* Animated counter hook */
@@ -112,14 +113,8 @@ const TESTIMONIALS = [
   },
 ]
 
-const PORTFOLIO_ITEMS = [
-  { title: 'Modern Villa, Boat Club Road', category: 'Residential', color: '#1a1208' },
-  { title: 'Corporate HQ, Anna Salai', category: 'Commercial', color: '#080f1a' },
-  { title: 'Boutique Café, Nungambakkam', category: 'Commercial', color: '#0a120a' },
-  { title: 'Penthouse Renovation, ECR', category: 'Renovation', color: '#12080a' },
-  { title: 'Luxury Bedroom Suite', category: 'Residential', color: '#0d0a15' },
-  { title: 'Modular Kitchen, Velachery', category: 'Residential', color: '#120e08' },
-]
+/* Featured projects for the home page */
+const FEATURED_PROJECTS = PORTFOLIO_PROJECTS.slice(0, 6)
 
 const RevealText = ({ children, delay = 0 }) => {
   return (
@@ -246,7 +241,7 @@ export default function Home() {
       </section>
 
       {/* ─── ABOUT STRIP ────────────────────────────────── */}
-      <section className="section home-about">
+      <section className="section home-about section-brown-soft">
         <div className="container">
           <div className="home-about__inner">
             <motion.div 
@@ -298,7 +293,7 @@ export default function Home() {
           </div>
 
           <div className="home-portfolio__grid">
-            {PORTFOLIO_ITEMS.map((item, i) => (
+            {FEATURED_PROJECTS.map((item, i) => (
               <motion.div 
                 key={item.title}
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -307,8 +302,9 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
                 className={`portfolio-item portfolio-item--${i}`}
               >
-                <Link to="/portfolio" className="portfolio-card hoverable" style={{ '--card-bg': item.color }}>
-                  <div className="portfolio-card__bg" />
+                <Link to={`/portfolio`} className="portfolio-card hoverable">
+                  <img src={item.image} alt={item.imageAlt} className="portfolio-card__img" />
+                  <div className="portfolio-card__overlay" />
                   <div className="portfolio-card__content">
                     <span className="badge">{item.category}</span>
                     <h3 className="portfolio-card__title">{item.title}</h3>
@@ -325,7 +321,7 @@ export default function Home() {
       </section>
 
       {/* ─── TESTIMONIALS ───────────────────────────────── */}
-      <section className="section home-testimonials">
+      <section className="section home-testimonials section-brown">
         <div className="container">
           <div className="section-label">
             <span className="overline">Client Stories</span>
@@ -376,7 +372,7 @@ export default function Home() {
       </section>
 
       {/* ─── CTA BAND ───────────────────────────────────── */}
-      <section className="home-cta-band">
+      <section className="home-cta-band section-brown">
         <div className="container">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}

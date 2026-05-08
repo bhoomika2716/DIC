@@ -9,7 +9,6 @@ import ScrollToTop from './components/ScrollToTop'
 import ScrollReset from './components/ScrollReset'
 import WhatsAppButton from './components/WhatsAppButton'
 import Chatbot from './components/Chatbot'
-import CustomCursor from './components/CustomCursor'
 import Squares from './components/Squares'
 
 // Core Pages
@@ -82,13 +81,13 @@ export default function App() {
       <ScrollToTop />
       <WhatsAppButton />
       <Chatbot />
-      <CustomCursor />
       <Squares 
-        speed={0.4} 
-        squareSize={40} 
+        speed={0.32} 
+        squareSize={48} 
         direction="right" 
-        borderColor="rgba(184, 154, 66, 0.08)" 
-        hoverFillColor="rgba(184, 154, 66, 0.04)"
+        borderColor="rgba(184, 154, 66, 0.09)" 
+        hoverFillColor="rgba(184, 154, 66, 0.08)"
+        accentColor="184, 154, 66"
       />
     </BrowserRouter>
   )

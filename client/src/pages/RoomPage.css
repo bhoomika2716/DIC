@@ -20,12 +20,7 @@
 .room-hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(255,255,255,0.95) 0%,
-    rgba(255,255,255,0.4) 50%,
-    rgba(255,255,255,0.1) 100%
-  );
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .room-hero__content {
@@ -33,6 +28,7 @@
   z-index: 1;
   padding-top: calc(var(--nav-h) + 2rem);
   padding-bottom: 5rem;
+  color: white;
 }
 
 .room-hero__back {
@@ -40,7 +36,7 @@
   align-items: center;
   gap: 0.4rem;
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.7);
   margin-bottom: 1.5rem;
   transition: color var(--transition-fast);
 }
@@ -54,7 +50,7 @@
 
 .room-hero__title {
   margin-bottom: 1rem;
-  color: var(--text-primary);
+  color: white;
 }
 
 .room-hero__title em {
@@ -66,6 +62,7 @@
 .room-hero__desc {
   max-width: 58ch;
   margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .room-hero__ctas {

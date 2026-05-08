@@ -1,26 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import AnimatedSection from '../components/AnimatedSection'
+import { PORTFOLIO_CATEGORIES, PORTFOLIO_PROJECTS } from '../data/portfolio'
 import './Portfolio.css'
-
-const CATEGORIES = ['All', 'Residential', 'Commercial', 'Renovation', 'Hospitality']
-
-const PROJECTS = [
-  { id: 1, title: 'Modern Villa, Boat Club Road', category: 'Residential', area: '4,200 sq ft', year: '2024', tags: ['Villa', 'Contemporary', 'Luxury'], color: '#1a1208', size: 'large' },
-  { id: 2, title: 'Corporate HQ, Anna Salai', category: 'Commercial', area: '8,000 sq ft', year: '2024', tags: ['Office', 'Open Plan', 'Tech'], color: '#080f1a', size: 'small' },
-  { id: 3, title: 'Boutique Café, Nungambakkam', category: 'Hospitality', area: '1,200 sq ft', year: '2023', tags: ['Café', 'Industrial', 'Warm'], color: '#0a120a', size: 'small' },
-  { id: 4, title: 'Penthouse Renovation, ECR', category: 'Renovation', area: '3,800 sq ft', year: '2023', tags: ['Penthouse', 'Sea View', 'Minimal'], color: '#12080a', size: 'large' },
-  { id: 5, title: 'Luxury 3BHK, Velachery', category: 'Residential', area: '1,800 sq ft', year: '2023', tags: ['Apartment', 'Modern', 'Family'], color: '#0d0a15', size: 'small' },
-  { id: 6, title: 'Restaurant, T Nagar', category: 'Hospitality', area: '2,500 sq ft', year: '2022', tags: ['Restaurant', 'Fine Dining', 'Traditional'], color: '#120e08', size: 'small' },
-  { id: 7, title: 'Tech Office, Sholinganallur', category: 'Commercial', area: '5,500 sq ft', year: '2022', tags: ['Startup', 'Collaborative', 'Vibrant'], color: '#081218', size: 'large' },
-  { id: 8, title: 'Heritage Home, Mylapore', category: 'Renovation', area: '2,800 sq ft', year: '2022', tags: ['Heritage', 'Classic', 'Restoration'], color: '#181208', size: 'small' },
-  { id: 9, title: 'Modular Kitchen, Adyar', category: 'Residential', area: '280 sq ft', year: '2021', tags: ['Kitchen', 'Modular', 'Functional'], color: '#0a0f18', size: 'small' },
-]
 
 export default function Portfolio() {
   const [filter, setFilter] = useState('All')
-  const [hovered, setHovered] = useState(null)
+  const [selectedProject, setSelectedProject] = useState(null)
 
-  const filtered = filter === 'All' ? PROJECTS : PROJECTS.filter(p => p.category === filter)
+  const filtered = filter === 'All'
+    ? PORTFOLIO_PROJECTS
+    : PORTFOLIO_PROJECTS.filter((project) => project.category === filter)
+
+  useEffect(() => {
+    if (!selectedProject) return undefined
+
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') setSelectedProject(null)
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleEscape)
+
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', handleEscape)
+    }
+  }, [selectedProject])
 
   return (
     <main>
@@ -39,18 +45,17 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Filter Bar */}
       <section className="portfolio-filter-bar">
         <div className="container">
           <AnimatedSection className="portfolio-filters">
-            {CATEGORIES.map(cat => (
+            {PORTFOLIO_CATEGORIES.map((category) => (
               <button
-                key={cat}
-                id={`filter-${cat.toLowerCase()}`}
-                className={`portfolio-filter-btn${filter === cat ? ' active' : ''}`}
-                onClick={() => setFilter(cat)}
+                key={category}
+                id={`filter-${category.toLowerCase()}`}
+                className={`portfolio-filter-btn${filter === category ? ' active' : ''}`}
+                onClick={() => setFilter(category)}
               >
-                {cat}
+                {category}
               </button>
             ))}
             <span className="portfolio-count">{filtered.length} Projects</span>
@@ -58,63 +63,114 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Portfolio Grid */}
       <section className="section">
         <div className="container">
           <div className="portfolio-grid">
-            {filtered.map((project, i) => (
+            {filtered.map((project) => (
               <div
                 key={project.id}
                 className={`portfolio-item${project.size === 'large' ? ' portfolio-item--large' : ''}`}
-                onMouseEnter={() => setHovered(project.id)}
-                onMouseLeave={() => setHovered(null)}
               >
-                <div
+                <button
+                  type="button"
                   className="portfolio-card-full"
-                  style={{ background: project.color }}
+                  onClick={() => setSelectedProject(project)}
+                  aria-label={`View details for ${project.title}`}
                 >
-                  {/* Pattern overlay */}
+                  <img
+                    src={project.image}
+                    alt={project.imageAlt}
+                    className="portfolio-card-full__image"
+                  />
                   <div className="portfolio-card-full__pattern" />
-                  {/* Glow */}
                   <div className="portfolio-card-full__glow" />
-                  {/* Content */}
                   <div className="portfolio-card-full__content">
                     <div className="portfolio-card-full__tags">
-                      {project.tags.map(t => (
-                        <span key={t} className="badge">{t}</span>
+                      {project.tags.map((tag) => (
+                        <span key={tag} className="badge">{tag}</span>
                       ))}
                     </div>
                     <div className="portfolio-card-full__info">
                       <h3 className="portfolio-card-full__title">{project.title}</h3>
                       <div className="portfolio-card-full__meta">
                         <span>{project.category}</span>
-                        <span>·</span>
+                        <span>&middot;</span>
                         <span>{project.area}</span>
-                        <span>·</span>
+                        <span>&middot;</span>
                         <span>{project.year}</span>
                       </div>
                     </div>
                   </div>
-                  {/* Hover overlay */}
-                  <div className={`portfolio-card-full__hover${hovered === project.id ? ' show' : ''}`}>
+                  <div className="portfolio-card-full__hover">
                     <span className="portfolio-card-full__view">View Project</span>
                   </div>
-                </div>
+                </button>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
+      {selectedProject && (
+        <div className="portfolio-modal" onClick={() => setSelectedProject(null)}>
+          <div
+            className="portfolio-modal__dialog"
+            onClick={(event) => event.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="portfolio-modal-title"
+          >
+            <button
+              type="button"
+              className="portfolio-modal__close"
+              onClick={() => setSelectedProject(null)}
+              aria-label="Close project details"
+            >
+              ×
+            </button>
+            <div className="portfolio-modal__media">
+              <img src={selectedProject.image} alt={selectedProject.imageAlt} className="portfolio-modal__image" />
+            </div>
+            <div className="portfolio-modal__body">
+              <div className="portfolio-modal__eyebrow">{selectedProject.category}</div>
+              <h2 className="heading-2 portfolio-modal__title" id="portfolio-modal-title">{selectedProject.title}</h2>
+              <p className="portfolio-modal__meta">
+                <span>{selectedProject.location}</span>
+                <span>&middot;</span>
+                <span>{selectedProject.area}</span>
+                <span>&middot;</span>
+                <span>{selectedProject.year}</span>
+              </p>
+              <p className="lead portfolio-modal__summary">{selectedProject.summary}</p>
+              <div className="portfolio-modal__tags">
+                {selectedProject.tags.map((tag) => (
+                  <span key={tag} className="badge">{tag}</span>
+                ))}
+              </div>
+              <div className="portfolio-modal__highlights">
+                {selectedProject.highlights.map((highlight) => (
+                  <div key={highlight} className="portfolio-modal__highlight">{highlight}</div>
+                ))}
+              </div>
+              <div className="portfolio-modal__actions">
+                <Link to="/contact" className="btn btn-primary" onClick={() => setSelectedProject(null)}>
+                  Start a Similar Project
+                </Link>
+                <a href="tel:+919500078674" className="btn btn-outline">Call Our Team</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <section className="section--sm" style={{ borderTop: '1px solid var(--border)' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <AnimatedSection>
             <h2 className="heading-1" style={{ marginBottom: '1rem' }}>Like What You See?</h2>
             <p className="lead" style={{ marginBottom: '2rem' }}>
-              Let's create your dream space together.
+              Let&apos;s create your dream space together.
             </p>
-            <a href="/contact" className="btn btn-primary" id="portfolio-cta">Start Your Project</a>
+            <Link to="/contact" className="btn btn-primary" id="portfolio-cta">Start Your Project</Link>
           </AnimatedSection>
         </div>
       </section>

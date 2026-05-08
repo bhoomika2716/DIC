@@ -1,105 +1,100 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Home, Building2, Hammer, Sparkles, ChefHat, MessagesSquare } from 'lucide-react'
 import AnimatedSection from '../components/AnimatedSection'
 import './Services.css'
 
 const SERVICES = [
   {
     id: 'residential',
-    icon: '🏠',
+    icon: Home,
     title: 'Residential Design',
     tagline: 'Your home, reimagined.',
     desc: 'From apartments to villas, we craft living spaces that balance beauty and function. Our residential design service covers everything from space planning and concept development to material selection and final styling.',
     features: [
-      'Full home design & planning',
-      'Bedroom & living room concepts',
-      'Kitchen & bathroom design',
-      'Lighting & color consultation',
-      'Furniture selection & sourcing',
-      '3D visualization',
-    ],
-    accent: '#1a1208',
+      'Full home design and planning',
+      'Bedroom and living room concepts',
+      'Kitchen and bathroom design',
+      'Lighting and color consultation',
+      'Furniture selection and sourcing',
+      '3D visualization'
+    ]
   },
   {
     id: 'commercial',
-    icon: '🏢',
+    icon: Building2,
     title: 'Commercial Design',
     tagline: 'Spaces that work as hard as you do.',
     desc: 'Brand-aligned commercial spaces that drive productivity, impress clients, and tell your story. We design offices, showrooms, retail stores, restaurants, hotels, and more.',
     features: [
-      'Office & workspace design',
-      'Retail & showroom interiors',
-      'Restaurant & café design',
-      'Hotel & hospitality spaces',
+      'Office and workspace design',
+      'Retail and showroom interiors',
+      'Restaurant and cafe design',
+      'Hotel and hospitality spaces',
       'Brand identity integration',
-      'Ergonomic planning',
-    ],
-    accent: '#080f1a',
+      'Ergonomic planning'
+    ]
   },
   {
     id: 'renovation',
-    icon: '🔨',
-    title: 'Renovation & Remodeling',
+    icon: Hammer,
+    title: 'Renovation and Remodeling',
     tagline: 'Old space, new story.',
-    desc: 'Transform your existing space without starting from scratch. We handle full structural renovations, aesthetic remodels, and everything in between — with minimal disruption to your daily life.',
+    desc: 'Transform your existing space without starting from scratch. We handle full structural renovations, aesthetic remodels, and everything in between with minimal disruption to your daily life.',
     features: [
-      'Full & partial renovations',
-      'False ceiling & flooring',
-      'Electrical & plumbing upgrades',
-      'Wall treatments & painting',
-      'Before & after documentation',
-      'Project timeline management',
-    ],
-    accent: '#0a120a',
+      'Full and partial renovations',
+      'False ceiling and flooring',
+      'Electrical and plumbing upgrades',
+      'Wall treatments and painting',
+      'Before and after documentation',
+      'Project timeline management'
+    ]
   },
   {
     id: 'styling',
-    icon: '✨',
+    icon: Sparkles,
     title: 'Interior Styling',
     tagline: 'The art of perfect finishing.',
-    desc: 'Already have a space but want the wow factor? Our interior styling service focuses on the finishing touches that make a house a home — curated accessories, art, textiles, and more.',
+    desc: 'Already have a space but want the wow factor? Our interior styling service focuses on the finishing touches that make a house a home with curated accessories, art, textiles, and more.',
     features: [
-      'Furniture & decor curation',
-      'Art & accessory selection',
-      'Textile & soft furnishings',
-      'Plant & greenery styling',
+      'Furniture and decor curation',
+      'Art and accessory selection',
+      'Textile and soft furnishings',
+      'Plant and greenery styling',
       'Photography preparation',
-      'Seasonal refresh packages',
-    ],
-    accent: '#12080a',
+      'Seasonal refresh packages'
+    ]
   },
   {
     id: 'modular',
-    icon: '🍳',
+    icon: ChefHat,
     title: 'Modular Kitchens',
     tagline: 'Where cooking meets design.',
-    desc: 'Bespoke modular kitchen solutions that combine smart storage, ergonomic workflow, and stunning aesthetics. From contemporary to traditional, we design kitchens you\'ll love cooking in.',
+    desc: 'Bespoke modular kitchen solutions that combine smart storage, ergonomic workflow, and stunning aesthetics. From contemporary to traditional, we design kitchens you will love cooking in.',
     features: [
-      'L-shape & U-shape kitchens',
+      'L-shape and U-shape kitchens',
       'Island kitchen designs',
       'Smart storage solutions',
-      'Countertop & backsplash design',
+      'Countertop and backsplash design',
       'Appliance integration',
-      'Custom cabinetry',
-    ],
-    accent: '#0d0a15',
+      'Custom cabinetry'
+    ]
   },
   {
     id: 'consultation',
-    icon: '💬',
+    icon: MessagesSquare,
     title: 'Design Consultation',
     tagline: 'Expert advice, your way.',
-    desc: 'Not ready for a full project? Our design consultation service gives you access to expert advice on color, layout, furniture, and more. Available online and in-person.',
+    desc: 'Not ready for a full project? Our design consultation service gives you access to expert advice on color, layout, furniture, and more, available online and in person.',
     features: [
       '1-hour design sessions',
       'Color scheme consultation',
       'Furniture layout advice',
       'Budget planning guidance',
       'Contractor recommendations',
-      'Virtual walkthroughs',
-    ],
-    accent: '#0a0d12',
-  },
+      'Virtual walkthroughs'
+    ]
+  }
 ]
 
 const PROCESS = [
@@ -107,12 +102,13 @@ const PROCESS = [
   { step: '02', title: 'Concept Design', desc: 'Our designers create initial concepts with mood boards, layouts, and material palettes.' },
   { step: '03', title: '3D Visualization', desc: 'Photorealistic renders help you visualize the final space before execution begins.' },
   { step: '04', title: 'Execution', desc: 'Our skilled team brings the design to life with precision, on time and on budget.' },
-  { step: '05', title: 'Styling & Handover', desc: 'We add the final touches and hand over a move-in ready, beautifully styled space.' },
+  { step: '05', title: 'Styling and Handover', desc: 'We add the final touches and hand over a move-in ready, beautifully styled space.' }
 ]
 
 export default function Services() {
   const [active, setActive] = useState('residential')
-  const activeService = SERVICES.find(s => s.id === active)
+  const activeService = SERVICES.find((service) => service.id === active)
+  const ActiveIcon = activeService?.icon
 
   return (
     <main>
@@ -121,7 +117,8 @@ export default function Services() {
           <AnimatedSection>
             <p className="overline">What We Offer</p>
             <h1 className="heading-1 page-hero-heading">
-              End-to-End Interior<br />
+              End-to-End Interior
+              <br />
               <em style={{ color: 'var(--accent)', fontStyle: 'italic' }}>Design Services</em>
             </h1>
             <p className="lead page-hero-lead">
@@ -131,50 +128,59 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Services Grid Overview */}
       <section className="section">
         <div className="container">
           <AnimatedSection>
             <div className="section-label"><span className="overline">Services Overview</span></div>
             <h2 className="heading-1" style={{ marginBottom: '3rem' }}>Our Expertise</h2>
           </AnimatedSection>
+
           <div className="services-overview">
-            {/* Tabs */}
             <div className="services-tabs">
-              {SERVICES.map(s => (
-                <button
-                  key={s.id}
-                  id={`service-tab-${s.id}`}
-                  className={`services-tab${active === s.id ? ' active' : ''}`}
-                  onClick={() => setActive(s.id)}
-                >
-                  <span className="services-tab__icon">{s.icon}</span>
-                  <span>{s.title}</span>
-                </button>
-              ))}
+              {SERVICES.map((service) => {
+                const Icon = service.icon
+
+                return (
+                  <button
+                    key={service.id}
+                    id={`service-tab-${service.id}`}
+                    className={`services-tab${active === service.id ? ' active' : ''}`}
+                    onClick={() => setActive(service.id)}
+                  >
+                    <span className="services-tab__icon">
+                      <Icon size={18} strokeWidth={1.8} />
+                    </span>
+                    <span>{service.title}</span>
+                  </button>
+                )
+              })}
             </div>
 
-            {/* Detail Panel */}
-            {activeService && (
+            {activeService && ActiveIcon && (
               <div className="services-detail">
                 <div className="services-detail__header">
-                  <span className="services-tab__icon services-detail__icon">{activeService.icon}</span>
+                  <span className="services-tab__icon services-detail__icon">
+                    <ActiveIcon size={28} strokeWidth={1.8} />
+                  </span>
                   <div>
                     <span className="overline">{activeService.tagline}</span>
                     <h2 className="heading-2" style={{ marginTop: '0.5rem' }}>{activeService.title}</h2>
                   </div>
                 </div>
+
                 <p className="lead services-detail__desc">{activeService.desc}</p>
+
                 <ul className="services-detail__features">
-                  {activeService.features.map(f => (
-                    <li key={f}>
+                  {activeService.features.map((feature) => (
+                    <li key={feature}>
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                      {f}
+                      {feature}
                     </li>
                   ))}
                 </ul>
+
                 <Link to="/contact" className="btn btn-primary" id={`service-cta-${activeService.id}`}>
                   Enquire About {activeService.title}
                 </Link>
@@ -184,28 +190,27 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Process */}
-      <section className="section" style={{ background: 'var(--bg-secondary)' }}>
+      <section className="section section-brown-soft">
         <div className="container">
           <AnimatedSection>
             <div className="section-label"><span className="overline">How We Work</span></div>
             <h2 className="heading-1" style={{ marginBottom: '3rem' }}>Our Design Process</h2>
           </AnimatedSection>
+
           <div className="services-process">
-            {PROCESS.map((p, i) => (
-              <AnimatedSection key={p.step} delay={(i % 3) + 1} className="process-step">
-                <div className="process-step__num">{p.step}</div>
-                <h3 className="process-step__title">{p.title}</h3>
-                <p className="process-step__desc body-sm">{p.desc}</p>
-                {i < PROCESS.length - 1 && <div className="process-step__arrow">→</div>}
+            {PROCESS.map((item, index) => (
+              <AnimatedSection key={item.step} delay={(index % 3) + 1} className="process-step">
+                <div className="process-step__num">{item.step}</div>
+                <h3 className="process-step__title">{item.title}</h3>
+                <p className="process-step__desc body-sm">{item.desc}</p>
+                {index < PROCESS.length - 1 && <div className="process-step__arrow">{'->'}</div>}
               </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section--sm">
+      <section className="section--sm section-brown">
         <div className="container" style={{ textAlign: 'center' }}>
           <AnimatedSection>
             <h2 className="heading-1" style={{ marginBottom: '1rem' }}>Start Your Project Today</h2>

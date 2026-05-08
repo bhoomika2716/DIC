@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Target, Handshake, Clock, Leaf, Award, Lightbulb } from 'lucide-react'
 import AnimatedSection from '../components/AnimatedSection'
 import './About.css'
 
@@ -11,12 +12,12 @@ const TEAM = [
 ]
 
 const VALUES = [
-  { icon: '🎯', title: 'Purpose-Driven', desc: 'Every design decision is intentional, serving both aesthetics and function.' },
-  { icon: '🤝', title: 'Client-First', desc: 'Your vision drives our process. We listen, collaborate, and deliver.' },
-  { icon: '⏱️', title: 'Timely Delivery', desc: 'We respect your time. On-time delivery is non-negotiable for us.' },
-  { icon: '♻️', title: 'Sustainable Choices', desc: 'Eco-conscious materials and practices are at the heart of our work.' },
-  { icon: '🏆', title: 'Quality Craftsmanship', desc: 'Premium materials and skilled artisans ensure lasting excellence.' },
-  { icon: '💡', title: 'Innovation', desc: 'We blend timeless design with contemporary trends and technology.' },
+  { icon: <Target size={28} strokeWidth={1.5} />, title: 'Purpose-Driven', desc: 'Every design decision is intentional, serving both aesthetics and function.' },
+  { icon: <Handshake size={28} strokeWidth={1.5} />, title: 'Client-First', desc: 'Your vision drives our process. We listen, collaborate, and deliver.' },
+  { icon: <Clock size={28} strokeWidth={1.5} />, title: 'Timely Delivery', desc: 'We respect your time. On-time delivery is non-negotiable for us.' },
+  { icon: <Leaf size={28} strokeWidth={1.5} />, title: 'Sustainable Choices', desc: 'Eco-conscious materials and practices are at the heart of our work.' },
+  { icon: <Award size={28} strokeWidth={1.5} />, title: 'Quality Craftsmanship', desc: 'Premium materials and skilled artisans ensure lasting excellence.' },
+  { icon: <Lightbulb size={28} strokeWidth={1.5} />, title: 'Innovation', desc: 'We blend timeless design with contemporary trends and technology.' },
 ]
 
 const MILESTONES = [
@@ -70,7 +71,7 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section className="section" style={{ background: 'var(--bg-secondary)' }}>
+      <section className="section section-brown-soft">
         <div className="container">
           <AnimatedSection>
             <div className="section-label"><span className="overline">What Drives Us</span></div>
@@ -80,7 +81,7 @@ export default function About() {
             {VALUES.map((v, i) => (
               <AnimatedSection key={v.title} delay={(i % 3) + 1}>
                 <div className="card about-value-card">
-                  <span className="about-value-card__icon">{v.icon}</span>
+                  <div className="about-value-card__icon">{v.icon}</div>
                   <h3 className="heading-3">{v.title}</h3>
                   <p className="body-sm" style={{ lineHeight: 1.65 }}>{v.desc}</p>
                 </div>
@@ -131,7 +132,7 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="section--sm">
+      <section className="section--sm section-brown">
         <div className="container" style={{ textAlign: 'center' }}>
           <AnimatedSection>
             <h2 className="heading-1" style={{ marginBottom: '1rem' }}>Ready to work with us?</h2>
