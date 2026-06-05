@@ -11,19 +11,36 @@ const SERVICES_LINKS = [
   { path: '/services/renovation', label: 'Renovation Interior' },
 ]
 
-const DESIGN_IDEAS_LINKS = [
-  { path: '/design-ideas/kitchen', label: 'Kitchen' },
-  { path: '/design-ideas/living-room', label: 'Living Room' },
-  { path: '/design-ideas/dining-area', label: 'Dining Area' },
-  { path: '/design-ideas/foyer-area', label: 'Foyer Area' },
-  { path: '/design-ideas/kids-bedroom', label: 'Kids Bedroom' },
-  { path: '/design-ideas/master-bedroom', label: 'Master Bedroom' },
-  { path: '/design-ideas/parents-bedroom', label: 'Parents Bedroom' },
-  { path: '/design-ideas/guest-bedroom', label: 'Guest Bedroom' },
-  { path: '/design-ideas/home-office', label: 'Home Office Room' },
-  { path: '/design-ideas/balcony', label: 'Balcony / Sit-out Areas' },
-  { path: '/design-ideas/bathroom', label: 'Bathroom' },
-  { path: '/design-ideas', label: 'View All Ideas' },
+const DESIGN_IDEAS_GROUPS = [
+  {
+    title: 'Living Spaces',
+    className: 'group--living',
+    links: [
+      { path: '/design-ideas/kitchen', label: 'Kitchen' },
+      { path: '/design-ideas/living-room', label: 'Living Room' },
+      { path: '/design-ideas/dining-area', label: 'Dining Area' },
+      { path: '/design-ideas/foyer-area', label: 'Foyer Area' },
+    ],
+  },
+  {
+    title: 'Bedroom Suites',
+    className: 'group--bedrooms',
+    links: [
+      { path: '/design-ideas/kids-bedroom', label: 'Kids Bedroom' },
+      { path: '/design-ideas/master-bedroom', label: 'Master Bedroom' },
+      { path: '/design-ideas/parents-bedroom', label: 'Parents Bedroom' },
+      { path: '/design-ideas/guest-bedroom', label: 'Guest Bedroom' },
+    ],
+  },
+  {
+    title: 'Work & Leisure',
+    className: 'group--work',
+    links: [
+      { path: '/design-ideas/home-office', label: 'Home Office Room' },
+      { path: '/design-ideas/balcony', label: 'Balcony / Sit-out Areas' },
+      { path: '/design-ideas/bathroom', label: 'Bathroom' },
+    ],
+  },
 ]
 
 export default function Navbar() {
@@ -91,9 +108,16 @@ export default function Navbar() {
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
             <div className={`navbar__dropdown ${activeDropdown === 'ideas' ? 'open' : ''}`}>
-              {DESIGN_IDEAS_LINKS.map(link => (
-                <Link key={link.path} to={link.path} className="navbar__dropdown-link">{link.label}</Link>
+              {DESIGN_IDEAS_GROUPS.map((group) => (
+                <div key={group.title} className={`navbar__dropdown-group ${group.className}`}>
+                  <span className="navbar__dropdown-group-title">{group.title}</span>
+                  {group.links.map((link) => (
+                    <Link key={link.path} to={link.path} className="navbar__dropdown-link">{link.label}</Link>
+                  ))}
+                </div>
               ))}
+              <div className="navbar__dropdown-divider" />
+              <Link to="/design-ideas" className="navbar__dropdown-link navbar__dropdown-link--all">View All Ideas</Link>
             </div>
           </div>
 
@@ -124,7 +148,25 @@ export default function Navbar() {
           <Link to="/services">Services</Link>
           <Link to="/portfolio">Portfolio</Link>
           <Link to="/presentation">Presentation</Link>
-          <Link to="/design-ideas">Design Ideas</Link>
+          <div className="navbar__mobile-group-title">Living Spaces</div>
+          <Link to="/design-ideas/kitchen">Kitchen</Link>
+          <Link to="/design-ideas/living-room">Living Room</Link>
+          <Link to="/design-ideas/dining-area">Dining Area</Link>
+          <Link to="/design-ideas/foyer-area">Foyer Area</Link>
+
+          <div className="navbar__mobile-group-title">Bedroom Suites</div>
+          <Link to="/design-ideas/kids-bedroom">Kids Bedroom</Link>
+          <Link to="/design-ideas/master-bedroom">Master Bedroom</Link>
+          <Link to="/design-ideas/parents-bedroom">Parents Bedroom</Link>
+          <Link to="/design-ideas/guest-bedroom">Guest Bedroom</Link>
+
+          <div className="navbar__mobile-group-title">Work & Leisure</div>
+          <Link to="/design-ideas/home-office">Home Office Room</Link>
+          <Link to="/design-ideas/balcony">Balcony / Sit-out Areas</Link>
+          <Link to="/design-ideas/bathroom">Bathroom</Link>
+
+          <div className="navbar__mobile-group-title">More</div>
+          <Link to="/design-ideas">View All Ideas</Link>
           <Link to="/testimonials">Testimonials</Link>
           <Link to="/blog">Insights</Link>
           <Link to="/contact">Contact</Link>

@@ -24,6 +24,20 @@ export const DESIGN_IDEA_FILTER_MAP = {
   'Bathroom': ['bathroom'],
 }
 
+export const DESIGN_IDEA_CATEGORY_ORDER = [
+  'master-bedroom',
+  'parents-bedroom',
+  'guest-bedroom',
+  'kids-bedroom',
+  'living-room',
+  'balcony',
+  'kitchen',
+  'dining-area',
+  'home-office',
+  'foyer-area',
+  'bathroom',
+]
+
 export const ROOM_DATA = {
   kitchen: {
     label: 'Kitchen',
@@ -258,10 +272,15 @@ export const ROOM_DATA = {
   }
 }
 
-export const DESIGN_IDEA_CATEGORIES = Object.entries(ROOM_DATA).map(([id, room]) => ({
-  id,
-  label: room.label,
-  img: room.img,
-  desc: room.cardDesc,
-  count: room.count,
-}))
+export const DESIGN_IDEA_CATEGORIES = DESIGN_IDEA_CATEGORY_ORDER
+  .map((id) => {
+    const room = ROOM_DATA[id]
+    return room ? {
+      id,
+      label: room.label,
+      img: room.img,
+      desc: room.cardDesc,
+      count: room.count,
+    } : null
+  })
+  .filter(Boolean)
