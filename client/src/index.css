@@ -3,36 +3,37 @@
    ===================================================== */
 
 :root {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f1f3f5;
-  --bg-warm: #f4ece1;
-  --bg-warm-strong: #2a1d12;
-  --bg-warm-strong-2: #3a2919;
-  --accent: #b89a42;
+  --bg-primary: #fdfbf7; /* Warm soft cream background */
+  --bg-secondary: #fbf8f3;
+  --bg-card: rgba(255, 255, 255, 0.45); /* Translucent white glass card background */
+  --bg-card-hover: rgba(255, 255, 255, 0.75);
+  --bg-warm: #f4ece1; /* Soft warm secondary background */
+  --bg-warm-strong: #1a120b; /* For headers or dark overlays like the dark footer! */
+  --bg-warm-strong-2: #281d13;
+  --accent: #b89a42; /* Refined gold as primary highlight */
+  --accent-gold: #b89a42;
   --accent-dark: #967d35;
-  --accent-faint: rgba(184, 154, 66, 0.06);
-  --accent-border: rgba(184, 154, 66, 0.15);
-  --text-primary: #121212;
-  --text-secondary: #4a4a4a;
-  --text-muted: #717171;
-  --text-on-dark: #f8f2ea;
-  --text-on-dark-muted: rgba(248, 242, 234, 0.72);
-  --border-on-dark: rgba(244, 231, 161, 0.16);
-  --border: rgba(0, 0, 0, 0.08);
-  --glass: rgba(255, 255, 255, 0.85);
-  --shadow-gold: 0 0 40px rgba(184, 154, 66, 0.12);
-  --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.08);
-  --radius: 4px;
-  --radius-lg: 8px;
-  --radius-xl: 16px;
-  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-fast: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  --accent-faint: rgba(184, 154, 66, 0.05);
+  --accent-border: rgba(184, 154, 66, 0.16);
+  --text-primary: #1c1814; /* Elegant charcoal/brown text */
+  --text-secondary: #5e544a; /* Warm slate secondary text */
+  --text-muted: #8c8074;
+  --text-on-dark: #fbf8f3;
+  --text-on-dark-muted: rgba(251, 248, 243, 0.72);
+  --border-on-dark: rgba(251, 248, 243, 0.15);
+  --border: rgba(184, 154, 66, 0.12);
+  --glass: rgba(255, 255, 255, 0.55);
+  --shadow-gold: 0 10px 40px rgba(184, 154, 66, 0.08);
+  --shadow-card: 0 16px 48px rgba(44, 30, 19, 0.05);
+  --radius: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --transition: 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-fast: 0.2s cubic-bezier(0.25, 1, 0.5, 1);
   --font-display: 'Playfair Display', serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --max-width: 1280px;
-  --nav-h: 72px;
+  --nav-h: 76px;
 }
 
 /* ─── RESETS ─────────────────────────────────────── */
@@ -127,17 +128,17 @@ body:active::-webkit-scrollbar-thumb {
 
 /* Glass Card Utility */
 .glass-card {
-  background: rgba(255, 255, 255, 0.6) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(184, 154, 66, 0.12) !important;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(184, 154, 66, 0.16) !important;
+  box-shadow: 0 16px 48px 0 rgba(44, 30, 19, 0.05);
   transition: var(--transition);
 }
 
 .glass-card:hover {
-  border-color: rgba(244, 231, 161, 0.3) !important;
-  background: rgba(244, 231, 161, 0.03) !important;
+  border-color: rgba(184, 154, 66, 0.35) !important;
+  background: rgba(255, 255, 255, 0.65) !important;
   transform: translateY(-5px);
 }
 
@@ -273,16 +274,21 @@ body:active::-webkit-scrollbar-thumb {
 /* ─── CARDS ──────────────────────────────────────── */
 .card {
   background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: var(--transition);
+  box-shadow: 
+    var(--shadow-card),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
 .card:hover {
   border-color: var(--accent-border);
   transform: translateY(-4px);
-  box-shadow: var(--shadow-card), var(--shadow-gold);
+  box-shadow: var(--shadow-card), var(--shadow-gold), inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 /* ─── ANIMATED SECTION ───────────────────────────── */
@@ -502,6 +508,8 @@ body:active::-webkit-scrollbar-thumb {
   width: 100%;
   padding: 0.9rem 1.1rem;
   background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   color: var(--text-primary);
@@ -513,7 +521,7 @@ body:active::-webkit-scrollbar-thumb {
 .form-control:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 4px rgba(184, 154, 66, 0.12);
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .form-control::placeholder {

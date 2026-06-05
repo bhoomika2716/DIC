@@ -57,6 +57,8 @@
   width: 360px;
   max-height: 560px;
   background: var(--bg-card);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
   border: 1px solid var(--accent-border);
   border-radius: var(--radius-xl);
   display: flex;

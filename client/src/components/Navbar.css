@@ -3,21 +3,27 @@
    ===================================================== */
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 2.5rem);
+  max-width: var(--max-width);
   z-index: 900;
-  height: var(--nav-h);
-  transition: background var(--transition), box-shadow var(--transition), border-color var(--transition);
-  border-bottom: 1px solid transparent;
+  height: 68px;
+  border-radius: 20px;
+  border: 1px solid rgba(184, 154, 66, 0.15);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 16px 36px rgba(44, 30, 19, 0.05);
+  transition: all var(--transition);
 }
 
 .navbar.scrolled {
-  background: rgba(255, 253, 248, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom-color: var(--accent-border);
-  box-shadow: 0 4px 30px rgba(184, 154, 66, 0.06);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(184, 154, 66, 0.25);
+  box-shadow: 0 20px 40px rgba(44, 30, 19, 0.08);
+  top: 0.75rem;
 }
 
 .navbar__inner {
@@ -25,7 +31,8 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  gap: 2rem;
+  padding: 0 1.5rem;
+  gap: 1.5rem;
 }
 
 /* Logo */
@@ -41,8 +48,8 @@
 .navbar__logo-mark {
   color: var(--accent);
   flex-shrink: 0;
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   display: block;
   filter: drop-shadow(0 8px 16px rgba(184, 154, 66, 0.14));
 }
@@ -60,42 +67,34 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(184, 154, 66, 0.12);
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .navbar__link {
   position: relative;
   padding: 0.4rem 0.75rem;
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.78rem;
+  font-weight: 600;
   color: var(--text-secondary);
-  border-radius: var(--radius);
-  transition: color var(--transition-fast);
+  border-radius: 999px;
+  transition: all var(--transition-fast);
   text-decoration: none;
-}
-
-.navbar__link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 1px;
-  background: var(--accent);
-  transition: width var(--transition-fast);
 }
 
 .navbar__link:hover {
   color: var(--text-primary);
-}
-
-.navbar__link.active::after,
-.navbar__link:hover::after {
-  width: calc(100% - 1.5rem);
+  background: rgba(184, 154, 66, 0.08);
 }
 
 .navbar__link.active {
-  color: var(--accent);
+  color: #ffffff;
+  background: var(--accent);
+  border: 1px solid var(--accent);
 }
 
 /* Dropdown */
@@ -124,21 +123,23 @@
   top: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(10px);
-  width: 720px;
-  min-width: 620px;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--accent-border);
-  border-radius: var(--radius);
-  padding: 1rem;
-  box-shadow: 0 10px 40px rgba(184, 154, 66, 0.08), 0 2px 10px rgba(0, 0, 0, 0.05);
+  width: 760px;
+  min-width: 660px;
+  background: rgba(254, 252, 248, 0.94) !important;
+  backdrop-filter: blur(35px) saturate(160%);
+  -webkit-backdrop-filter: blur(35px) saturate(160%);
+  border: 1px solid rgba(184, 154, 66, 0.25) !important;
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 
+    0 30px 70px rgba(44, 30, 19, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
   opacity: 0;
   pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
   display: grid;
-  grid-template-columns: repeat(3, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.35rem;
 }
 
 .navbar__dropdown.open {
@@ -147,87 +148,151 @@
   transform: translateX(-50%) translateY(0);
 }
 
+/* Glassy Dropdown Group Columns */
 .navbar__dropdown-group {
-  display: grid;
-  gap: 0.35rem;
-  padding: 0.75rem;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all var(--transition);
 }
 
 .navbar__dropdown-group-title {
   display: block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--text-primary);
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid currentColor;
+  width: fit-content;
 }
 
+/* 1. Living Spaces (Warm Cream/Brown Glass) */
 .navbar__dropdown-group.group--living {
-  border-color: rgba(184, 154, 66, 0.18);
-  background: rgba(240, 235, 224, 0.9);
+  border: 2px solid rgba(184, 154, 66, 0.42) !important;
+  background: linear-gradient(135deg, rgba(245, 232, 207, 0.75), rgba(232, 214, 183, 0.85)) !important;
+  box-shadow: 0 10px 24px rgba(44, 30, 19, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.group--living .navbar__dropdown-group-title {
+  color: #846420;
+}
+.group--living .navbar__dropdown-link {
+  border-bottom: 1px solid rgba(184, 154, 66, 0.15);
+}
+.group--living .navbar__dropdown-link:hover {
+  background: rgba(184, 154, 66, 0.08);
+  color: #846420;
 }
 
+/* 2. Bedroom Suites (Soft Mint/Sage Glass) */
 .navbar__dropdown-group.group--bedrooms {
-  border-color: rgba(107, 132, 109, 0.18);
-  background: rgba(236, 241, 235, 0.95);
+  border: 2px solid rgba(107, 132, 109, 0.42) !important;
+  background: linear-gradient(135deg, rgba(222, 238, 220, 0.75), rgba(199, 224, 196, 0.85)) !important;
+  box-shadow: 0 10px 24px rgba(44, 30, 19, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.group--bedrooms .navbar__dropdown-group-title {
+  color: #38563a;
+}
+.group--bedrooms .navbar__dropdown-link {
+  border-bottom: 1px solid rgba(107, 132, 109, 0.15);
+}
+.group--bedrooms .navbar__dropdown-link:hover {
+  background: rgba(107, 132, 109, 0.08);
+  color: #38563a;
 }
 
+/* 3. Work & Leisure (Soft Slate Blue Glass) */
 .navbar__dropdown-group.group--work {
-  border-color: rgba(92, 118, 157, 0.18);
-  background: rgba(237, 242, 250, 0.95);
+  border: 2px solid rgba(92, 118, 157, 0.42) !important;
+  background: linear-gradient(135deg, rgba(222, 235, 252, 0.75), rgba(196, 216, 246, 0.85)) !important;
+  box-shadow: 0 10px 24px rgba(44, 30, 19, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.group--work .navbar__dropdown-group-title {
+  color: #263d60;
+}
+.group--work .navbar__dropdown-link {
+  border-bottom: 1px solid rgba(92, 118, 157, 0.15);
+}
+.group--work .navbar__dropdown-link:hover {
+  background: rgba(92, 118, 157, 0.08);
+  color: #263d60;
 }
 
 .navbar__dropdown-divider {
-  height: 1px;
-  margin: 0.25rem 0;
-  background: rgba(184, 154, 66, 0.18);
-  grid-column: 1 / -1;
+  display: none; /* Hide old raw line divider */
 }
 
 .navbar__dropdown-link {
   display: block;
-  padding: 0.65rem 0.8rem;
+  padding: 0.65rem 0.85rem;
   font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-secondary);
+  font-weight: 600;
+  color: var(--text-primary);
   border-radius: 8px;
   transition: all var(--transition-fast);
   text-decoration: none;
+  margin-bottom: 1px;
 }
 
+.navbar__dropdown-link:last-child {
+  border-bottom: none !important;
+}
+
+.navbar__dropdown-link:hover {
+  transform: translateX(4px);
+  padding-left: 1rem;
+}
+
+/* View All Ideas - Premium Bottom Bar */
 .navbar__dropdown-link--all {
   grid-column: 1 / -1;
-  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem;
   font-weight: 700;
+  font-size: 0.88rem;
+  color: #846420 !important;
+  background: rgba(184, 154, 66, 0.06);
+  border: 1px solid rgba(184, 154, 66, 0.18);
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 0.5rem;
+  transition: all 0.3s ease;
 }
 
-.navbar__dropdown-link:hover {
-  background: rgba(184, 154, 66, 0.08);
-  color: var(--accent);
-  padding-left: 1rem;
-  border-left: 2px solid var(--accent);
+.navbar__dropdown-link--all:hover {
+  background: var(--accent) !important;
+  color: #000000 !important;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(184, 154, 66, 0.22);
 }
 
-.navbar__dropdown-link--all {
-  padding-left: 0.9rem;
-  font-weight: 700;
-}
-
-.navbar__dropdown-link:hover {
-  background: rgba(184, 154, 66, 0.05);
-  color: var(--accent);
-  padding-left: 1.2rem;
-  border-left: 2px solid var(--accent);
-}
 
 /* Actions */
 .navbar__actions {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+#nav-cta {
+  padding: 0.4rem 1.15rem !important;
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  border-radius: 99px !important;
+  height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  margin-left: 0.5rem !important;
 }
 
 .navbar__ecatalog {
@@ -287,6 +352,7 @@
   transform: translateX(100%);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-y: auto;
+  display: none; /* Hide on desktop sizes */
 }
 
 .navbar__mobile-drawer.open { transform: translateX(0); }
@@ -320,7 +386,8 @@
   color: var(--text-primary);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .navbar__links { display: none; }
   .navbar__mobile-toggle { display: flex; }
+  .navbar__mobile-drawer { display: block; } /* Show on mobile/tablet viewports */
 }

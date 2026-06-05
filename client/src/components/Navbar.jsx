@@ -124,12 +124,11 @@ export default function Navbar() {
           <Link to="/testimonials" className={`navbar__link ${isActive('/testimonials')}`}>Testimonials</Link>
           <Link to="/blog" className={`navbar__link ${isActive('/blog')}`}>Insights</Link>
           <Link to="/contact" className={`navbar__link ${isActive('/contact')}`}>Contact</Link>
+          <Link to="/contact" className="btn btn-primary btn-sm" id="nav-cta">BOOK CONSULTATION</Link>
         </div>
 
         {/* Actions */}
         <div className="navbar__actions">
-          <Link to="/contact" className="btn btn-primary btn-sm" id="nav-cta">BOOK CONSULTATION</Link>
-          
           {/* Mobile Toggle */}
           <button 
             className={`navbar__mobile-toggle ${mobileMenuOpen ? 'active' : ''}`}
@@ -148,25 +147,7 @@ export default function Navbar() {
           <Link to="/services">Services</Link>
           <Link to="/portfolio">Portfolio</Link>
           <Link to="/presentation">Presentation</Link>
-          <div className="navbar__mobile-group-title">Living Spaces</div>
-          <Link to="/design-ideas/kitchen">Kitchen</Link>
-          <Link to="/design-ideas/living-room">Living Room</Link>
-          <Link to="/design-ideas/dining-area">Dining Area</Link>
-          <Link to="/design-ideas/foyer-area">Foyer Area</Link>
-
-          <div className="navbar__mobile-group-title">Bedroom Suites</div>
-          <Link to="/design-ideas/kids-bedroom">Kids Bedroom</Link>
-          <Link to="/design-ideas/master-bedroom">Master Bedroom</Link>
-          <Link to="/design-ideas/parents-bedroom">Parents Bedroom</Link>
-          <Link to="/design-ideas/guest-bedroom">Guest Bedroom</Link>
-
-          <div className="navbar__mobile-group-title">Work & Leisure</div>
-          <Link to="/design-ideas/home-office">Home Office Room</Link>
-          <Link to="/design-ideas/balcony">Balcony / Sit-out Areas</Link>
-          <Link to="/design-ideas/bathroom">Bathroom</Link>
-
-          <div className="navbar__mobile-group-title">More</div>
-          <Link to="/design-ideas">View All Ideas</Link>
+          <Link to="/design-ideas">Design Ideas</Link>
           <Link to="/testimonials">Testimonials</Link>
           <Link to="/blog">Insights</Link>
           <Link to="/contact">Contact</Link>

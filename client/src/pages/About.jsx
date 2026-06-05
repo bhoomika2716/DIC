@@ -230,25 +230,6 @@ export default function About() {
           </AnimatedSection>
 
           <div className="roadmap">
-            <aside className="roadmap__intro">
-              <span className="roadmap__intro-label">Studio Board</span>
-              <h3 className="roadmap__intro-title">A design journey presented like a premium project strip.</h3>
-              <p className="roadmap__intro-copy">
-                From a boutique Chennai studio in 2008 to a future-ready interior brand in 2026, each phase reflects how the practice matured in scale, trust, and design ambition.
-              </p>
-
-              <div className="roadmap__intro-meta">
-                <div className="roadmap__meta-card">
-                  <span className="roadmap__meta-value">2008 - 2026</span>
-                  <span className="roadmap__meta-label">Timeline Span</span>
-                </div>
-                <div className="roadmap__meta-card">
-                  <span className="roadmap__meta-value">06</span>
-                  <span className="roadmap__meta-label">Major Milestones</span>
-                </div>
-              </div>
-            </aside>
-
             <div className="roadmap__board">
               <div className="roadmap__rail" aria-hidden="true">
                 <span className="roadmap__rail-line" />
