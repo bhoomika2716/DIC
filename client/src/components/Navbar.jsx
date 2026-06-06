@@ -113,7 +113,7 @@ export default function Navbar() {
               Services
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
-            <div className={`navbar__dropdown ${activeDropdown === 'services' ? 'open' : ''}`}>
+            <div className={`navbar__dropdown navbar__dropdown--services ${activeDropdown === 'services' ? 'open' : ''}`}>
               {SERVICES_LINKS.map(link => (
                 <Link key={link.path} to={link.path} className="navbar__dropdown-link">{link.label}</Link>
               ))}

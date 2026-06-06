@@ -185,6 +185,20 @@
   transform: translateX(-50%) translateY(0);
 }
 
+.navbar__dropdown--services {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 290px;
+  min-width: 260px;
+  padding: 1rem;
+}
+
+.navbar__dropdown--services .navbar__dropdown-link:hover {
+  background: rgba(184, 154, 66, 0.12);
+  color: var(--accent);
+}
+
 /* Glassy Dropdown Group Columns */
 .navbar__dropdown-group {
   display: flex;
