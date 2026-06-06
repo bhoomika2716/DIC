@@ -29,31 +29,37 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.85rem 1.1rem;
-  background: rgba(255, 255, 255, 0.45);
+  background: var(--bg-card);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius);
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   cursor: pointer;
   text-align: left;
   transition: var(--transition-fast);
 }
 
 .services-tab:hover {
-  border-color: rgba(184, 154, 66, 0.3);
+  border-color: rgba(184, 154, 66, 0.65);
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.75);
+  background: var(--bg-card-hover);
   transform: translateY(-2px);
+  box-shadow: 
+    0 0 10px rgba(184, 154, 66, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .services-tab.active {
   border-color: var(--accent);
-  background: rgba(255, 255, 255, 0.85);
-  color: var(--accent);
-  box-shadow: 0 8px 24px rgba(184, 154, 66, 0.08);
+  background: var(--accent);
+  color: #0c0a09;
+  box-shadow: 
+    0 0 12px rgba(184, 154, 66, 0.45),
+    0 8px 24px rgba(184, 154, 66, 0.25);
+  font-weight: 600;
 }
 
 .services-tab__icon { font-size: 1rem; flex-shrink: 0; }
@@ -67,16 +73,16 @@
 
 /* Detail Panel */
 .services-detail {
-  background: rgba(255, 255, 255, 0.65);
+  background: var(--bg-card);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(184, 154, 66, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
   padding: 2.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-card);
   transition: all var(--transition);
 }
 
@@ -130,10 +136,10 @@
 .process-step {
   position: relative;
   padding: 2rem 1.5rem;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--bg-card);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -148,9 +154,12 @@
 .process-step:last-child { border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
 
 .process-step:hover {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(184, 154, 66, 0.35);
-  box-shadow: 0 16px 36px rgba(184, 154, 66, 0.08);
+  background: var(--bg-card-hover);
+  border-color: rgba(184, 154, 66, 0.65) !important;
+  box-shadow: 
+    0 0 15px rgba(184, 154, 66, 0.3),
+    0 20px 48px rgba(0, 0, 0, 0.4), 
+    var(--shadow-gold);
   transform: translateY(-4px);
   z-index: 10;
 }

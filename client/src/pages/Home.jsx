@@ -453,7 +453,7 @@ export default function Home() {
 
 
 
-      <section className="section home-about section-brown-soft">
+      <section className="section home-about section-brown">
 
         <div className="container">
 

@@ -175,7 +175,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="section section-brown-soft">
+      <section className="section section-brown">
         <div className="container">
           <AnimatedSection>
             <div className="section-label"><span className="overline">How We Work</span></div>

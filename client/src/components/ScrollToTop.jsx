@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { ChevronUp } from 'lucide-react'
 
 export default function ScrollToTop() {
   const [show, setShow] = useState(false)
@@ -16,7 +17,7 @@ export default function ScrollToTop() {
       aria-label="Scroll to top"
       id="scroll-to-top"
     >
-      ↑
+      <ChevronUp size={20} strokeWidth={2.5} />
     </button>
   )
 }

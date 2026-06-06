@@ -62,7 +62,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="section section-brown-soft">
+      <section className="section section-brown">
         <div className="container contact-grid">
           {/* Contact Info */}
           <AnimatedSection className="contact-info">

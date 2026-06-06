@@ -8,12 +8,12 @@
   justify-content: center;
   margin-top: 2rem;
   padding: 1.5rem 2rem;
-  background: rgba(255, 255, 255, 0.65);
+  background: var(--bg-card);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--accent-border);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-card);
   width: fit-content;
   margin-inline: auto;
 }
@@ -38,10 +38,10 @@
   display: grid;
   grid-template-columns: minmax(220px, 280px) 1fr;
   margin-bottom: 2rem;
-  border: 1px solid var(--accent-border);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.65);
+  background: var(--bg-card);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: var(--shadow-card), var(--shadow-gold);
@@ -133,10 +133,10 @@
 }
 
 .testimonial-full-card__inner {
-  background: rgba(255, 255, 255, 0.65);
+  background: var(--bg-card);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(184, 154, 66, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-lg);
   padding: 2rem;
   height: 100%;
@@ -147,10 +147,13 @@
 }
 
 .testimonial-full-card__inner:hover {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(184, 154, 66, 0.3);
+  background: var(--bg-card-hover);
+  border-color: rgba(184, 154, 66, 0.65);
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05), var(--shadow-gold);
+  box-shadow: 
+    0 0 15px rgba(184, 154, 66, 0.3),
+    0 20px 48px rgba(0, 0, 0, 0.4), 
+    var(--shadow-gold);
 }
 
 .testimonial-full-card__top {
@@ -205,10 +208,10 @@
 }
 
 .platform-rating-card {
-  background: rgba(255, 255, 255, 0.65);
+  background: var(--bg-card);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(184, 154, 66, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-lg);
   padding: 2rem 1.5rem;
   display: flex;
@@ -220,10 +223,13 @@
 }
 
 .platform-rating-card:hover {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(184, 154, 66, 0.3);
+  background: var(--bg-card-hover);
+  border-color: rgba(184, 154, 66, 0.65);
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05), var(--shadow-gold);
+  box-shadow: 
+    0 0 15px rgba(184, 154, 66, 0.3),
+    0 20px 48px rgba(0, 0, 0, 0.4), 
+    var(--shadow-gold);
 }
 
 .platform-rating-card__name {

@@ -125,19 +125,20 @@ a.contact-info__value:hover { color: var(--accent); }
 
 /* Form Panel */
 .contact-form-wrap {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(184, 154, 66, 0.15);
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-card);
   transition: all var(--transition);
 }
 
 .contact-form-wrap:hover {
-  border-color: rgba(184, 154, 66, 0.3);
-  box-shadow: 0 20px 48px rgba(184, 154, 66, 0.12);
+  border-color: rgba(184, 154, 66, 0.4);
+  background: var(--bg-card-hover);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4), var(--shadow-gold);
 }
 
 .contact-form {
@@ -206,7 +207,7 @@ a.contact-info__value:hover { color: var(--accent); }
 
 .contact-map-placeholder {
   height: 300px;
-  background: linear-gradient(135deg, #f1f3f5, #e9ecef);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
   border-top: 1px solid var(--border);
   display: flex;
   align-items: center;

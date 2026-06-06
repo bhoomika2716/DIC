@@ -5,25 +5,39 @@
   position: fixed;
   top: 1.25rem;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) scale(1);
   width: calc(100% - 2.5rem);
   max-width: var(--max-width);
   z-index: 900;
   height: 68px;
-  border-radius: 20px;
-  border: 1px solid rgba(184, 154, 66, 0.15);
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 16px 36px rgba(44, 30, 19, 0.05);
-  transition: all var(--transition);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: 
+    0 16px 36px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+  transition: 
+    top var(--transition), 
+    transform var(--transition), 
+    background var(--transition), 
+    border-color var(--transition), 
+    box-shadow var(--transition), 
+    border-radius var(--transition);
 }
 
 .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(184, 154, 66, 0.25);
-  box-shadow: 0 20px 40px rgba(44, 30, 19, 0.08);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 24px 50px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
   top: 0.75rem;
+  border-radius: 20px;
+  transform: translateX(-50%) scale(0.97);
 }
 
 .navbar__inner {
@@ -67,12 +81,15 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(184, 154, 66, 0.12);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0.3rem 0.65rem;
   border-radius: 999px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
 .navbar__link {
@@ -84,17 +101,37 @@
   border-radius: 999px;
   transition: all var(--transition-fast);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  z-index: 1; /* Establishes stacking context so z-index: -1 works inside the link */
 }
 
 .navbar__link:hover {
   color: var(--text-primary);
-  background: rgba(184, 154, 66, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar__link.active {
-  color: #ffffff;
-  background: var(--accent);
-  border: 1px solid var(--accent);
+  color: #ffffff !important;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
+}
+
+.navbar__link-active-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.06) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.35),
+    0 0 12px rgba(184, 154, 66, 0.18), /* Gold glow shade under active link */
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  z-index: -1;
 }
 
 /* Dropdown */
@@ -125,15 +162,15 @@
   transform: translateX(-50%) translateY(10px);
   width: 760px;
   min-width: 660px;
-  background: rgba(254, 252, 248, 0.94) !important;
-  backdrop-filter: blur(35px) saturate(160%);
-  -webkit-backdrop-filter: blur(35px) saturate(160%);
-  border: 1px solid rgba(184, 154, 66, 0.25) !important;
+  background: rgba(18, 14, 12, 0.92) !important;
+  backdrop-filter: blur(30px) saturate(170%);
+  -webkit-backdrop-filter: blur(30px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: 24px;
   padding: 1.5rem;
   box-shadow: 
-    0 30px 70px rgba(44, 30, 19, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    0 30px 70px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
   opacity: 0;
   pointer-events: none;
   transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
@@ -171,55 +208,55 @@
   width: fit-content;
 }
 
-/* 1. Living Spaces (Warm Cream/Brown Glass) */
+/* 1. Living Spaces (Warm Amber/Gold Glass) */
 .navbar__dropdown-group.group--living {
-  border: 2px solid rgba(184, 154, 66, 0.42) !important;
-  background: linear-gradient(135deg, rgba(245, 232, 207, 0.75), rgba(232, 214, 183, 0.85)) !important;
-  box-shadow: 0 10px 24px rgba(44, 30, 19, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(184, 154, 66, 0.22) !important;
+  background: linear-gradient(135deg, rgba(184, 154, 66, 0.1) 0%, rgba(184, 154, 66, 0.03) 100%) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 .group--living .navbar__dropdown-group-title {
-  color: #846420;
+  color: var(--accent);
 }
 .group--living .navbar__dropdown-link {
-  border-bottom: 1px solid rgba(184, 154, 66, 0.15);
+  border-bottom: 1px solid rgba(184, 154, 66, 0.1);
 }
 .group--living .navbar__dropdown-link:hover {
-  background: rgba(184, 154, 66, 0.08);
-  color: #846420;
+  background: rgba(184, 154, 66, 0.15);
+  color: #ffffff;
 }
 
 /* 2. Bedroom Suites (Soft Mint/Sage Glass) */
 .navbar__dropdown-group.group--bedrooms {
-  border: 2px solid rgba(107, 132, 109, 0.42) !important;
-  background: linear-gradient(135deg, rgba(222, 238, 220, 0.75), rgba(199, 224, 196, 0.85)) !important;
-  box-shadow: 0 10px 24px rgba(44, 30, 19, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(143, 182, 201, 0.22) !important;
+  background: linear-gradient(135deg, rgba(143, 182, 201, 0.1) 0%, rgba(143, 182, 201, 0.03) 100%) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 .group--bedrooms .navbar__dropdown-group-title {
-  color: #38563a;
+  color: #8fb6c9;
 }
 .group--bedrooms .navbar__dropdown-link {
-  border-bottom: 1px solid rgba(107, 132, 109, 0.15);
+  border-bottom: 1px solid rgba(143, 182, 201, 0.1);
 }
 .group--bedrooms .navbar__dropdown-link:hover {
-  background: rgba(107, 132, 109, 0.08);
-  color: #38563a;
+  background: rgba(143, 182, 201, 0.15);
+  color: #ffffff;
 }
 
 /* 3. Work & Leisure (Soft Slate Blue Glass) */
 .navbar__dropdown-group.group--work {
-  border: 2px solid rgba(92, 118, 157, 0.42) !important;
-  background: linear-gradient(135deg, rgba(222, 235, 252, 0.75), rgba(196, 216, 246, 0.85)) !important;
-  box-shadow: 0 10px 24px rgba(44, 30, 19, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(197, 165, 133, 0.22) !important;
+  background: linear-gradient(135deg, rgba(197, 165, 133, 0.1) 0%, rgba(197, 165, 133, 0.03) 100%) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 .group--work .navbar__dropdown-group-title {
-  color: #263d60;
+  color: #c5a585;
 }
 .group--work .navbar__dropdown-link {
-  border-bottom: 1px solid rgba(92, 118, 157, 0.15);
+  border-bottom: 1px solid rgba(197, 165, 133, 0.1);
 }
 .group--work .navbar__dropdown-link:hover {
-  background: rgba(92, 118, 157, 0.08);
-  color: #263d60;
+  background: rgba(197, 165, 133, 0.15);
+  color: #ffffff;
 }
 
 .navbar__dropdown-divider {
@@ -256,7 +293,7 @@
   padding: 0.85rem;
   font-weight: 700;
   font-size: 0.88rem;
-  color: #846420 !important;
+  color: var(--accent) !important;
   background: rgba(184, 154, 66, 0.06);
   border: 1px solid rgba(184, 154, 66, 0.18);
   border-radius: 12px;
@@ -267,7 +304,7 @@
 
 .navbar__dropdown-link--all:hover {
   background: var(--accent) !important;
-  color: #000000 !important;
+  color: #0c0a09 !important;
   border-color: var(--accent);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(184, 154, 66, 0.22);
@@ -345,7 +382,7 @@
   width: 100%;
   max-width: 320px;
   height: calc(100vh - var(--nav-h));
-  background: rgba(255, 254, 251, 0.95);
+  background: rgba(18, 14, 12, 0.96);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-left: 1px solid var(--accent-border);

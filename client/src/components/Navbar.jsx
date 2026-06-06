@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import BrandLogo from './BrandLogo'
 import './Navbar.css'
 
@@ -74,8 +75,26 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <div className="navbar__links">
-          <Link to="/" className={`navbar__link ${isActive('/')}`}>Home</Link>
-          <Link to="/about" className={`navbar__link ${isActive('/about')}`}>About</Link>
+          <Link to="/" className={`navbar__link ${isActive('/')}`}>
+            {isActive('/') === 'active' && (
+              <motion.span 
+                className="navbar__link-active-bg" 
+                layoutId="activeNavIndicator"
+                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+              />
+            )}
+            Home
+          </Link>
+          <Link to="/about" className={`navbar__link ${isActive('/about')}`}>
+            {isActive('/about') === 'active' && (
+              <motion.span 
+                className="navbar__link-active-bg" 
+                layoutId="activeNavIndicator"
+                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+              />
+            )}
+            About
+          </Link>
           
           {/* Services Dropdown */}
           <div 
@@ -83,7 +102,14 @@ export default function Navbar() {
             onMouseEnter={() => setActiveDropdown('services')}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <Link to="/services" className="navbar__link">
+            <Link to="/services" className={`navbar__link ${isPartiallyActive('/services')}`}>
+              {isPartiallyActive('/services') === 'active' && (
+                <motion.span 
+                  className="navbar__link-active-bg" 
+                  layoutId="activeNavIndicator"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
               Services
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
@@ -94,8 +120,26 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Link to="/portfolio" className={`navbar__link ${isActive('/portfolio')}`}>Portfolio</Link>
-          <Link to="/presentation" className={`navbar__link ${isActive('/presentation')}`}>Presentation</Link>
+          <Link to="/portfolio" className={`navbar__link ${isActive('/portfolio')}`}>
+            {isActive('/portfolio') === 'active' && (
+              <motion.span 
+                className="navbar__link-active-bg" 
+                layoutId="activeNavIndicator"
+                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+              />
+            )}
+            Portfolio
+          </Link>
+          <Link to="/presentation" className={`navbar__link ${isActive('/presentation')}`}>
+            {isActive('/presentation') === 'active' && (
+              <motion.span 
+                className="navbar__link-active-bg" 
+                layoutId="activeNavIndicator"
+                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+              />
+            )}
+            Presentation
+          </Link>
 
           {/* Design Ideas Dropdown */}
           <div 
@@ -103,7 +147,14 @@ export default function Navbar() {
             onMouseEnter={() => setActiveDropdown('ideas')}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <Link to="/design-ideas" className="navbar__link">
+            <Link to="/design-ideas" className={`navbar__link ${isPartiallyActive('/design-ideas')}`}>
+              {isPartiallyActive('/design-ideas') === 'active' && (
+                <motion.span 
+                  className="navbar__link-active-bg" 
+                  layoutId="activeNavIndicator"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
               Design Ideas
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
@@ -121,9 +172,36 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Link to="/testimonials" className={`navbar__link ${isActive('/testimonials')}`}>Testimonials</Link>
-          <Link to="/blog" className={`navbar__link ${isActive('/blog')}`}>Insights</Link>
-          <Link to="/contact" className={`navbar__link ${isActive('/contact')}`}>Contact</Link>
+          <Link to="/testimonials" className={`navbar__link ${isActive('/testimonials')}`}>
+            {isActive('/testimonials') === 'active' && (
+              <motion.span 
+                className="navbar__link-active-bg" 
+                layoutId="activeNavIndicator"
+                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+              />
+            )}
+            Testimonials
+          </Link>
+          <Link to="/blog" className={`navbar__link ${isActive('/blog')}`}>
+            {isActive('/blog') === 'active' && (
+              <motion.span 
+                className="navbar__link-active-bg" 
+                layoutId="activeNavIndicator"
+                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+              />
+            )}
+            Insights
+          </Link>
+          <Link to="/contact" className={`navbar__link ${isActive('/contact')}`}>
+            {isActive('/contact') === 'active' && (
+              <motion.span 
+                className="navbar__link-active-bg" 
+                layoutId="activeNavIndicator"
+                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+              />
+            )}
+            Contact
+          </Link>
           <Link to="/contact" className="btn btn-primary btn-sm" id="nav-cta">BOOK CONSULTATION</Link>
         </div>
 

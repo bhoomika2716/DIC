@@ -403,13 +403,13 @@
   padding: 1.5rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--bg-card);
   transition: all var(--transition-fast);
   gap: 2rem;
 }
 
 .admin-setting-item:hover {
-  background: rgba(255, 255, 255, 0.45);
+  background: var(--bg-card-hover);
   border-color: var(--accent);
   box-shadow: 0 8px 24px rgba(184, 154, 66, 0.06);
 }

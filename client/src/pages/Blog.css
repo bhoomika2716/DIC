@@ -8,19 +8,20 @@
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: center;
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(184, 154, 66, 0.15);
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-xl);
   overflow: hidden;
   margin-bottom: 1rem;
+  box-shadow: var(--shadow-card);
 }
 
 .blog-featured__visual {
   position: relative;
   min-height: 400px;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
   display: flex;
   align-items: flex-start;
   padding: 2rem;
@@ -91,10 +92,10 @@
 }
 
 .blog-card {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(184, 154, 66, 0.12);
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-lg);
   overflow: hidden;
   display: flex;
@@ -103,16 +104,16 @@
 }
 
 .blog-card:hover {
-  border-color: rgba(184, 154, 66, 0.3);
-  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(184, 154, 66, 0.4);
+  background: var(--bg-card-hover);
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05), var(--shadow-gold);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4), var(--shadow-gold);
 }
 
 .blog-card__visual {
   position: relative;
   height: 160px;
-  background: linear-gradient(135deg, #f1f3f5, #e9ecef);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
   display: flex;
   align-items: flex-start;
   padding: 1rem;
@@ -190,15 +191,16 @@
 .blog-newsletter {
   margin-top: 4rem;
   padding: 2.5rem;
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(184, 154, 66, 0.15);
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-xl);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2.5rem;
   align-items: center;
+  box-shadow: var(--shadow-card);
 }
 
 .blog-newsletter__content {

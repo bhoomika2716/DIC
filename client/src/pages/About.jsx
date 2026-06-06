@@ -199,7 +199,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="section section-brown-soft">
+      <section className="section section-brown">
         <div className="container">
           <AnimatedSection>
             <div className="section-label"><span className="overline">What Drives Us</span></div>

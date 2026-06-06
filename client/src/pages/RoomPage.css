@@ -79,20 +79,23 @@
 }
 
 .room-idea-card__inner {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(184, 154, 66, 0.12);
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: var(--transition);
 }
 
 .room-idea-card__inner:hover {
-  border-color: rgba(184, 154, 66, 0.3);
-  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(184, 154, 66, 0.65);
+  background: var(--bg-card-hover);
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05), var(--shadow-gold);
+  box-shadow: 
+    0 0 15px rgba(184, 154, 66, 0.3),
+    0 20px 48px rgba(0, 0, 0, 0.4), 
+    var(--shadow-gold);
 }
 
 .room-idea-card__img-wrap {
@@ -115,7 +118,7 @@
 .room-idea-card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(255,255,255,0.7), transparent 60%);
+  background: linear-gradient(0deg, rgba(12, 10, 9, 0.92), transparent 60%);
 }
 
 .room-idea-card__num {

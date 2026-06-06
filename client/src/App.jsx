@@ -35,23 +35,51 @@ const TermsAndConditions = React.lazy(() => import('./pages/Terms'))
 const PageLoader = () => (
   <div style={{
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    minHeight: '60vh',
+    minHeight: '70vh',
     width: '100%',
+    gap: '1.5rem',
   }}>
     <div style={{
-      width: '40px',
-      height: '40px',
-      border: '3px solid rgba(184, 154, 66, 0.1)',
-      borderTopColor: 'var(--accent)',
-      borderRadius: '50%',
-      animation: 'spin 1s linear infinite'
-    }} />
+      padding: '3rem 4rem',
+      borderRadius: '24px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: '1.25rem',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%)',
+      backdropFilter: 'blur(20px)',
+      boxShadow: '0 20px 50px rgba(0,0,0,0.35)',
+      animation: 'pulseShimmer 2s infinite ease-in-out'
+    }}>
+      <div style={{
+        width: '48px',
+        height: '48px',
+        border: '3px solid rgba(184, 154, 66, 0.1)',
+        borderTopColor: 'var(--accent)',
+        borderRadius: '50%',
+        animation: 'spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite'
+      }} />
+      <span style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: '0.9rem',
+        fontWeight: '600',
+        color: 'var(--accent)',
+        letterSpacing: '0.08em',
+        textTransform: 'uppercase'
+      }}>Loading Space...</span>
+    </div>
     <style>{`
       @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
+      }
+      @keyframes pulseShimmer {
+        0%, 100% { opacity: 0.8; transform: scale(0.98); }
+        50% { opacity: 1; transform: scale(1); }
       }
     `}</style>
   </div>
