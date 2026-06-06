@@ -68,15 +68,24 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   font-size: 0.88rem;
   outline: none;
-  background: rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   color: #ffffff;
 }
 
 .newsletter-input:focus {
-  border-color: var(--accent);
+  border-color: rgba(255, 255, 255, 0.35);
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 4px rgba(184, 154, 66, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 
+    0 0 0 3px rgba(255, 255, 255, 0.06),
+    0 0 16px rgba(255, 255, 255, 0.14),
+    0 0 32px rgba(184, 154, 66, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
 }
 
 .newsletter-btn {
