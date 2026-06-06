@@ -230,20 +230,14 @@ export default function About() {
           </AnimatedSection>
 
           <div className="roadmap">
-            <div className="roadmap__board">
-              <div className="roadmap__rail" aria-hidden="true">
-                <span className="roadmap__rail-line" />
-              </div>
-
-              <div className="roadmap__boxes" aria-hidden="true">
-                {Array.from({ length: 10 }).map((_, index) => (
-                  <span key={index} className={`roadmap__box roadmap__box--${(index % 5) + 1}`} />
-                ))}
-              </div>
-
-              <div className="roadmap__cards">
-                {MILESTONES.map((milestone, index) => (
-                  <article key={milestone.year} className="roadmap__card">
+            <div className="roadmap__line" aria-hidden="true" />
+            <div className="roadmap__items">
+              {MILESTONES.map((milestone, index) => (
+                <div key={milestone.year} className={`roadmap__item ${index % 2 === 0 ? 'roadmap__item--left' : 'roadmap__item--right'}`}>
+                  <div className="roadmap__node" aria-hidden="true">
+                    <span className="roadmap__node-dot" />
+                  </div>
+                  <article className="roadmap__card">
                     <span className="roadmap__watermark">{milestone.year}</span>
 
                     <div className="roadmap__card-top">
@@ -270,8 +264,8 @@ export default function About() {
                       <span className="roadmap__progress-note">{milestone.progress}% evolution</span>
                     </div>
                   </article>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
