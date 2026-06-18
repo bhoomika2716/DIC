@@ -124,6 +124,8 @@ export default function Blog() {
           {featured && (
             <AnimatedSection>
               <div className="blog-featured">
+                <div className="blog-glow blog-glow--top-left" />
+                <div className="blog-glow blog-glow--bottom-right" />
                 <div className="blog-featured__visual">
                   <img
                     src={featured.image}
@@ -196,6 +198,8 @@ export default function Blog() {
 
           {/* Newsletter CTA */}
           <AnimatedSection className="blog-newsletter">
+            <div className="blog-glow blog-glow--top-left" />
+            <div className="blog-glow blog-glow--bottom-right" />
             <div className="blog-newsletter__content">
               <h2 className="heading-2">Get Design Inspiration in Your Inbox</h2>
               <p className="lead" style={{ fontSize: '1rem' }}>Monthly newsletter with trends, tips, and project spotlights from our studio.</p>

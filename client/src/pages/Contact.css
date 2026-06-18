@@ -84,12 +84,17 @@ a.contact-info__value:hover { color: var(--accent); }
   align-items: center;
   gap: 0.75rem;
   padding: 0.85rem 1.1rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%) padding-box,
+    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(184, 154, 66, 0.2) 100%) border-box;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: var(--radius);
   font-size: 0.82rem;
   color: var(--text-muted);
   margin-bottom: 2rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .contact-info__badge-dot {
@@ -125,27 +130,68 @@ a.contact-info__value:hover { color: var(--accent); }
 
 /* Form Panel */
 .contact-form-wrap {
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  border: 1px solid transparent;
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%) padding-box,
+    linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(184, 154, 66, 0.05) 60%, rgba(184, 154, 66, 0.35) 100%) border-box;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
   transition: all var(--transition);
 }
 
 .contact-form-wrap:hover {
-  border-color: rgba(184, 154, 66, 0.4);
-  background: var(--bg-card-hover);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4), var(--shadow-gold);
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%) padding-box,
+    linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.05) 35%, rgba(184, 154, 66, 0.1) 60%, rgba(184, 154, 66, 0.7) 100%) border-box;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 40px rgba(184, 154, 66, 0.18);
+  transform: translateY(-2px);
 }
 
 .contact-form {
+  position: relative;
+  z-index: 2;
   padding: 2.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+}
+
+/* Corner Light Glow Effects inside the card */
+.contact-glow {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(65px);
+  transition: all var(--transition);
+}
+
+.contact-glow--top-left {
+  top: -100px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(184, 154, 66, 0.22) 0%, rgba(184, 154, 66, 0) 70%);
+}
+
+.contact-glow--bottom-right {
+  bottom: -100px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+.contact-form-wrap:hover .contact-glow--top-left {
+  transform: scale(1.25);
+  background: radial-gradient(circle, rgba(184, 154, 66, 0.4) 0%, rgba(184, 154, 66, 0) 70%);
+}
+
+.contact-form-wrap:hover .contact-glow--bottom-right {
+  transform: scale(1.25);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 70%);
 }
 
 .contact-form__heading { margin-bottom: 0.25rem; }
@@ -169,6 +215,8 @@ a.contact-info__value:hover { color: var(--accent); }
 
 /* Success state */
 .contact-success {
+  position: relative;
+  z-index: 2;
   padding: 4rem 2.5rem;
   display: flex;
   flex-direction: column;

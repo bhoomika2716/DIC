@@ -137,6 +137,8 @@ export default function Contact() {
 
           {/* Contact Form */}
           <AnimatedSection delay={2} className="contact-form-wrap">
+            <div className="contact-glow contact-glow--top-left" />
+            <div className="contact-glow contact-glow--bottom-right" />
             {!submitted ? (
               <form className="contact-form" onSubmit={submit} id="contact-form">
                 <h2 className="heading-2 contact-form__heading">Book Free Consultation</h2>
