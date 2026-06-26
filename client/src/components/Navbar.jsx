@@ -70,7 +70,7 @@ export default function Navbar() {
       <div className="container navbar__inner">
         {/* Logo */}
         <Link to="/" className="navbar__logo" id="nav-logo">
-          <BrandLogo markClassName="navbar__logo-mark" textClassName="navbar__logo-text" />
+          <BrandLogo markWrapperClassName="navbar__logo-mark-wrapper" markClassName="navbar__logo-mark" textClassName="navbar__logo-text" />
         </Link>
 
         {/* Desktop Links */}
@@ -138,7 +138,7 @@ export default function Navbar() {
                 transition={{ type: 'spring', stiffness: 380, damping: 30 }}
               />
             )}
-            Presentation
+            3D Experience
           </Link>
 
           {/* Design Ideas Dropdown */}
@@ -192,17 +192,7 @@ export default function Navbar() {
             )}
             Insights
           </Link>
-          <Link to="/contact" className={`navbar__link ${isActive('/contact')}`}>
-            {isActive('/contact') === 'active' && (
-              <motion.span 
-                className="navbar__link-active-bg" 
-                layoutId="activeNavIndicator"
-                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-              />
-            )}
-            Contact
-          </Link>
-          <Link to="/contact" className="btn btn-primary btn-sm" id="nav-cta">BOOK CONSULTATION</Link>
+          {/* Contact and consultation buttons removed */}
         </div>
 
         {/* Actions */}
@@ -224,14 +214,11 @@ export default function Navbar() {
           <Link to="/about">About</Link>
           <Link to="/services">Services</Link>
           <Link to="/portfolio">Portfolio</Link>
-          <Link to="/presentation">Presentation</Link>
+          <Link to="/presentation">3D Experience</Link>
           <Link to="/design-ideas">Design Ideas</Link>
           <Link to="/testimonials">Testimonials</Link>
           <Link to="/blog">Insights</Link>
-          <Link to="/contact">Contact</Link>
-          <div style={{ marginTop: '2rem', padding: '0 2rem' }}>
-            <Link to="/contact" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>BOOK CONSULTATION</Link>
-          </div>
+          {/* Mobile contact CTA removed */}
         </div>
       </div>
     </nav>

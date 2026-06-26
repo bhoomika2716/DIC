@@ -6,18 +6,18 @@ export default function BrandLogo({
   textClassName = '',
   size = 34,
   showText = true,
+  markWrapperClassName = '',
 }) {
-  return (
-    <>
-      <svg
-        className={markClassName}
-        width={size}
-        height={size}
-        viewBox="0 0 84 84"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
+  const svgMarkup = (
+    <svg
+      className={markClassName}
+      width={size}
+      height={size}
+      viewBox="0 0 84 84"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
         <path
           d="M8 56V30L26 36"
           stroke="currentColor"
@@ -67,7 +67,18 @@ export default function BrandLogo({
           strokeWidth="2.6"
           strokeLinecap="round"
         />
-      </svg>
+    </svg>
+  )
+
+  return (
+    <>
+      {markWrapperClassName ? (
+        <div className={markWrapperClassName}>
+          {svgMarkup}
+        </div>
+      ) : (
+        svgMarkup
+      )}
       {showText && (
         <span className={`${className} ${textClassName}`.trim()}>
           De Interio Cafe

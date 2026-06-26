@@ -264,144 +264,140 @@ const RevealText = ({ children, delay = 0 }) => (
 
 
 export default function Home() {
-  const [activeHeroIndex, setActiveHeroIndex] = useState(0)
+  const [activeSection, setActiveSection] = useState(0)
 
-  const handlePrevHero = () => {
-    setActiveHeroIndex((prev) => (prev === 0 ? HERO_PROJECTS.length - 1 : prev - 1))
-  }
+  useEffect(() => {
+    const sections = document.querySelectorAll('main.home > section')
+    const observerOptions = {
+      root: null,
+      rootMargin: '-40% 0px -40% 0px',
+      threshold: 0
+    }
 
-  const handleNextHero = () => {
-    setActiveHeroIndex((prev) => (prev === HERO_PROJECTS.length - 1 ? 0 : prev + 1))
-  }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = Array.from(sections).indexOf(entry.target)
+          if (index !== -1) {
+            setActiveSection(index)
+          }
+        }
+      })
+    }, observerOptions)
 
-  const currentHero = HERO_PROJECTS[activeHeroIndex]
+    sections.forEach((section) => observer.observe(section))
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <main className="home">
       <section className="hero">
-        <div className="hero__glow hero__glow--1" />
-        <div className="hero__glow hero__glow--2" />
-        
-        <div className="container hero__content-grid">
-          {/* Left Column: Hero Text */}
-          <div className="hero__left">
-            <RevealText delay={0.1}>
-              <p className="overline hero__overline">Bespoke Interior Architecture</p>
-            </RevealText>
+        {/* Background Overlay */}
+        <div className="hero__overlay" />
 
-            <h1 className="display hero__heading">
-              <RevealText delay={0.2}>{currentHero.title.split(' ').slice(0, 3).join(' ')}</RevealText>
-              <RevealText delay={0.3}>
-                <ShinyText text={currentHero.title.split(' ').slice(3).join(' ')} className="hero__heading-em" speed={3} />
-              </RevealText>
-            </h1>
-
-            <motion.p
-              key={`desc-${activeHeroIndex}`}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="lead hero__lead"
-            >
-              {currentHero.desc}
-            </motion.p>
-
+        {/* Tile design sliding from left - reduced to 7 tiles with medium speed animation */}
+        <div className="hero__vertical-tiles">
+          {Array.from({ length: 7 }).map((_, i) => (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="hero__ctas"
+              key={i}
+              className="hero__vertical-tile"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{
+                duration: 1.6,
+                delay: i * 0.12,
+                ease: [0.25, 1, 0.5, 1]
+              }}
+              style={{ originX: 0 }}
+            />
+          ))}
+        </div>
+
+        <div className="container hero__layout">
+          {/* Headline */}
+          <div className="hero__left-content">
+            <motion.h1 
+              className="hero__new-heading"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.0, delay: 0.4 }}
             >
-              <Link to="/contact" className="hero__btn-pill hoverable">
-                <span>GET IN TOUCH</span>
-                <span className="hero__btn-arrow">
-                  <ArrowRight size={18} />
-                </span>
-              </Link>
-            </motion.div>
-
-
+              Designing Spaces,<br />
+              Defining <span className="hero__new-heading-italic">Experiences</span>
+            </motion.h1>
           </div>
 
-          {/* Right Column: Floating Overlapping Glassy Cards */}
-          <div className="hero__right">
-            <div className="hero__cards-container">
-              {/* Back Card */}
-              <motion.div 
-                key={`back-${activeHeroIndex}`}
-                initial={{ opacity: 0, scale: 0.9, x: 20 }}
-                animate={{ opacity: 0.6, scale: 0.95, x: 0 }}
-                transition={{ duration: 0.8 }}
-                className="hero__card hero__card--back"
-              >
-                <img src={currentHero.image2} alt="Interior Design" className="hero__card-img" />
-              </motion.div>
+          {/* Socials vertically stacked on right (removed Pinterest, only 3 icons) */}
+          <div className="hero__socials-container">
+            <a href="https://youtube.com" className="hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.508 9.388.508 9.388.508s7.518 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com" className="hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com" className="hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
 
-              {/* Front Card */}
-              <motion.div 
-                key={`front-${activeHeroIndex}`}
-                initial={{ opacity: 0, scale: 0.95, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="hero__card hero__card--front"
-              >
-                <img src={currentHero.image1} alt="Luxury Interior" className="hero__card-img" />
-                <div className="hero__card-overlay" />
-                
-                {/* Floating Testimonial Inside Card */}
-                <div className="hero__testimonial-badge glass-card">
-                  <div className="hero__testimonial-stars">
-                    {Array.from({ length: currentHero.stars }).map((_, i) => (
-                      <span key={i} className="hero__star">★</span>
-                    ))}
-                  </div>
-                  <p className="hero__testimonial-text">
-                    "{currentHero.testimonial}"
-                  </p>
-                  <span className="hero__testimonial-author">
-                    {currentHero.author}
-                  </span>
-                </div>
-              </motion.div>
+          {/* Explore Projects Button in Center-Bottom */}
+          <div className="hero__center-cta">
+            <Link to="/portfolio" className="hero__explore-btn">
+              <span>Explore Projects</span>
+              <span className="hero__explore-arrow">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </span>
+            </Link>
+          </div>
 
-              {/* Slider Arrow Controls */}
-              <div className="hero__slider-controls">
-                <button onClick={handlePrevHero} className="hero__slider-btn" aria-label="Previous Slide">
-                  ←
-                </button>
-                <button onClick={handleNextHero} className="hero__slider-btn" aria-label="Next Slide">
-                  →
-                </button>
+          {/* Interactive Scroll-Spy Dots in Center-Bottom */}
+          <div className="hero__pager-dots">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <button 
+                key={i} 
+                className={`hero__pager-dot ${activeSection === i ? 'active' : ''}`}
+                onClick={() => {
+                  const sections = document.querySelectorAll('main.home > section')
+                  if (sections[i]) {
+                    sections[i].scrollIntoView({ behavior: 'smooth' })
+                  }
+                }}
+                aria-label={`Scroll to section ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Bottom Right Widget Card: Experience in 3D */}
+          <div className="hero__widget-card glass-card">
+            <div className="hero__widget-card-content">
+              <div className="hero__widget-card-text">
+                <div className="hero__widget-title">Experience</div>
+                <div className="hero__widget-subtitle">in 3D</div>
               </div>
+              <Link to="/presentation" className="hero__widget-btn" aria-label="Experience in 3D">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M7 17L17 7M17 7H7M17 7V17" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
             </div>
-
-            {/* Bottom Right Stats Rows */}
-            <div className="hero__stats-row">
-              <div className="hero__stat-box glass-card">
-                <div className="hero__stat-num">
-                  <StatCounter value={500} suffix="+" label="" />
-                </div>
-                <div className="hero__stat-label">
-                  Bespoke Residences Delivered
-                </div>
-                <div className="hero__stat-arrow">↗</div>
-              </div>
-
-              <div className="hero__stat-box glass-card">
-                <div className="hero__stat-num">
-                  <StatCounter value={15} suffix="+" label="" />
-                </div>
-                <div className="hero__stat-label">
-                  Years of Excellence
-                </div>
-                <div className="hero__stat-arrow">↗</div>
-              </div>
+            <div className="hero__widget-img-container">
+              <img src="/images/rooms/living-room.png" alt="3D Interior Scene" className="hero__widget-img" />
             </div>
           </div>
         </div>
       </section>
-
-
 
       <section className="section home-services">
         <div className="home-services__blobs">
@@ -446,15 +442,10 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
-
         </div>
-
       </section>
 
-
-
       <section className="section home-about section-brown">
-
         <div className="container">
 
           <div className="home-about__inner">

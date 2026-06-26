@@ -10,15 +10,15 @@
   max-width: var(--max-width);
   z-index: 900;
   height: 68px;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(135deg, rgba(18, 14, 12, 0.55) 0%, rgba(12, 9, 8, 0.45) 100%);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(251, 248, 243, 0.20);
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
   box-shadow: 
-    0 16px 36px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+    0 16px 36px rgba(45, 37, 30, 0.06),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
   transition: 
     top var(--transition), 
     transform var(--transition), 
@@ -29,14 +29,13 @@
 }
 
 .navbar.scrolled {
-  background: linear-gradient(135deg, rgba(18, 14, 12, 0.88) 0%, rgba(12, 9, 8, 0.92) 100%);
-  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(251, 248, 243, 0.20);
+  border-color: rgba(255, 255, 255, 0.42);
   box-shadow: 
-    0 24px 50px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.02);
+    0 24px 50px rgba(45, 37, 30, 0.09),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.4);
   top: 0.75rem;
-  border-radius: 20px;
+  border-radius: 999px;
   transform: translateX(-50%) scale(0.97);
 }
 
@@ -53,27 +52,40 @@
 .navbar__logo {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.75rem;
   flex-shrink: 0;
-  color: var(--text-primary);
+  color: #2d251e;
   text-decoration: none;
 }
 
-.navbar__logo-mark {
-  color: var(--accent);
+.navbar__logo-mark-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2d251e;
+  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
   flex-shrink: 0;
-  width: 38px;
-  height: 38px;
+  box-shadow: 0 4px 10px rgba(45, 37, 30, 0.15);
+}
+
+.navbar__logo-mark {
+  color: #fbf8f3 !important;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
   display: block;
-  filter: drop-shadow(0 8px 16px rgba(184, 154, 66, 0.14));
 }
 
 .navbar__logo-text {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-family: 'Playball', cursive;
+  font-size: 1.55rem;
+  font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1;
+  color: #2d251e;
 }
 
 /* Desktop links */
@@ -81,56 +93,49 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.3rem 0.65rem;
-  border-radius: 999px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 2px 10px rgba(0, 0, 0, 0.15);
+  background: none;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
 }
 
 .navbar__link {
   position: relative;
-  padding: 0.4rem 0.75rem;
-  font-size: 0.78rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: rgba(45, 37, 30, 0.8);
   border-radius: 999px;
   transition: all var(--transition-fast);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  z-index: 1; /* Establishes stacking context so z-index: -1 works inside the link */
+  z-index: 1;
 }
 
 .navbar__link:hover {
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #000000;
+  background: rgba(45, 37, 30, 0.05);
+  box-shadow: none;
 }
 
 .navbar__link.active {
-  color: #ffffff !important;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
+  color: #2d251e !important;
+  font-weight: 700;
 }
 
 .navbar__link-active-bg {
   position: absolute;
   inset: 0;
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.06) 100%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.35) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 
-    0 4px 15px rgba(0, 0, 0, 0.35),
-    0 0 12px rgba(184, 154, 66, 0.18), /* Gold glow shade under active link */
-    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  background: rgba(45, 37, 30, 0.07) !important;
+  border: 1px solid rgba(45, 37, 30, 0.12) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: none;
   z-index: -1;
 }
 
@@ -162,15 +167,15 @@
   transform: translateX(-50%) translateY(10px);
   width: 760px;
   min-width: 660px;
-  background: rgba(18, 14, 12, 0.92) !important;
-  backdrop-filter: blur(30px) saturate(170%);
-  -webkit-backdrop-filter: blur(30px) saturate(170%);
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: rgba(251, 248, 243, 0.35) !important;
+  backdrop-filter: blur(24px) saturate(145%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
   border-radius: 24px;
   padding: 1.5rem;
   box-shadow: 
-    0 30px 70px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    0 24px 60px rgba(45, 37, 30, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
   opacity: 0;
   pointer-events: none;
   transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
@@ -195,8 +200,8 @@
 }
 
 .navbar__dropdown--services .navbar__dropdown-link:hover {
-  background: rgba(184, 154, 66, 0.12);
-  color: var(--accent);
+  background: rgba(45, 37, 30, 0.05);
+  color: var(--accent) !important;
 }
 
 /* Glassy Dropdown Group Columns */
@@ -224,53 +229,53 @@
 
 /* 1. Living Spaces (Warm Amber/Gold Glass) */
 .navbar__dropdown-group.group--living {
-  border: 1px solid rgba(184, 154, 66, 0.22) !important;
-  background: linear-gradient(135deg, rgba(184, 154, 66, 0.1) 0%, rgba(184, 154, 66, 0.03) 100%) !important;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(184, 154, 66, 0.18) !important;
+  background: rgba(184, 154, 66, 0.04) !important;
+  box-shadow: 0 10px 24px rgba(45, 37, 30, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 .group--living .navbar__dropdown-group-title {
-  color: var(--accent);
+  color: var(--accent) !important;
 }
 .group--living .navbar__dropdown-link {
-  border-bottom: 1px solid rgba(184, 154, 66, 0.1);
+  border-bottom: 1px solid rgba(184, 154, 66, 0.06);
 }
 .group--living .navbar__dropdown-link:hover {
-  background: rgba(184, 154, 66, 0.15);
-  color: #ffffff;
+  background: rgba(184, 154, 66, 0.1) !important;
+  color: #000000 !important;
 }
 
 /* 2. Bedroom Suites (Soft Mint/Sage Glass) */
 .navbar__dropdown-group.group--bedrooms {
-  border: 1px solid rgba(143, 182, 201, 0.22) !important;
-  background: linear-gradient(135deg, rgba(143, 182, 201, 0.1) 0%, rgba(143, 182, 201, 0.03) 100%) !important;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(143, 182, 201, 0.25) !important;
+  background: rgba(143, 182, 201, 0.06) !important;
+  box-shadow: 0 10px 24px rgba(45, 37, 30, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 .group--bedrooms .navbar__dropdown-group-title {
-  color: #8fb6c9;
+  color: #5b879a !important;
 }
 .group--bedrooms .navbar__dropdown-link {
-  border-bottom: 1px solid rgba(143, 182, 201, 0.1);
+  border-bottom: 1px solid rgba(143, 182, 201, 0.08);
 }
 .group--bedrooms .navbar__dropdown-link:hover {
-  background: rgba(143, 182, 201, 0.15);
-  color: #ffffff;
+  background: rgba(143, 182, 201, 0.12) !important;
+  color: #000000 !important;
 }
 
 /* 3. Work & Leisure (Soft Slate Blue Glass) */
 .navbar__dropdown-group.group--work {
-  border: 1px solid rgba(197, 165, 133, 0.22) !important;
-  background: linear-gradient(135deg, rgba(197, 165, 133, 0.1) 0%, rgba(197, 165, 133, 0.03) 100%) !important;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(197, 165, 133, 0.25) !important;
+  background: rgba(197, 165, 133, 0.06) !important;
+  box-shadow: 0 10px 24px rgba(45, 37, 30, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 .group--work .navbar__dropdown-group-title {
-  color: #c5a585;
+  color: #9c7b5b !important;
 }
 .group--work .navbar__dropdown-link {
-  border-bottom: 1px solid rgba(197, 165, 133, 0.1);
+  border-bottom: 1px solid rgba(197, 165, 133, 0.08);
 }
 .group--work .navbar__dropdown-link:hover {
-  background: rgba(197, 165, 133, 0.15);
-  color: #ffffff;
+  background: rgba(197, 165, 133, 0.12) !important;
+  color: #000000 !important;
 }
 
 .navbar__dropdown-divider {
@@ -282,7 +287,7 @@
   padding: 0.65rem 0.85rem;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #2d251e !important;
   border-radius: 8px;
   transition: all var(--transition-fast);
   text-decoration: none;
@@ -296,6 +301,8 @@
 .navbar__dropdown-link:hover {
   transform: translateX(4px);
   padding-left: 1rem;
+  background: rgba(45, 37, 30, 0.05);
+  color: #000000 !important;
 }
 
 /* View All Ideas - Premium Bottom Bar */
@@ -373,7 +380,7 @@
   cursor: pointer;
   background: none;
   border: none;
-  color: var(--text-primary);
+  color: #2d251e;
 }
 
 .navbar__mobile-toggle span {
