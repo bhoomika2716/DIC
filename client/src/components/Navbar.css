@@ -11,14 +11,14 @@
   z-index: 900;
   height: 68px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(251, 248, 243, 0.20);
-  backdrop-filter: blur(18px) saturate(135%);
-  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(248, 244, 238, 0.5);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
   box-shadow: 
-    0 16px 36px rgba(45, 37, 30, 0.06),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.4),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+    0 16px 36px rgba(45, 37, 30, 0.05),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15);
   transition: 
     top var(--transition), 
     transform var(--transition), 
@@ -29,11 +29,11 @@
 }
 
 .navbar.scrolled {
-  background: rgba(251, 248, 243, 0.20);
-  border-color: rgba(255, 255, 255, 0.42);
+  background: rgba(248, 244, 238, 0.5);
+  border-color: rgba(255, 255, 255, 0.65);
   box-shadow: 
-    0 24px 50px rgba(45, 37, 30, 0.09),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.4);
+    0 24px 50px rgba(45, 37, 30, 0.08),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.7);
   top: 0.75rem;
   border-radius: 999px;
   transform: translateX(-50%) scale(0.97);
@@ -167,15 +167,15 @@
   transform: translateX(-50%) translateY(10px);
   width: 760px;
   min-width: 660px;
-  background: rgba(251, 248, 243, 0.35) !important;
-  backdrop-filter: blur(24px) saturate(145%);
-  -webkit-backdrop-filter: blur(24px) saturate(145%);
-  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  background: rgba(248, 244, 238, 0.75) !important;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
   border-radius: 24px;
   padding: 1.5rem;
   box-shadow: 
-    0 24px 60px rgba(45, 37, 30, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    0 24px 60px rgba(45, 37, 30, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
   opacity: 0;
   pointer-events: none;
   transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
