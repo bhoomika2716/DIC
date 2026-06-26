@@ -50,19 +50,19 @@
 }
 
 .hero__vertical-tile:nth-child(odd) {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.10);
   backdrop-filter: blur(8px) saturate(120%);
   -webkit-backdrop-filter: blur(8px) saturate(120%);
 }
 
 .hero__vertical-tile:nth-child(even) {
-  background: rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.13);
   backdrop-filter: blur(10px) saturate(125%);
   -webkit-backdrop-filter: blur(10px) saturate(125%);
 }
 
 .hero__vertical-tile:nth-child(3n) {
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
