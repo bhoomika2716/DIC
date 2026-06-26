@@ -45,26 +45,26 @@
 .hero__vertical-tile {
   height: 100%;
   flex: 1;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.04);
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 .hero__vertical-tile:nth-child(odd) {
-  background: rgba(255, 255, 255, 0.10);
-  backdrop-filter: blur(8px) saturate(120%);
-  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
 }
 
 .hero__vertical-tile:nth-child(even) {
-  background: rgba(255, 255, 255, 0.13);
-  backdrop-filter: blur(10px) saturate(125%);
-  -webkit-backdrop-filter: blur(10px) saturate(125%);
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(25px) saturate(125%);
+  -webkit-backdrop-filter: blur(25px) saturate(125%);
 }
 
 .hero__vertical-tile:nth-child(3n) {
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px) saturate(110%);
+  -webkit-backdrop-filter: blur(16px) saturate(110%);
 }
 
 .hero__vertical-tile:last-child {
@@ -158,9 +158,8 @@
 /* Scroll-spy fixed pager dots */
 .hero__pager-dots {
   position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 3.5rem;
+  right: 4rem;
   display: flex;
   gap: 12px;
   z-index: 999;
@@ -344,6 +343,13 @@
     transform: none;
     margin: 2rem auto 0;
     max-width: 320px;
+  }
+
+  .hero__pager-dots {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    bottom: 2rem;
   }
 }
 
