@@ -45,26 +45,28 @@
 .hero__vertical-tile {
   height: 100%;
   flex: 1;
-  border-right: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    inset 1.5px 0 0 rgba(255, 255, 255, 0.12),
+    inset -1px 0 0 rgba(0, 0, 0, 0.08);
 }
 
 .hero__vertical-tile:nth-child(odd) {
-  background: rgba(45, 37, 30, 0.22);
-  backdrop-filter: blur(10px) saturate(120%);
-  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  background: linear-gradient(180deg, rgba(45, 37, 30, 0.22) 0%, rgba(45, 37, 30, 0.08) 100%);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
 }
 
 .hero__vertical-tile:nth-child(even) {
-  background: rgba(45, 37, 30, 0.32);
-  backdrop-filter: blur(12px) saturate(125%);
-  -webkit-backdrop-filter: blur(12px) saturate(125%);
+  background: linear-gradient(180deg, rgba(45, 37, 30, 0.32) 0%, rgba(45, 37, 30, 0.12) 100%);
+  backdrop-filter: blur(18px) saturate(125%);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
 }
 
 .hero__vertical-tile:nth-child(3n) {
-  background: rgba(45, 37, 30, 0.14);
-  backdrop-filter: blur(8px) saturate(110%);
-  -webkit-backdrop-filter: blur(8px) saturate(110%);
+  background: linear-gradient(180deg, rgba(45, 37, 30, 0.15) 0%, rgba(45, 37, 30, 0.05) 100%);
+  backdrop-filter: blur(10px) saturate(110%);
+  -webkit-backdrop-filter: blur(10px) saturate(110%);
 }
 
 .hero__vertical-tile:last-child {
