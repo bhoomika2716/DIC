@@ -11,14 +11,14 @@
   z-index: 900;
   height: 68px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(45, 37, 30, 0.62);
-  backdrop-filter: blur(12px) saturate(135%);
-  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
   box-shadow: 
-    0 16px 36px rgba(12, 10, 9, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    0 16px 36px rgba(45, 37, 30, 0.05),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15);
   transition: 
     top var(--transition), 
     transform var(--transition), 
@@ -29,11 +29,11 @@
 }
 
 .navbar.scrolled {
-  background: rgba(45, 37, 30, 0.72);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.55);
   box-shadow: 
-    0 24px 50px rgba(12, 10, 9, 0.3),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.15);
+    0 24px 50px rgba(45, 37, 30, 0.08),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.65);
   top: 0.75rem;
   border-radius: 999px;
   transform: translateX(-50%) scale(0.97);
@@ -54,7 +54,7 @@
   align-items: center;
   gap: 0.75rem;
   flex-shrink: 0;
-  color: #fbf8f3;
+  color: #2d251e;
   text-decoration: none;
 }
 
@@ -63,13 +63,12 @@
   align-items: center;
   justify-content: center;
   background-color: #2d251e;
-  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 8px;
   width: 44px;
   height: 44px;
   padding: 8px;
   flex-shrink: 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(45, 37, 30, 0.15);
 }
 
 .navbar__logo-mark {
@@ -86,7 +85,7 @@
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1;
-  color: #fbf8f3;
+  color: #2d251e;
 }
 
 /* Desktop links */
@@ -108,7 +107,7 @@
   padding: 0.5rem 1rem;
   font-size: 0.82rem;
   font-weight: 600;
-  color: rgba(251, 248, 243, 0.82);
+  color: rgba(45, 37, 30, 0.8);
   border-radius: 999px;
   transition: all var(--transition-fast);
   text-decoration: none;
@@ -118,13 +117,13 @@
 }
 
 .navbar__link:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
+  color: #000000;
+  background: rgba(45, 37, 30, 0.05);
   box-shadow: none;
 }
 
 .navbar__link.active {
-  color: #ffffff !important;
+  color: #2d251e !important;
   font-weight: 700;
 }
 
@@ -132,8 +131,8 @@
   position: absolute;
   inset: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: rgba(45, 37, 30, 0.07) !important;
+  border: 1px solid rgba(45, 37, 30, 0.12) !important;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow: none;
@@ -168,15 +167,15 @@
   transform: translateX(-50%) translateY(10px);
   width: 760px;
   min-width: 660px;
-  background: rgba(45, 37, 30, 0.88) !important;
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  background: rgba(248, 244, 238, 0.75) !important;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
   border-radius: 24px;
   padding: 1.5rem;
   box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 24px 60px rgba(45, 37, 30, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
   opacity: 0;
   pointer-events: none;
   transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
@@ -230,53 +229,53 @@
 
 /* 1. Living Spaces (Warm Amber/Gold Glass) */
 .navbar__dropdown-group.group--living {
-  border: 1px solid rgba(184, 154, 66, 0.25) !important;
-  background: rgba(184, 154, 66, 0.08) !important;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(184, 154, 66, 0.18) !important;
+  background: rgba(184, 154, 66, 0.04) !important;
+  box-shadow: 0 10px 24px rgba(45, 37, 30, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 .group--living .navbar__dropdown-group-title {
-  color: #ffb834 !important;
+  color: var(--accent) !important;
 }
 .group--living .navbar__dropdown-link {
-  border-bottom: 1px solid rgba(184, 154, 66, 0.12);
+  border-bottom: 1px solid rgba(184, 154, 66, 0.06);
 }
 .group--living .navbar__dropdown-link:hover {
-  background: rgba(184, 154, 66, 0.18) !important;
-  color: #ffffff !important;
+  background: rgba(184, 154, 66, 0.1) !important;
+  color: #000000 !important;
 }
 
 /* 2. Bedroom Suites (Soft Mint/Sage Glass) */
 .navbar__dropdown-group.group--bedrooms {
-  border: 1px solid rgba(143, 182, 201, 0.3) !important;
-  background: rgba(143, 182, 201, 0.08) !important;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(143, 182, 201, 0.25) !important;
+  background: rgba(143, 182, 201, 0.06) !important;
+  box-shadow: 0 10px 24px rgba(45, 37, 30, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 .group--bedrooms .navbar__dropdown-group-title {
-  color: #8ecadb !important;
+  color: #5b879a !important;
 }
 .group--bedrooms .navbar__dropdown-link {
-  border-bottom: 1px solid rgba(143, 182, 201, 0.12);
+  border-bottom: 1px solid rgba(143, 182, 201, 0.08);
 }
 .group--bedrooms .navbar__dropdown-link:hover {
-  background: rgba(143, 182, 201, 0.18) !important;
-  color: #ffffff !important;
+  background: rgba(143, 182, 201, 0.12) !important;
+  color: #000000 !important;
 }
 
 /* 3. Work & Leisure (Soft Slate Blue Glass) */
 .navbar__dropdown-group.group--work {
-  border: 1px solid rgba(197, 165, 133, 0.3) !important;
-  background: rgba(197, 165, 133, 0.08) !important;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(197, 165, 133, 0.25) !important;
+  background: rgba(197, 165, 133, 0.06) !important;
+  box-shadow: 0 10px 24px rgba(45, 37, 30, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 .group--work .navbar__dropdown-group-title {
-  color: #d6af84 !important;
+  color: #9c7b5b !important;
 }
 .group--work .navbar__dropdown-link {
-  border-bottom: 1px solid rgba(197, 165, 133, 0.12);
+  border-bottom: 1px solid rgba(197, 165, 133, 0.08);
 }
 .group--work .navbar__dropdown-link:hover {
-  background: rgba(197, 165, 133, 0.18) !important;
-  color: #ffffff !important;
+  background: rgba(197, 165, 133, 0.12) !important;
+  color: #000000 !important;
 }
 
 .navbar__dropdown-divider {
@@ -288,7 +287,7 @@
   padding: 0.65rem 0.85rem;
   font-size: 0.85rem;
   font-weight: 600;
-  color: rgba(251, 248, 243, 0.85) !important;
+  color: #2d251e !important;
   border-radius: 8px;
   transition: all var(--transition-fast);
   text-decoration: none;
@@ -302,8 +301,8 @@
 .navbar__dropdown-link:hover {
   transform: translateX(4px);
   padding-left: 1rem;
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff !important;
+  background: rgba(45, 37, 30, 0.05);
+  color: #000000 !important;
 }
 
 /* View All Ideas - Premium Bottom Bar */
