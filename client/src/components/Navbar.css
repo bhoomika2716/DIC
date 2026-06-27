@@ -52,40 +52,33 @@
 .navbar__logo {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  flex-shrink: 0;
-  color: #2d251e;
-  text-decoration: none;
-}
-
-.navbar__logo-mark-wrapper {
-  display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: #2d251e;
-  border-radius: 8px;
-  width: 44px;
-  height: 44px;
-  padding: 8px;
   flex-shrink: 0;
-  box-shadow: 0 4px 10px rgba(45, 37, 30, 0.15);
+  text-decoration: none;
+  background: #000000;
+  border-radius: 999px;
+  padding: 0.5rem 1.6rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all var(--transition-fast);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.navbar__logo-mark {
-  color: #fbf8f3 !important;
-  flex-shrink: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
+.navbar__logo:hover {
+  background: #111111;
+  transform: scale(1.02);
+}
+
+.navbar__logo-mark-hidden {
+  display: none !important;
 }
 
 .navbar__logo-text {
   font-family: 'Playball', cursive;
-  font-size: 1.55rem;
+  font-size: 1.45rem;
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1;
-  color: #2d251e;
+  color: #ffffff;
 }
 
 /* Desktop links */
@@ -448,4 +441,46 @@
   .navbar__links { display: none; }
   .navbar__mobile-toggle { display: flex; }
   .navbar__mobile-drawer { display: block; } /* Show on mobile/tablet viewports */
+  .navbar__contact-btn { display: none; } /* Hide desktop contact on mobile/tablet */
+}
+
+/* Contact Button Capsule Style */
+.navbar__contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 1.4rem;
+  border-radius: 999px;
+  background: #000000;
+  color: #ffffff !important;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all var(--transition-fast);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.navbar__contact-btn:hover {
+  background: #111111;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.navbar__contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #000000;
+  transition: all var(--transition-fast);
+}
+
+.navbar__contact-btn:hover .navbar__contact-icon {
+  transform: rotate(45deg);
+  background: var(--accent);
+  color: #ffffff;
 }

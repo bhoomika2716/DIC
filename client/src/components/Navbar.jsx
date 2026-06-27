@@ -70,7 +70,7 @@ export default function Navbar() {
       <div className="container navbar__inner">
         {/* Logo */}
         <Link to="/" className="navbar__logo" id="nav-logo">
-          <BrandLogo markWrapperClassName="navbar__logo-mark-wrapper" markClassName="navbar__logo-mark" textClassName="navbar__logo-text" />
+          <BrandLogo markWrapperClassName="navbar__logo-mark-hidden" markClassName="navbar__logo-mark" textClassName="navbar__logo-text" />
         </Link>
 
         {/* Desktop Links */}
@@ -130,6 +130,7 @@ export default function Navbar() {
             )}
             Portfolio
           </Link>
+
           <Link to="/presentation" className={`navbar__link ${isActive('/presentation')}`}>
             {isActive('/presentation') === 'active' && (
               <motion.span 
@@ -182,6 +183,7 @@ export default function Navbar() {
             )}
             Testimonials
           </Link>
+          
           <Link to="/blog" className={`navbar__link ${isActive('/blog')}`}>
             {isActive('/blog') === 'active' && (
               <motion.span 
@@ -192,11 +194,21 @@ export default function Navbar() {
             )}
             Insights
           </Link>
-          {/* Contact and consultation buttons removed */}
         </div>
 
         {/* Actions */}
         <div className="navbar__actions">
+          {/* Contact button in capsule black pill */}
+          <Link to="/contact" className="navbar__contact-btn" id="nav-contact">
+            <span>Contact</span>
+            <span className="navbar__contact-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"/>
+                <polyline points="7 7 17 7 17 17"/>
+              </svg>
+            </span>
+          </Link>
+
           {/* Mobile Toggle */}
           <button 
             className={`navbar__mobile-toggle ${mobileMenuOpen ? 'active' : ''}`}
@@ -214,11 +226,11 @@ export default function Navbar() {
           <Link to="/about">About</Link>
           <Link to="/services">Services</Link>
           <Link to="/portfolio">Portfolio</Link>
-          <Link to="/presentation">3D Experience</Link>
           <Link to="/design-ideas">Design Ideas</Link>
+          <Link to="/presentation">3D Experience</Link>
           <Link to="/testimonials">Testimonials</Link>
           <Link to="/blog">Insights</Link>
-          {/* Mobile contact CTA removed */}
+          <Link to="/contact">Contact</Link>
         </div>
       </div>
     </nav>

@@ -296,7 +296,7 @@ export default function Home() {
         {/* Background Overlay */}
         <div className="hero__overlay" />
 
-        {/* Tile design sliding from left - reduced to 7 tiles with medium speed animation */}
+        {/* Tile design sliding from left - 7 tiles with backdrop-filter blur */}
         <div className="hero__vertical-tiles">
           {Array.from({ length: 7 }).map((_, i) => (
             <motion.div
@@ -315,7 +315,7 @@ export default function Home() {
         </div>
 
         <div className="container hero__layout">
-          {/* Headline */}
+          {/* Headline & Subtitle */}
           <div className="hero__left-content">
             <motion.h1 
               className="hero__new-heading"
@@ -323,12 +323,20 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.0, delay: 0.4 }}
             >
-              Designing Spaces,<br />
-              Defining <span className="hero__new-heading-italic">Experiences</span>
+              Why settle for <span className="italic-serif">less</span><br />
+              when you can have the <span className="italic-serif">best</span>?
             </motion.h1>
+            <motion.p
+              className="hero__new-subtitle"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.0, delay: 0.6 }}
+            >
+              We design spaces that reflect your unique style.
+            </motion.p>
           </div>
 
-          {/* Socials vertically stacked on right (removed Pinterest, only 3 icons) */}
+          {/* Socials vertically stacked on right */}
           <div className="hero__socials-container">
             <a href="https://youtube.com" className="hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -394,6 +402,86 @@ export default function Home() {
             </div>
             <div className="hero__widget-img-container">
               <img src="/images/rooms/living-room.png" alt="3D Interior Scene" className="hero__widget-img" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Proven Excellence Section */}
+      <section className="proven-excellence">
+        <div className="container">
+          <div className="proven-excellence__header-row">
+            <div className="proven-excellence__title-col">
+              <h2 className="proven-excellence__heading">
+                Proven <span className="italic-serif">Excellence</span>
+              </h2>
+              {/* Custom gold decorative line divider */}
+              <div className="proven-excellence__divider">
+                <span className="proven-excellence__divider-line" />
+                <span className="proven-excellence__divider-arch" />
+                <span className="proven-excellence__divider-line" />
+              </div>
+              <p className="proven-excellence__subtitle">
+                Interiors shaped with purpose, for real living. Numbers that speak to our commitment and passion for creating extraordinary spaces
+              </p>
+            </div>
+            
+            <div className="proven-excellence__cta-col">
+              <Link to="/contact" className="proven-excellence__cta-btn">
+                Start Your Project
+              </Link>
+            </div>
+          </div>
+
+          <div className="proven-excellence__body-row">
+            {/* Left side: decor image */}
+            <div className="proven-excellence__decor-img-container">
+              <img 
+                src="/images/proven_excellence_decor.png" 
+                alt="Travertine and ceramic interior detailing" 
+                className="proven-excellence__decor-img" 
+              />
+            </div>
+
+            {/* Right side: black stats container with 4 glass tiles */}
+            <div className="proven-excellence__stats-container">
+              <div className="proven-excellence__stats-grid">
+                <div className="proven-excellence__stat-card glass-tile">
+                  <div className="proven-excellence__stat-num">
+                    <StatCounter value={500} suffix="+" label="" />
+                  </div>
+                  <div className="proven-excellence__stat-label">
+                    Projects Completed
+                  </div>
+                </div>
+
+                <div className="proven-excellence__stat-card glass-tile">
+                  <div className="proven-excellence__stat-num">
+                    <StatCounter value={15} suffix="+" label="" />
+                  </div>
+                  <div className="proven-excellence__stat-label">
+                    Years of Excellence
+                  </div>
+                </div>
+
+                <div className="proven-excellence__stat-card glass-tile">
+                  <div className="proven-excellence__stat-num">
+                    <StatCounter value={98} suffix="%" label="" />
+                  </div>
+                  <div className="proven-excellence__stat-label">
+                    Client Satisfaction
+                  </div>
+                </div>
+
+                <div className="proven-excellence__stat-card glass-tile">
+                  <div className="proven-excellence__stat-num">
+                    <StatCounter value={200} suffix="+" label="" />
+                  </div>
+                  <div className="proven-excellence__stat-label">
+                    Happy Families
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
