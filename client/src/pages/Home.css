@@ -46,21 +46,21 @@
 }
 
 .hero__vertical-tile:nth-child(odd) {
-  background: linear-gradient(180deg, rgba(45, 37, 30, 0.04) 0%, rgba(45, 37, 30, 0.01) 100%);
-  backdrop-filter: blur(4px) saturate(115%);
-  -webkit-backdrop-filter: blur(4px) saturate(115%);
+  background: linear-gradient(180deg, rgba(45, 37, 30, 0.12) 0%, rgba(45, 37, 30, 0.05) 100%);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
 }
 
 .hero__vertical-tile:nth-child(even) {
-  background: linear-gradient(180deg, rgba(45, 37, 30, 0.07) 0%, rgba(45, 37, 30, 0.02) 100%);
-  backdrop-filter: blur(6px) saturate(120%);
-  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  background: linear-gradient(180deg, rgba(45, 37, 30, 0.18) 0%, rgba(45, 37, 30, 0.07) 100%);
+  backdrop-filter: blur(10px) saturate(125%);
+  -webkit-backdrop-filter: blur(10px) saturate(125%);
 }
 
 .hero__vertical-tile:nth-child(3n) {
-  background: linear-gradient(180deg, rgba(45, 37, 30, 0.03) 0%, rgba(45, 37, 30, 0.01) 100%);
-  backdrop-filter: blur(3px) saturate(110%);
-  -webkit-backdrop-filter: blur(3px) saturate(110%);
+  background: linear-gradient(180deg, rgba(45, 37, 30, 0.09) 0%, rgba(45, 37, 30, 0.03) 100%);
+  backdrop-filter: blur(6px) saturate(115%);
+  -webkit-backdrop-filter: blur(6px) saturate(115%);
 }
 
 .hero__vertical-tile:last-child {
@@ -3490,15 +3490,18 @@
 
 /* Black Stats Container Band */
 .proven-excellence__stats-container {
-  background-color: #080808;
   border-radius: 18px;
   padding: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-  background-image: radial-gradient(circle at center, #111111 0%, #050505 100%);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  background-image: 
+    linear-gradient(180deg, rgba(8, 8, 8, 0.85) 0%, rgba(8, 8, 8, 0.92) 100%),
+    url('/images/hero-2.png');
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .proven-excellence__stats-grid {
