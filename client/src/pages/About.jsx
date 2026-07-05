@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Target,
@@ -13,6 +13,10 @@ import {
   CheckSquare,
   ChefHat,
   Trophy,
+  Check,
+  Users,
+  Briefcase,
+  CalendarClock,
 } from 'lucide-react'
 import AnimatedSection from '../components/AnimatedSection'
 import { PORTFOLIO_PROJECTS } from '../data/portfolio'
@@ -24,12 +28,12 @@ const TEAM = [
 ]
 
 const VALUES = [
-  { icon: <Target size={28} strokeWidth={1.5} />, title: 'Purpose-Driven', desc: 'Every design decision is intentional, serving both aesthetics and function.' },
-  { icon: <Handshake size={28} strokeWidth={1.5} />, title: 'Client-First', desc: 'Your vision drives our process. We listen, collaborate, and deliver.' },
-  { icon: <Clock size={28} strokeWidth={1.5} />, title: 'Timely Delivery', desc: 'We respect your time. On-time delivery is non-negotiable for us.' },
-  { icon: <Leaf size={28} strokeWidth={1.5} />, title: 'Sustainable Choices', desc: 'Eco-conscious materials and practices are at the heart of our work.' },
-  { icon: <Award size={28} strokeWidth={1.5} />, title: 'Quality Craftsmanship', desc: 'Premium materials and skilled artisans ensure lasting excellence.' },
-  { icon: <Lightbulb size={28} strokeWidth={1.5} />, title: 'Innovation', desc: 'We blend timeless design with contemporary trends and technology.' },
+  { icon: <Target size={22} strokeWidth={1.5} />, title: 'Purpose-Driven', desc: 'Every design decision is intentional, serving both aesthetics and function.' },
+  { icon: <Handshake size={22} strokeWidth={1.5} />, title: 'Client-First', desc: 'Your vision drives our process. We listen, collaborate, and deliver.' },
+  { icon: <Clock size={22} strokeWidth={1.5} />, title: 'Timely Delivery', desc: 'We respect your time. On-time delivery is non-negotiable for us.' },
+  { icon: <Leaf size={22} strokeWidth={1.5} />, title: 'Sustainable Choices', desc: 'Eco-conscious materials and practices are at the heart of our work.' },
+  { icon: <Award size={22} strokeWidth={1.5} />, title: 'Quality Craftsmanship', desc: 'Premium materials and skilled artisans ensure lasting excellence.' },
+  { icon: <Lightbulb size={22} strokeWidth={1.5} />, title: 'Innovation', desc: 'We blend timeless design with contemporary trends and technology.' },
 ]
 
 const MILESTONES = [
@@ -92,6 +96,22 @@ const ABOUT_VISUALS = {
   processC: PORTFOLIO_PROJECTS[7],
 }
 
+// Condensed checklist copy, paraphrased from the existing Core Values copy
+// (kept 1:1 in meaning — nothing new claimed).
+const AESTHETIC_CHECKLIST = [
+  'Purpose-driven decisions in every design',
+  'Your vision guides our entire process',
+  'Premium materials, end-to-end execution',
+]
+
+// Stats for the dark "journey" band — all derived from real data already
+// in this file (lead copy, 2019 milestone, and the milestone count).
+const JOURNEY_STATS = [
+  { icon: <Users size={20} strokeWidth={1.5} />, num: '15+', label: 'Years Experience' },
+  { icon: <Briefcase size={20} strokeWidth={1.5} />, num: '300+', label: 'Projects Completed' },
+  { icon: <CalendarClock size={20} strokeWidth={1.5} />, num: '06', label: 'Key Milestones' },
+]
+
 const getMilestoneIcon = (name) => {
   switch (name) {
     case 'Store': return <Store size={20} strokeWidth={1.5} />
@@ -104,43 +124,167 @@ const getMilestoneIcon = (name) => {
   }
 }
 
+/**
+ * Dried pampas / eucalyptus branch decoration, matching the reference image.
+ * `withVase` renders it sitting in a small ceramic vase (as it appears twice
+ * in the reference: bottom-right of the "aesthetics" section, and
+ * bottom-left of the closing CTA section).
+ * It drifts gently on scroll (a light parallax), so the motif reads
+ * differently as you move down the page, the way it does in the reference.
+ */
+function LeafMotif({ className, withVase = false, speed = 0.06 }) {
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+
+    const onScroll = () => {
+      const rect = el.getBoundingClientRect()
+      const viewportCenter = window.innerHeight / 2
+      const distance = rect.top + rect.height / 2 - viewportCenter
+      el.style.transform = `translateY(${distance * -speed}px)`
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [speed])
+
+  return (
+    <svg
+      ref={ref}
+      className={`a-leaf ${className || ''}`}
+      viewBox="0 0 220 260"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      {withVase && (
+        <path
+          d="M78 258 L72 190 C 70 178, 150 178, 148 190 L142 258 Z"
+          fill="currentColor"
+          opacity="0.14"
+        />
+      )}
+      {/* main stem */}
+      <path d="M110 195 C 106 150, 118 110, 108 55" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" opacity="0.8" />
+      {/* side stem left */}
+      <path d="M110 170 C 90 150, 78 130, 66 100" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.65" />
+      {/* side stem right */}
+      <path d="M110 140 C 130 120, 142 98, 152 70" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.65" />
+
+      {/* leaf clusters along main stem */}
+      {[
+        [100, 70, -30, 0.85],
+        [116, 90, 25, 0.75],
+        [98, 112, -20, 0.7],
+        [118, 132, 22, 0.7],
+        [100, 155, -18, 0.6],
+        [116, 178, 16, 0.55],
+      ].map(([cx, cy, rot, op], i) => (
+        <ellipse key={i} cx={cx} cy={cy} rx="15" ry="6.5" transform={`rotate(${rot} ${cx} ${cy})`} fill="currentColor" opacity={op} />
+      ))}
+
+      {/* leaf clusters along side stems */}
+      {[
+        [72, 108, -45, 0.55],
+        [82, 128, -30, 0.5],
+        [148, 82, 40, 0.55],
+        [140, 102, 28, 0.5],
+      ].map(([cx, cy, rot, op], i) => (
+        <ellipse key={`s${i}`} cx={cx} cy={cy} rx="11" ry="5" transform={`rotate(${rot} ${cx} ${cy})`} fill="currentColor" opacity={op} />
+      ))}
+
+      <circle cx="108" cy="55" r="3.5" fill="currentColor" opacity="0.9" />
+    </svg>
+  )
+}
+
 export default function About() {
   return (
-    <main>
-      <section className="page-hero">
-        <div className="container about-hero">
-          <AnimatedSection className="about-hero__content">
+    <main className="about-page">
+      {/* HERO */}
+      <section className="page-hero a-hero">
+        <div className="container a-hero__grid">
+          <AnimatedSection className="a-hero__content">
             <p className="overline">Our Story</p>
-            <h1 className="heading-1 about-hero__heading">
+            <h1 className="heading-1 a-hero__heading">
               Designing Spaces.
               <br />
-              <em style={{ fontStyle: 'italic', color: 'var(--accent)' }}>Building Relationships.</em>
+              <em>Building Relationships.</em>
             </h1>
-            <p className="lead about-hero__lead">
+            <p className="lead a-hero__lead">
               For over 15 years, De Interio Cafe has been transforming spaces across Chennai
               with thoughtful design, premium craftsmanship, and an unwavering client-first approach.
             </p>
           </AnimatedSection>
 
-          <AnimatedSection delay={2} className="about-hero__visuals">
-            <div className="about-hero__frame about-hero__frame--primary">
+          <AnimatedSection delay={2} className="a-hero__visuals">
+            <div className="a-hero__frame a-hero__frame--primary">
               <img src={ABOUT_VISUALS.heroPrimary.image} alt={ABOUT_VISUALS.heroPrimary.imageAlt} />
-              <div className="about-hero__caption">
+              <div className="a-hero__caption">
                 <span>Residential Signature</span>
                 <strong>{ABOUT_VISUALS.heroPrimary.title}</strong>
               </div>
             </div>
-            <div className="about-hero__frame about-hero__frame--secondary">
+            <div className="a-hero__frame a-hero__frame--secondary">
               <img src={ABOUT_VISUALS.heroSecondary.image} alt={ABOUT_VISUALS.heroSecondary.imageAlt} />
             </div>
-            <div className="about-hero__frame about-hero__frame--accent">
+            <div className="a-hero__frame a-hero__frame--accent">
               <img src={ABOUT_VISUALS.heroAccent.image} alt={ABOUT_VISUALS.heroAccent.imageAlt} />
+            </div>
+
+            <div className="a-hero__stats">
+              <div className="a-hero__stat">
+                <Users size={20} strokeWidth={1.5} className="a-hero__stat-icon" />
+                <span className="a-hero__stat-num">15+</span>
+                <span className="a-hero__stat-label">Years Experience</span>
+              </div>
+              <div className="a-hero__stat">
+                <Briefcase size={20} strokeWidth={1.5} className="a-hero__stat-icon" />
+                <span className="a-hero__stat-num">300+</span>
+                <span className="a-hero__stat-label">Projects Completed</span>
+              </div>
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      <section className="section">
+      {/* AESTHETICS + MISSION / VISION */}
+      <section className="section a-aesthetics">
+        <LeafMotif className="a-leaf--top-right" />
+        <div className="container a-aesthetics__grid">
+          <AnimatedSection className="a-aesthetics__visual">
+            <div className="a-aesthetics__img a-aesthetics__img--main">
+              <img src={ABOUT_VISUALS.processA.image} alt={ABOUT_VISUALS.processA.imageAlt} />
+            </div>
+            <div className="a-aesthetics__img a-aesthetics__img--sub">
+              <img src={ABOUT_VISUALS.processB.image} alt={ABOUT_VISUALS.processB.imageAlt} />
+            </div>
+            <div className="a-aesthetics__ring">
+              <Leaf size={30} strokeWidth={1.4} />
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={2} className="a-aesthetics__copy">
+            <span className="overline">How We Design</span>
+            <h2 className="heading-1">Visual thinking, material depth, and real-world functionality.</h2>
+            <p className="lead a-aesthetics__lead">
+              Every project moves through concept framing, layout refinement, and finish curation. This layout shows the kind of spaces and moods we build across homes, workplaces, and renovation projects.
+            </p>
+
+            <ul className="a-aesthetics__checklist">
+              {AESTHETIC_CHECKLIST.map((item) => (
+                <li key={item}>
+                  <span className="a-aesthetics__check"><Check size={14} strokeWidth={2.5} /></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </AnimatedSection>
+        </div>
+
         <div className="container about-mv">
           <AnimatedSection className="about-mv__card about-mv__card--mission">
             <span className="overline">Our Mission</span>
@@ -159,157 +303,156 @@ export default function About() {
             </p>
           </AnimatedSection>
         </div>
+
+        <LeafMotif className="a-leaf--bottom-right" withVase speed={0.03} />
       </section>
 
-      <section className="section about-gallery-section">
-        <div className="container about-gallery">
-          <AnimatedSection className="about-gallery__copy">
-            <div className="section-label"><span className="overline">How We Design</span></div>
-            <h2 className="heading-1">Visual thinking, material depth, and real-world functionality.</h2>
-            <p className="lead">
-              Every project moves through concept framing, layout refinement, and finish curation. This layout shows the kind of spaces and moods we build across homes, workplaces, and renovation projects.
-            </p>
-          </AnimatedSection>
-
-          <div className="about-gallery__grid">
-            <AnimatedSection className="about-gallery__card about-gallery__card--tall">
-              <img src={ABOUT_VISUALS.processA.image} alt={ABOUT_VISUALS.processA.imageAlt} />
-              <div className="about-gallery__overlay">
-                <span className="badge">Workflow</span>
-                <h3>{ABOUT_VISUALS.processA.title}</h3>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={2} className="about-gallery__card">
-              <img src={ABOUT_VISUALS.processB.image} alt={ABOUT_VISUALS.processB.imageAlt} />
-              <div className="about-gallery__overlay">
-                <span className="badge">Commercial Energy</span>
-                <h3>{ABOUT_VISUALS.processB.title}</h3>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={3} className="about-gallery__card">
-              <img src={ABOUT_VISUALS.processC.image} alt={ABOUT_VISUALS.processC.imageAlt} />
-              <div className="about-gallery__overlay">
-                <span className="badge">Renovation Sensitivity</span>
-                <h3>{ABOUT_VISUALS.processC.title}</h3>
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-brown">
-        <div className="container">
-          <AnimatedSection>
+      {/* CORE VALUES */}
+      <section className="section a-values-section">
+        <div className="container a-values__grid">
+          <AnimatedSection className="a-values__copy">
             <div className="section-label"><span className="overline">What Drives Us</span></div>
-            <h2 className="heading-1" style={{ marginBottom: '3rem' }}>Our Core Values</h2>
+            <h2 className="heading-1">Our Core Values</h2>
+
+            <div className="a-values__list">
+              {VALUES.map((value, index) => (
+                <AnimatedSection key={value.title} delay={(index % 3) + 1}>
+                  <div className="about-value-card">
+                    <div className="about-value-card__icon">{value.icon}</div>
+                    <div>
+                      <h3 className="heading-3">{value.title}</h3>
+                      <p className="body-sm about-value-card__desc">{value.desc}</p>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
           </AnimatedSection>
-          <div className="grid-3 about-values">
-            {VALUES.map((value, index) => (
-              <AnimatedSection key={value.title} delay={(index % 3) + 1}>
-                <div className="card about-value-card">
-                  <div className="about-value-card__icon">{value.icon}</div>
-                  <h3 className="heading-3">{value.title}</h3>
-                  <p className="body-sm about-value-card__desc">{value.desc}</p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+
+          <AnimatedSection delay={2} className="a-values__visual">
+            <img src={ABOUT_VISUALS.processC.image} alt={ABOUT_VISUALS.processC.imageAlt} />
+            <div className="a-values__quote">
+              <p>&quot;Every detail we design is a step closer to your dream space.&quot;</p>
+              <span>— De Interio Cafe</span>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
+      {/* JOURNEY — dark full-bleed band: stats + timeline together, like the reference */}
       <section className="section roadmap-section">
-        <div className="container">
-          <AnimatedSection>
-            <div className="section-label"><span className="overline">Our Journey</span></div>
-            <h2 className="heading-1 roadmap-section__title">Milestones & Roadmap</h2>
-            <p className="lead roadmap-section__lead">
-              How we grew from a small local team of designers to one of Chennai&apos;s premier interior firms.
-            </p>
-          </AnimatedSection>
+        <div className="roadmap-section__inner">
+          <div className="container">
+            <AnimatedSection>
+              <div className="section-label"><span className="overline">Our Experience</span></div>
+              <h2 className="heading-1 roadmap-section__title">
+                Numbers That Reflect Our <em>Journey.</em>
+              </h2>
+            </AnimatedSection>
 
-          <div className="roadmap">
-            <div className="roadmap__line" aria-hidden="true" />
-            <div className="roadmap__items">
-              {MILESTONES.map((milestone, index) => (
-                <div key={milestone.year} className={`roadmap__item ${index % 2 === 0 ? 'roadmap__item--left' : 'roadmap__item--right'}`}>
-                  <div className="roadmap__node" aria-hidden="true">
-                    <span className="roadmap__node-dot" />
-                  </div>
-                  <article className="roadmap__card">
-                    <span className="roadmap__watermark">{milestone.year}</span>
-
-                    <div className="roadmap__card-top">
-                      <span className="roadmap__index">{String(index + 1).padStart(2, '0')}</span>
-                      <span className="roadmap__stage">{milestone.stage}</span>
-                    </div>
-
-                    <div className="roadmap__card-main">
-                      <div className="roadmap__badge">
-                        {getMilestoneIcon(milestone.iconName)}
-                      </div>
-                      <div className="roadmap__headline">
-                        <div className="roadmap__year">{milestone.year}</div>
-                        <h3 className="roadmap__title">{milestone.title}</h3>
-                      </div>
-                    </div>
-
-                    <p className="roadmap__desc">{milestone.event}</p>
-
-                    <div className="roadmap__footer">
-                      <div className="roadmap__meter" aria-hidden="true">
-                        <span className="roadmap__meter-bar" style={{ width: `${milestone.progress}%` }} />
-                      </div>
-                      <span className="roadmap__progress-note">{milestone.progress}% evolution</span>
-                    </div>
-                  </article>
+            <AnimatedSection delay={2} className="a-journey-stats">
+              {JOURNEY_STATS.map((stat) => (
+                <div className="a-journey-stat" key={stat.label}>
+                  <span className="a-journey-stat__icon">{stat.icon}</span>
+                  <span className="a-journey-stat__num">{stat.num}</span>
+                  <span className="a-journey-stat__label">{stat.label}</span>
                 </div>
               ))}
+            </AnimatedSection>
+
+            <AnimatedSection delay={3}>
+              <div className="section-label" style={{ marginTop: '4.5rem' }}><span className="overline">Our Journey</span></div>
+              <h2 className="heading-1 roadmap-section__title">Milestones &amp; Roadmap</h2>
+              <p className="lead roadmap-section__lead">
+                How we grew from a small local team of designers to one of Chennai&apos;s premier interior firms.
+              </p>
+            </AnimatedSection>
+
+            <div className="roadmap">
+              <div className="roadmap__line" aria-hidden="true" />
+              <div className="roadmap__items">
+                {MILESTONES.map((milestone, index) => (
+                  <div key={milestone.year} className={`roadmap__item ${index % 2 === 0 ? 'roadmap__item--left' : 'roadmap__item--right'}`}>
+                    <div className="roadmap__node" aria-hidden="true">
+                      <span className="roadmap__node-dot" />
+                    </div>
+                    <article className="roadmap__card">
+                      <span className="roadmap__watermark">{milestone.year}</span>
+
+                      <div className="roadmap__card-top">
+                        <span className="roadmap__index">{String(index + 1).padStart(2, '0')}</span>
+                        <span className="roadmap__stage">{milestone.stage}</span>
+                      </div>
+
+                      <div className="roadmap__card-main">
+                        <div className="roadmap__badge">
+                          {getMilestoneIcon(milestone.iconName)}
+                        </div>
+                        <div className="roadmap__headline">
+                          <div className="roadmap__year">{milestone.year}</div>
+                          <h3 className="roadmap__title">{milestone.title}</h3>
+                        </div>
+                      </div>
+
+                      <p className="roadmap__desc">{milestone.event}</p>
+
+                      <div className="roadmap__footer">
+                        <div className="roadmap__meter" aria-hidden="true">
+                          <span className="roadmap__meter-bar" style={{ width: `${milestone.progress}%` }} />
+                        </div>
+                        <span className="roadmap__progress-note">{milestone.progress}% evolution</span>
+                      </div>
+                    </article>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section" style={{ background: 'var(--bg-secondary)' }}>
+      {/* FOUNDER */}
+      <section className="section a-founder-section">
         <div className="container">
           <AnimatedSection>
             <div className="section-label"><span className="overline">The People</span></div>
             <h2 className="heading-1" style={{ marginBottom: '3rem' }}>Meet Our Team</h2>
           </AnimatedSection>
 
-          <AnimatedSection delay={2}>
-            <div className="about-founder-layout">
-              {/* Left Column: Founder Card Info */}
-              <div className="about-founder__card">
-                <div className="about-founder__avatar">M</div>
-                <div className="about-founder__meta">
-                  <h3 className="about-founder__name">Mohana Rao</h3>
-                  <span className="about-founder__role">Founder & Principal Designer</span>
-                </div>
-                <p className="about-founder__bio">
-                  Mohana Rao established De Interio Cafe in 2008 with a passion for designing residential and commercial spaces that blend aesthetic excellence with everyday practicality. Over the past 15+ years, he has guided the firm from a boutique Chennai studio into a premier interior design brand, leading projects with an unwavering focus on details, craftsmanship, and custom finishes.
-                </p>
-              </div>
-
-              {/* Right Column: Small Photo & Quote */}
-              <div className="about-founder__right">
-                <div className="about-founder__image-wrap">
-                  <img src={ourStoryImage} alt="Mohana Rao - De Interio Cafe Design Studio" />
-                </div>
-                <div className="about-founder__quote-card">
-                  <p className="about-founder__quote-text">
-                    &quot;Design is not just about placing furniture; it's about translating personal stories and daily rituals into spaces that feel premium, warm, and timeless.&quot;
+          {TEAM.map((member) => (
+            <AnimatedSection delay={2} key={member.name}>
+              <div className="about-founder-layout">
+                <div className="about-founder__card">
+                  <div className="about-founder__avatar">{member.initial}</div>
+                  <div className="about-founder__meta">
+                    <h3 className="about-founder__name">{member.name}</h3>
+                    <span className="about-founder__role">{member.role}</span>
+                  </div>
+                  <p className="about-founder__bio">
+                    Mohana Rao established De Interio Cafe in 2008 with a passion for designing residential and commercial spaces that blend aesthetic excellence with everyday practicality. Over the past 15+ years, he has guided the firm from a boutique Chennai studio into a premier interior design brand, leading projects with an unwavering focus on details, craftsmanship, and custom finishes.
                   </p>
-                  <span className="about-founder__quote-author">— Mohana Rao</span>
+                </div>
+
+                <div className="about-founder__right">
+                  <div className="about-founder__image-wrap">
+                    <img src={member.image} alt={`${member.name} - De Interio Cafe Design Studio`} />
+                  </div>
+                  <div className="about-founder__quote-card">
+                    <p className="about-founder__quote-text">
+                      &quot;Design is not just about placing furniture; it's about translating personal stories and daily rituals into spaces that feel premium, warm, and timeless.&quot;
+                    </p>
+                    <span className="about-founder__quote-author">— {member.name}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </AnimatedSection>
+            </AnimatedSection>
+          ))}
         </div>
       </section>
 
-      <section className="section--sm section-brown">
+      {/* CTA */}
+      <section className="section--sm a-cta-section">
+        <LeafMotif className="a-leaf--cta" withVase speed={0.03} />
         <div className="container" style={{ textAlign: 'center' }}>
           <AnimatedSection>
             <h2 className="heading-1" style={{ marginBottom: '1rem' }}>Ready to work with us?</h2>
