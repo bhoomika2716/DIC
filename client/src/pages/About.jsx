@@ -21,6 +21,7 @@ import {
 import AnimatedSection from '../components/AnimatedSection'
 import { PORTFOLIO_PROJECTS } from '../data/portfolio'
 import ourStoryImage from '../assets/home/our-story.webp'
+import vaseDecor from '../assets/about/vase-decor.png'
 import './About.css'
 
 const TEAM = [
@@ -94,6 +95,10 @@ const ABOUT_VISUALS = {
   processA: PORTFOLIO_PROJECTS[8],
   processB: PORTFOLIO_PROJECTS[5],
   processC: PORTFOLIO_PROJECTS[7],
+  // Small gold-framed photo shown top-left of the dark "Journey" band,
+  // mirroring the larger ambient photo that bleeds in on the right.
+  // Swap the index for whichever project photo you'd like to feature there.
+  journeyFrame: PORTFOLIO_PROJECTS[3],
 }
 
 // Condensed checklist copy, paraphrased from the existing Core Values copy
@@ -110,6 +115,16 @@ const JOURNEY_STATS = [
   { icon: <Users size={20} strokeWidth={1.5} />, num: '15+', label: 'Years Experience' },
   { icon: <Briefcase size={20} strokeWidth={1.5} />, num: '300+', label: 'Projects Completed' },
   { icon: <CalendarClock size={20} strokeWidth={1.5} />, num: '06', label: 'Key Milestones' },
+]
+
+// Generic 4-step process copy — placeholder to fill this design slot,
+// since a stated design process wasn't part of your existing content.
+// Swap the titles/descriptions for your actual workflow whenever you're ready.
+const PROCESS_STEPS = [
+  { num: '01', title: 'Discovery', desc: 'Understanding your vision and needs.' },
+  { num: '02', title: 'Planning', desc: 'Crafting the right plan and layout.' },
+  { num: '03', title: 'Design', desc: 'Bringing the concept to life in 3D.' },
+  { num: '04', title: 'Execution', desc: 'Building it with precision and care.' },
 ]
 
 const getMilestoneIcon = (name) => {
@@ -132,6 +147,20 @@ const getMilestoneIcon = (name) => {
  * It drifts gently on scroll (a light parallax), so the motif reads
  * differently as you move down the page, the way it does in the reference.
  */
+// A single delicate, pointed leaf silhouette (tip up), used as a template
+// and re-positioned/rotated/scaled per sprig — reads as fine botanical line
+// art rather than a cluster of plain ellipses.
+function Leaflet({ x, y, rotate, scale = 1, opacity = 1 }) {
+  return (
+    <path
+      d="M0,0 C2.6,-4 2.8,-11 0,-17 C-2.8,-11 -2.6,-4 0,0 Z"
+      fill="currentColor"
+      opacity={opacity}
+      transform={`translate(${x} ${y}) rotate(${rotate}) scale(${scale})`}
+    />
+  )
+}
+
 function LeafMotif({ className, withVase = false, speed = 0.06 }) {
   const ref = useRef(null)
 
@@ -151,6 +180,22 @@ function LeafMotif({ className, withVase = false, speed = 0.06 }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [speed])
 
+  // hand-placed sprigs along three graceful stems, thinning toward the tips —
+  // fewer, finer leaves than a bushy cluster reads as refined dried pampas.
+  const sprigs = [
+    // main stem (base 110,205 → tip 100,40)
+    [104, 165, -35, 0.95, 0.85], [116, 148, 28, 0.85, 0.8],
+    [100, 128, -30, 0.9, 0.8], [114, 108, 26, 0.8, 0.75],
+    [98, 88, -28, 0.8, 0.7], [110, 66, 22, 0.7, 0.65],
+    [101, 46, -20, 0.6, 0.6],
+    // left stem (branches off around 108,150 → tip 55,95)
+    [88, 140, -55, 0.75, 0.6], [72, 122, -48, 0.65, 0.55],
+    [58, 102, -40, 0.55, 0.5],
+    // right stem (branches off around 112,120 → tip 158,60)
+    [128, 108, 45, 0.75, 0.55], [143, 88, 40, 0.65, 0.5],
+    [156, 66, 32, 0.55, 0.45],
+  ]
+
   return (
     <svg
       ref={ref}
@@ -161,42 +206,74 @@ function LeafMotif({ className, withVase = false, speed = 0.06 }) {
       aria-hidden="true"
     >
       {withVase && (
-        <path
-          d="M78 258 L72 190 C 70 178, 150 178, 148 190 L142 258 Z"
-          fill="currentColor"
-          opacity="0.14"
-        />
+        <g opacity="0.9">
+          <path
+            d="M99,204 C95,210 92,219 94,228 C89,238 85,247 90,257 L128,257 C133,247 129,238 124,228 C126,219 123,210 119,204 C112,208 106,208 99,204 Z"
+            fill="currentColor"
+            opacity="0.1"
+            stroke="currentColor"
+            strokeWidth="0.75"
+            strokeOpacity="0.35"
+          />
+          <path d="M96,232 C104,235 114,235 122,232" stroke="currentColor" strokeWidth="0.6" strokeOpacity="0.3" />
+        </g>
       )}
-      {/* main stem */}
-      <path d="M110 195 C 106 150, 118 110, 108 55" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" opacity="0.8" />
-      {/* side stem left */}
-      <path d="M110 170 C 90 150, 78 130, 66 100" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.65" />
-      {/* side stem right */}
-      <path d="M110 140 C 130 120, 142 98, 152 70" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.65" />
 
-      {/* leaf clusters along main stem */}
-      {[
-        [100, 70, -30, 0.85],
-        [116, 90, 25, 0.75],
-        [98, 112, -20, 0.7],
-        [118, 132, 22, 0.7],
-        [100, 155, -18, 0.6],
-        [116, 178, 16, 0.55],
-      ].map(([cx, cy, rot, op], i) => (
-        <ellipse key={i} cx={cx} cy={cy} rx="15" ry="6.5" transform={`rotate(${rot} ${cx} ${cy})`} fill="currentColor" opacity={op} />
+      {/* stems — thin, tapering, naturalistic */}
+      <path d="M110 205 C 105 155, 116 95, 100 40" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.55" />
+      <path d="M108 150 C 90 140, 70 128, 55 95" stroke="currentColor" strokeWidth="0.75" strokeLinecap="round" opacity="0.45" />
+      <path d="M112 120 C 128 112, 145 98, 158 60" stroke="currentColor" strokeWidth="0.75" strokeLinecap="round" opacity="0.45" />
+
+      {sprigs.map(([x, y, rotate, scale, opacity], i) => (
+        <Leaflet key={i} x={x} y={y} rotate={rotate} scale={scale} opacity={opacity} />
       ))}
 
-      {/* leaf clusters along side stems */}
-      {[
-        [72, 108, -45, 0.55],
-        [82, 128, -30, 0.5],
-        [148, 82, 40, 0.55],
-        [140, 102, 28, 0.5],
-      ].map(([cx, cy, rot, op], i) => (
-        <ellipse key={`s${i}`} cx={cx} cy={cy} rx="11" ry="5" transform={`rotate(${rot} ${cx} ${cy})`} fill="currentColor" opacity={op} />
-      ))}
+      <circle cx="100" cy="40" r="1.6" fill="currentColor" opacity="0.6" />
+    </svg>
+  )
+}
 
-      <circle cx="108" cy="55" r="3.5" fill="currentColor" opacity="0.9" />
+/**
+ * Sparse scattered gold dots connected by faint broken (dashed) lines,
+ * softly blurred — the bokeh-like accent scattered across the dark
+ * "Journey" band in the reference design.
+ */
+function GoldDotsMotif({ className }) {
+  const dots = [
+    [90, 70, 2.2], [230, 150, 1.6], [330, 55, 2], [470, 190, 1.4],
+    [70, 240, 1.6], [510, 90, 1.8], [600, 270, 1.3], [170, 300, 2],
+    [410, 330, 1.5], [670, 150, 1.7], [20, 140, 1.3], [550, 300, 2.1],
+    [260, 260, 1.4], [630, 60, 1.5],
+  ]
+  const lines = [
+    'M55,75 L215,145',
+    'M295,50 L410,130',
+    'M460,180 L590,255',
+    'M90,235 L250,290',
+    'M505,85 L640,155',
+    'M180,290 L390,325',
+  ]
+  return (
+    <svg
+      className={`a-journey-dots ${className || ''}`}
+      viewBox="0 0 720 400"
+      preserveAspectRatio="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <filter id="goldDotBlur" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="1.3" />
+        </filter>
+      </defs>
+      <g stroke="var(--a-gold)" strokeWidth="1" strokeDasharray="4 9" opacity="0.32" filter="url(#goldDotBlur)">
+        {lines.map((d, i) => <path key={i} d={d} />)}
+      </g>
+      <g fill="var(--a-gold)" filter="url(#goldDotBlur)">
+        {dots.map(([x, y, r], i) => (
+          <circle key={i} cx={x} cy={y} r={r} opacity={0.45 + (i % 3) * 0.18} />
+        ))}
+      </g>
     </svg>
   )
 }
@@ -214,6 +291,7 @@ export default function About() {
               <br />
               <em>Building Relationships.</em>
             </h1>
+            <span className="a-underline" aria-hidden="true" />
             <p className="lead a-hero__lead">
               For over 15 years, De Interio Cafe has been transforming spaces across Chennai
               with thoughtful design, premium craftsmanship, and an unwavering client-first approach.
@@ -263,11 +341,14 @@ export default function About() {
               <img src={ABOUT_VISUALS.processB.image} alt={ABOUT_VISUALS.processB.imageAlt} />
             </div>
             <div className="a-aesthetics__ring">
-              <Leaf size={30} strokeWidth={1.4} />
+              <span>Crafted<br />with Purpose</span>
             </div>
           </AnimatedSection>
 
           <AnimatedSection delay={2} className="a-aesthetics__copy">
+            <svg className="a-aesthetics__arc" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M40 20 C 220 40, 260 180, 160 260 C 90 320, 100 370, 220 390" stroke="currentColor" strokeWidth="1" />
+            </svg>
             <span className="overline">How We Design</span>
             <h2 className="heading-1">Visual thinking, material depth, and real-world functionality.</h2>
             <p className="lead a-aesthetics__lead">
@@ -286,6 +367,7 @@ export default function About() {
         </div>
 
         <div className="container about-mv">
+          <img src={vaseDecor} alt="" className="a-story-vase" aria-hidden="true" />
           <AnimatedSection className="about-mv__card about-mv__card--mission">
             <span className="overline">Our Mission</span>
             <h2 className="heading-2">To make exceptional design accessible to every home and business in Chennai.</h2>
@@ -341,28 +423,79 @@ export default function About() {
 
       {/* JOURNEY — dark full-bleed band: stats + timeline together, like the reference */}
       <section className="section roadmap-section">
+        <GoldDotsMotif className="a-journey-dots--top" />
+        <div className="a-journey-ambient" aria-hidden="true">
+          <img src={ABOUT_VISUALS.heroAccent.image} alt="" />
+          <div className="a-journey-ambient__glow" />
+          <div className="a-journey-ambient__glow--low" />
+          <div className="a-journey-ambient__fade" />
+        </div>
+
+        {/* Small gold-framed photo, top-left — mirrors the larger ambient
+            photo bleeding in on the right, per the reference design. */}
+        <div className="a-journey-frame">
+          <img src={ABOUT_VISUALS.journeyFrame.image} alt={ABOUT_VISUALS.journeyFrame.imageAlt} />
+        </div>
+
         <div className="roadmap-section__inner">
           <div className="container">
-            <AnimatedSection>
-              <div className="section-label"><span className="overline">Our Experience</span></div>
-              <h2 className="heading-1 roadmap-section__title">
-                Numbers That Reflect Our <em>Journey.</em>
-              </h2>
+
+            {/* Numbers — minimal inline row, exactly like the reference */}
+            <AnimatedSection className="a-journey-row">
+              <div className="a-journey-heading">
+                <div className="section-label"><span className="overline">Our Experience</span></div>
+                <h2 className="heading-1 roadmap-section__title">
+                  Numbers That Reflect Our <em>Journey.</em>
+                </h2>
+                <span className="a-underline" aria-hidden="true" />
+              </div>
+
+              <div className="a-journey-stats">
+                {JOURNEY_STATS.map((stat) => (
+                  <div className="a-journey-stat" key={stat.label}>
+                    <span className="a-journey-stat__icon">{stat.icon}</span>
+                    <span className="a-journey-stat__num">{stat.num}</span>
+                    <span className="a-journey-stat__label">{stat.label}</span>
+                  </div>
+                ))}
+              </div>
             </AnimatedSection>
 
-            <AnimatedSection delay={2} className="a-journey-stats">
-              {JOURNEY_STATS.map((stat) => (
-                <div className="a-journey-stat" key={stat.label}>
-                  <span className="a-journey-stat__icon">{stat.icon}</span>
-                  <span className="a-journey-stat__num">{stat.num}</span>
-                  <span className="a-journey-stat__label">{stat.label}</span>
-                </div>
-              ))}
+            {/* Process — gold-bordered glass cards with a connecting line, like the reference.
+                Note: these 4 steps are generic placeholder copy (not pulled from your existing
+                content) since your site didn't have a stated process yet — adjust the wording
+                to match how you actually describe your workflow. */}
+            <AnimatedSection delay={2} className="a-process-row">
+              <div className="a-process-heading">
+                <div className="section-label"><span className="overline">Our Process</span></div>
+                <h2 className="heading-1 roadmap-section__title">
+                  From Concept to <em>Creation.</em>
+                </h2>
+                <span className="a-underline" aria-hidden="true" />
+                <p className="lead roadmap-section__lead a-process-lead">
+                  A seamless journey from idea to reality, with complete design transparency.
+                </p>
+              </div>
+
+              <div className="a-process-cards">
+                <svg className="a-process-connector" viewBox="0 0 620 40" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M20 30 C 160 -10, 220 45, 320 20 C 420 -5, 480 40, 600 15" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 6" fill="none" />
+                </svg>
+                {PROCESS_STEPS.map((step) => (
+                  <div className="a-process-card" key={step.num}>
+                    <span className="a-process-card__dot" />
+                    <span className="a-process-card__num">{step.num}</span>
+                    <h3 className="a-process-card__title">{step.title}</h3>
+                    <p className="a-process-card__desc">{step.desc}</p>
+                  </div>
+                ))}
+              </div>
             </AnimatedSection>
 
             <AnimatedSection delay={3}>
-              <div className="section-label" style={{ marginTop: '4.5rem' }}><span className="overline">Our Journey</span></div>
+              <div className="section-label" style={{ marginTop: '5rem' }}><span className="overline">Our Journey</span></div>
               <h2 className="heading-1 roadmap-section__title">Milestones &amp; Roadmap</h2>
+              <span className="a-underline" aria-hidden="true" />
               <p className="lead roadmap-section__lead">
                 How we grew from a small local team of designers to one of Chennai&apos;s premier interior firms.
               </p>
