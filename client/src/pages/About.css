@@ -1225,6 +1225,30 @@
 /* ============ FOUNDER ============ */
 .a-founder-section { position: relative; padding-top: 5rem; }
 
+/* Heading + decorative image sit as flex siblings — the image gets its
+   own reserved space to the right, it can never sit on top of the text
+   because flex items lay out side by side, not stacked. */
+.a-founder-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.a-founder-top__text { flex: 1 1 auto; min-width: 0; }
+
+.a-founder-decor {
+  position:absolute;
+    right:0;
+    top:0.2px;
+    bottom:40px;      /* pushes it downward */
+    transform:none;
+}
+
+@media (min-width: 1100px) {
+  .a-founder-decor { display: block; }
+}
+
 .about-founder-layout {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;

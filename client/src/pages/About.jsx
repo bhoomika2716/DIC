@@ -22,6 +22,7 @@ import AnimatedSection from '../components/AnimatedSection'
 import { PORTFOLIO_PROJECTS } from '../data/portfolio'
 import ourStoryImage from '../assets/home/our-story.webp'
 import vaseDecor from '../assets/about/vase-decor.png'
+import founderDecor from '../assets/about/founder-decor.png'
 import './About.css'
 
 const TEAM = [
@@ -547,10 +548,13 @@ export default function About() {
       {/* FOUNDER */}
       <section className="section a-founder-section">
         <div className="container">
-          <AnimatedSection>
-            <div className="section-label"><span className="overline">The People</span></div>
-            <h2 className="heading-1" style={{ marginBottom: '3rem' }}>Meet Our Team</h2>
-          </AnimatedSection>
+          <div className="a-founder-top">
+            <AnimatedSection className="a-founder-top__text">
+              <div className="section-label"><span className="overline">The People</span></div>
+              <h2 className="heading-1" style={{ marginBottom: '3rem' }}>Meet Our Team</h2>
+            </AnimatedSection>
+            <img src={founderDecor} alt="" className="a-founder-decor" aria-hidden="true" />
+          </div>
 
           {TEAM.map((member) => (
             <AnimatedSection delay={2} key={member.name}>
@@ -567,9 +571,9 @@ export default function About() {
                 </div>
 
                 <div className="about-founder__right">
-                  <div className="about-founder__image-wrap">
-                    <img src={member.image} alt={`${member.name} - De Interio Cafe Design Studio`} />
-                  </div>
+                  {/*<div className="about-founder__image-wrap">
+                   <img src={member.image} alt={`${member.name} - De Interio Cafe Design Studio`} />
+                  </div>*/}
                   <div className="about-founder__quote-card">
                     <p className="about-founder__quote-text">
                       &quot;Design is not just about placing furniture; it's about translating personal stories and daily rituals into spaces that feel premium, warm, and timeless.&quot;
